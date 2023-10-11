@@ -2,7 +2,7 @@
 name: Documentation
 about: A file needs to be documentated
 title: "[DOC]"
-labels: ''
+labels: ":writing_hand: documentation"
 assignees: ''
 
 ---

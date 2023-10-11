@@ -2,7 +2,7 @@
 name: New Feature
 about: A new feature implemented in the program
 title: "[NF]"
-labels: ''
+labels: ":exclamation: New Feature"
 assignees: ''
 
 ---

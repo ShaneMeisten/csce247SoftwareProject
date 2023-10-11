@@ -2,7 +2,7 @@
 name: Extra
 about: A add on that does not hinder the program
 title: "[EX]"
-labels: ''
+labels: "\U0001F5FF Extra"
 assignees: ''
 
 ---

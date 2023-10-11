@@ -2,7 +2,7 @@
 name: Test
 about: A class that needs to be tested
 title: "[TEST]"
-labels: ''
+labels: "\U0001F4C4 Test"
 assignees: ''
 
 ---

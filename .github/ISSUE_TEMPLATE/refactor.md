@@ -2,7 +2,7 @@
 name: Refactor
 about: Restructring Existing Code
 title: "[RF]"
-labels: ''
+labels: "\U0001F4CB Refactor"
 assignees: ''
 
 ---

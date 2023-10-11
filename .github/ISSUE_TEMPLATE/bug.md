@@ -2,7 +2,7 @@
 name: Bug
 about: A bug is detected within the program
 title: "[BUG]"
-labels: ''
+labels: ":lady_beetle: Bug"
 assignees: ''
 
 ---
