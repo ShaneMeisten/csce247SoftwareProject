@@ -1,7 +1,7 @@
 ---
 name: Documentation
 about: A file needs to be documentated
-title: ''
+title: "[DOC]"
 labels: ''
 assignees: ''
 
