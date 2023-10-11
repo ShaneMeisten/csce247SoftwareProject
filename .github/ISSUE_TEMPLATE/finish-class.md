@@ -2,7 +2,7 @@
 name: Finish Class
 about: 'Classes that have been labeled as currently complete '
 title: "[FIN]"
-labels: ''
+labels: ":white_check_mark: Finish"
 assignees: ''
 
 ---
