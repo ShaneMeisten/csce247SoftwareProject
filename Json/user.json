@@ -1,0 +1,29 @@
+[
+    {
+     "id": "1121b136-228c-4cce-a04a-7668d389d177",
+     "name": "Jackson Brown",
+     "role": "Manager",
+     "adminPerms": true,
+     "team": "group1",
+     "userName": "jBrown",
+     "password": "Brown91!",
+     "phone": "201-679-3420",
+     "point": 15.6,
+     "email": "JacksonBrown@gmail.com",
+     "currentProjects": [{"id": "1121b136-228c-4cce-a04a-7668d389d177"}],
+     "invitedProjects": [{"id": "1121b136-228c-4cce-a04a-7668d389d177"}]
+
+    },{
+     "id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
+     "name": "Matthew Pierce",
+     "role": "Intern",
+     "adminPerms": false,
+     "team": "team1",
+     "userName": "mPierce",
+     "password": "MattPierce2001%",
+     "phone": "803-999-4030",
+     "point": 9.6,
+     "email": "Matthew.Pierce@gmail.com",
+     "currentProjects": [{"id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"}],
+     "invitedProjects": [{"id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"}]
+    }]
