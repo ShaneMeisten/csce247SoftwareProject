@@ -29,8 +29,8 @@ public class DataLoader extends DataConstants{
         String phone = (String)userJSON.get(USER_PHONE);
         double point = (Double)userJSON.get(USER_POINT);
         String email = (String)userJSON.get(USER_EMAIL);
-        ArrayList<Project> currentProjects = (ArrayList<Project>)userJSON.get(USER_CURRENT_PROJECTS);
-        ArrayList<Project> invitedProjects = (ArrayList<Project>)userJSON.get(USER_INVITED_PROJECTS);
+        ArrayList<UUID> currentProjects = (ArrayList<UUID>)userJSON.get(USER_CURRENT_PROJECTS);
+        ArrayList<UUID> invitedProjects = (ArrayList<UUID>)userJSON.get(USER_INVITED_PROJECTS);
 
         userCatalog.add(new User(id, name, role, adminPerms, team, userName, password, phone, point, email, currentProjects, invitedProjects));
       }

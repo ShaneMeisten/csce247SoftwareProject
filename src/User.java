@@ -17,20 +17,22 @@ public class User{
     private boolean adminPerms;
     private double points;
     private ArrayList<UUID> currentProjects;
-    private ArrayList<UUID> inviteProjects;
+    private ArrayList<UUID> invitedProjects;
 
-    public User(String name, String role, String team, boolean adminPerms,
-    String phone, String email, double points, String haveUUID){
+    public User(UUID id, String name, String role, boolean adminPerms, String team,
+    String username, String password, String phone, double points, String email, ArrayList<UUID> currentProjects, ArrayList<UUID> invitedProjects){
+        this.id = id;
         this.name = name;
         this.role = role;
-        this.team = team;
         this.adminPerms = adminPerms;
+        this.team = team;
+        this.username = username;
+        this.password = password;
         this.phone = phone;
-        this.email = email;
         this.points = points;
-        
-        if(haveUUID.isEmpty()) this.id = UUID.randomUUID();
-        else this.id = UUID.fromString(haveUUID);
+        this.email = email;
+        this.currentProjects = currentProjects;
+        this.invitedProjects = invitedProjects;
     }
 
     public User login(String username, String passsword){
