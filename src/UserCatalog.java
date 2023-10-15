@@ -40,4 +40,8 @@ public class UserCatalog {
 
     }
 
+    public ArrayList<User> getUsers() {
+        return userList;
+    }
+
 }
