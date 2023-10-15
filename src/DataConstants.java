@@ -1,4 +1,8 @@
-public class DataConstants {
+
+/**
+ * @author Aidan Godwin
+ */
+public abstract class DataConstants {
   protected static final String USER_FILE_NAME = "Json/user.json";
   protected static final String USER_NAME = "name";
   protected static final String USER_ID = "id";
