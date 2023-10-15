@@ -25,15 +25,15 @@
                                                              "author": "1121b136-228c-4cce-a04a-7668d389d177",
                                                              "date": "06/16/2023"}]
                                 }],
-                    "status": false,
-                    "completionTime": 21.5,
-                    "assignedUser": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
-                    "author": "1121b136-228c-4cce-a04a-7668d389d177",
-                    "toDoList": [{"id": "9b1ad9f9-9713-4e5a-b165-9f99be5a7f27"
-                    }]
+                                "status": false,
+                                "completionTime": 21.5,
+                                "assignedUser": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
+                                "author": "1121b136-228c-4cce-a04a-7668d389d177",
+                                "toDoList": [{"id": "9b1ad9f9-9713-4e5a-b165-9f99be5a7f27"
+                                }]
                     }]
         }],
-        "History": [{"id": "1121b136-228c-4cce-a04a-7668d389d177",
+        "history": [{"id": "1121b136-228c-4cce-a04a-7668d389d177",
                      "timeStamp": "06/20/2023, 12:55 PM",
                      "user": "jBrown",
                      "changelog": "Created a Task "
