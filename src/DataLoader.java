@@ -16,7 +16,7 @@ public class DataLoader extends DataConstants{
     try {
       FileReader reader = new FileReader(USER_FILE_NAME);
       JSONParser parser = new JSONParser();
-      JSONArray userCatalogJSON = (JSONArray)new JSONParser().parse(reader);
+      JSONArray userCatalogJSON = (JSONArray)parser.parse(reader);
       for (int i=0; i<userCatalogJSON.size();i++) {
         JSONObject userJSON = (JSONObject)userCatalogJSON.get(i);
         UUID id = UUID.fromString((String)userJSON.get(USER_ID));
@@ -39,5 +39,28 @@ public class DataLoader extends DataConstants{
       e.printStackTrace();
     }
     return null;
+  }
+
+  public static ArrayList<Project> getProjects() {
+    ArrayList<Project> projects = new ArrayList<Project>();
+
+    try {
+      FileReader reader = new FileReader(PROJECT_FILE_NAME);
+      JSONParser parser = new JSONParser();
+      JSONArray projectCatalog = (JSONArray)parser.parse(reader);
+
+      for (int i=0;i<projectCatalog.size();i++) {
+        JSONObject projectJSON = (JSONObject)projectCatalog.get(i);
+        UUID projectId = UUID.fromString((String)projectJSON.get("projectId"));
+        String name = (String)projectJSON.get("name");
+        String type = (String)projectJSON.get("type");
+        Layout layout = (String)projectJSON.get("layout");
+        ArrayList<User> leaderboard = (ArrayList<User>)projectJSON.get("leaderboard");
+        ArrayList<User> users = (ArrayList<User>)projectJSON.get("users");
+        // TODO finish this
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
