@@ -5,6 +5,7 @@
         "type": "New Feature",
         "layout": "TASK_LIST",
         "leaderboard": ["1121b136-228c-4cce-a04a-7668d389d177", "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"],
+        "users": ["1121b136-228c-4cce-a04a-7668d389d177","a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"],
         "column": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841",
                     "title": "Task Column",
                     "status": false, 
