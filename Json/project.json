@@ -4,9 +4,53 @@
         "name": "New Division Expansion",
         "type": "New Feature",
         "layout": "TASK_LIST",
-        "leaderboard": ["1121b136-228c-4cce-a04a-7668d389d177", "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"],
         "users": ["1121b136-228c-4cce-a04a-7668d389d177","a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"],
-        "column": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841",
+        "completed-tasks" : [{ "id" : "f0f27708-f4dd-4419-8200-07e1f75a9a73",
+                               "title" : "My first Done Task!",
+                               "description" : "Test demo of task completion",
+                               "weight" : 3.5,
+                               "categories" : ["new", "fun"],
+                               "status" : ["true"],
+                               "completionTime" : ["Tue Oct 17 09:04:55 EDT 2023"],
+                               "author" : "2a2bc3d9-fbdb-4589-a1f6-c56f8ea0cd22",
+                               "assignedUser" : "6678badc-6172-4a11-83b2-71dcc05d4615",
+                               "ToDoList" : [{"done" : "true", "description" : "completed"}],
+                               "commentThread": [{"name": "First Comment!",
+                                                  "description": "?",
+                                                  "author": "ed788d91-2ec5-498b-90da-a6f0ab065587",
+                                                  "date": "Tue Oct 17 09:04:55 EDT 2023",
+                                                  "reply": [{"name": "Welcome!",
+                                                             "description": "My First Reply!",
+                                                             "author": "81b68daf-2394-4f1d-af54-f599ea76a209",
+                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
+                                                }]
+                               
+
+        }],
+        "ongoing-tasks" : [{ "id" : "50a70e24-d5d9-44b3-861b-6ff51a9a4c0a",
+                               "title" : "My second Task! unassigned",
+                               "description" : "Test demo of task unassined",
+                               "weight" : 3.5,
+                               "categories" : ["test"],
+                               "status" : ["false"],
+                               "completionTime" : ["Tue Oct 17 09:04:55 EDT 2023"],
+                               "author" : "b607b942-d2a3-4500-93a7-8e126ca9411f",
+                               "assignedUser" : "c1404d81-378c-4c2e-9b2a-54136547721a",
+                               "ToDoList" : [{"done" : "false", "description" : "Get this task Completed"}],
+                               "commentThread": [{"name": "Second Comment!",
+                                                  "description": "?",
+                                                  "author": "370894ce-0c0f-4638-ba48-217a779b8b4b7",
+                                                  "date": "Tue Oct 17 09:04:55 EDT 2023",
+                                                  "reply": [{"name": "Move This to Completed!",
+                                                             "description": "My First Reply!",
+                                                             "author": "32f68f5a-4d6d-4081-af24-895bdbce8f46",
+                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
+                                                }]
+                               
+
+        }],
+        
+        "columnList": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841",
                     "title": "Task Column",
                     "status": false, 
                     "completionTime": "10/13/23",
@@ -20,11 +64,11 @@
                                "commentThread": [{"name": "Matthew Pierce",
                                                   "description": "How simple do you want it to be?",
                                                   "author": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
-                                                  "date": "06/16/2023",
+                                                  "date": "Tue Oct 17 09:04:55 EDT 2023",
                                                   "reply": [{"name": "Jackson Brown",
                                                              "description": "keep it to the same design as the other ones",
                                                              "author": "1121b136-228c-4cce-a04a-7668d389d177",
-                                                             "date": "06/16/2023"}]
+                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
                                 }],
                                 "status": false,
                                 "completionTime": 21.5,
@@ -35,7 +79,7 @@
                     }]
         }],
         "history": [{"id": "1121b136-228c-4cce-a04a-7668d389d177",
-                     "timeStamp": "06/20/2023, 12:55 PM",
+                     "timeStamp": "Tue Oct 17 09:04:55 EDT 2023",
                      "user": "jBrown",
                      "changelog": "Created a Task "
         }]
