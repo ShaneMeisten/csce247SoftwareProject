@@ -36,10 +36,52 @@ public class User{
         this.invitedProjects = invitedProjects;
     }
 
+    public User(String name, String username, String password, String phone, String email){
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.role = "";
+        this.adminPerms = false;
+        this.team = "";
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.points = 0;
+        this.email = email;
+        this.currentProjects = new ArrayList<UUID>();
+        this.invitedProjects = new ArrayList<UUID>();
+    }
+    
+
 
     public User login(String username, String passsword){
         if (this.username.equals(username) && this.password.equals(passsword)) return this;
         return null;
+    }
+
+    public ArrayList<UUID> getCurrentProjects(){
+        return this.currentProjects;
+    }
+    
+    public ArrayList<UUID> getInvitedProjects(){
+        return this.invitedProjects;
+    }
+
+    public boolean changePassword(String username, String password){
+        if(this.username.equals(username) ){
+            this.password = password;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addInvite(UUID newUUID){
+        try{
+            currentProjects.add(newUUID);
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
     }
 
     public static void main(String[] args){
