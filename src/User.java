@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 
 /*
@@ -35,9 +36,20 @@ public class User{
         this.invitedProjects = invitedProjects;
     }
 
+
     public User login(String username, String passsword){
         if (this.username.equals(username) && this.password.equals(passsword)) return this;
         return null;
+    }
+
+    public static void main(String[] args){
+        for ( int i = 0; i  < 10;i++){
+            System.out.println(UUID.randomUUID());
+        }
+        for ( int i = 0; i  < 10;i++){
+            System.out.println(new Date());
+        }
+        
     }
 
 }
