@@ -12,15 +12,15 @@ public class Task {
     private double weight;
     private ArrayList<String> categories;
     private ArrayList<Comment> commentThread;
-    private ToDoList toDoList;
+    private ArrayList<Task> toDoList;
     private boolean status;
     private double completionTime;
     private User assignedUser;
     private User author;
 
-    public Task(UUid id, String title, String description, Date dueDate, 
+    public Task(UUID id, String title, String description, Date dueDate, 
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
-    ToDoList toDoList, boolean status, double compleitonTime, User assignedUser, User author){
+    ArrayList<Task> toDoList, boolean status, double compleitonTime, User assignedUser, User author){
 
         this.title = title;
         this.description = description;
@@ -56,17 +56,14 @@ public class Task {
     }
 
     public ArrayList<String> getCategories(){
-        //adding code later
         return categories;
     }
 
     public ArrayList<Comment> getCommentThread(){
-        //adding code later
         return this.commentThread;
     }
 
-    public ToDoList getToDoList(){
-        //adding code later
+    public ArrayList<Task> getToDoList(){
         return this.toDoList;
     }
 
@@ -85,4 +82,30 @@ public class Task {
      public User getAuthor(){
         return this.author;
     }
+
+    public boolean addToDo(Task task){
+        if(task != null){
+        toDoList.add(task);
+        return true;
+        }
+        return false;
+    }
+
+    public Task removeToDo(UUID id){
+        for(Task toDo : toDoList){
+                if(toDo.getID() == id){
+                    return toDo;
+                }
+        }
+        return null;
+    }
+
+    public Task getToDo(UUID id){
+        for(Task toDo : toDoList){
+                if(toDo.getID() == id){
+                    return toDo;
+                }
+        }
+        return null;
+    } 
 }
