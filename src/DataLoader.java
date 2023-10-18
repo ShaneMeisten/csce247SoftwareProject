@@ -54,7 +54,7 @@ public class DataLoader extends DataConstants{
         UUID projectId = UUID.fromString((String)projectJSON.get("projectId"));
         String name = (String)projectJSON.get("name");
         String type = (String)projectJSON.get("type");
-        Layout layout = (String)projectJSON.get("layout");
+        Layout layout = (Layout)projectJSON.get("layout");
         ArrayList<User> leaderboard = (ArrayList<User>)projectJSON.get("leaderboard");
         ArrayList<User> users = (ArrayList<User>)projectJSON.get("users");
         // TODO finish this

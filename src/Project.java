@@ -48,7 +48,7 @@ public class Project {
 
     }
 
-    public ArrayList<column> viewColumn(String name){
+    public ArrayList<Column> viewColumn(String name){
 
     }
 
