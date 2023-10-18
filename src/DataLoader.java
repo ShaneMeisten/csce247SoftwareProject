@@ -119,7 +119,8 @@ public class DataLoader extends DataConstants{
       Date columnCompletionTime = new Date(columnCompletionTimeString);
       Date columnCreatedTime = new Date(columnCreatedTimeString);
 
-      UUID author = UUID.fromString((String)columnJSON.get("author"));
+      UUID authorId = UUID.fromString((String)columnJSON.get("author"));
+      User author = UserCatalog.getInstance().getUser(authorId);
       // Column Tasks
       ArrayList<Task> columnTasks = new ArrayList<Task>();
       JSONArray columnTasksJSON = (JSONArray)columnJSON.get("tasks");
