@@ -41,7 +41,7 @@ public class UserCatalog {
     }
 
     public static boolean removeUser(User mainUser, UUID toRemoveUser){
-        if (!(mainUser.isAdmin()  && getUserBool(toRemoveUser))) return false;
+        if (!mainUser.isAdmin()  && getUserBool(toRemoveUser)) return false;
         userList.remove(getUser(toRemoveUser));
         return true;
     }
