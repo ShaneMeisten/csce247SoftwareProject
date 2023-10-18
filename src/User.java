@@ -17,11 +17,11 @@ public class User{
     private String email;
     private boolean adminPerms;
     private double points;
-    private ArrayList<Project> currentProjects;
-    private ArrayList<Project> invitedProjects;
+    private ArrayList<UUID> currentProjects;
+    private ArrayList<UUID> invitedProjects;
 
     public User(UUID id, String name, String role, boolean adminPerms, String team,
-    String username, String password, String phone, double points, String email, ArrayList<Project> currentProjects, ArrayList<Project> invitedProjects){
+    String username, String password, String phone, double points, String email, ArrayList<UUID> currentProjects, ArrayList<UUID> invitedProjects){
         this.id = id;
         this.name = name;
         this.role = role;
@@ -53,9 +53,21 @@ public class User{
     
 
 
-    public User login(String username, String passsword){
-        if (this.username.equals(username) && this.password.equals(passsword)) return this;
-        return null;
+    public boolean login(String username, String passsword){
+        if (this.username.equals(username) && this.password.equals(passsword)) return true;
+        return false;
+    }
+
+    public boolean checkUsername(String username){
+        return this.username.equals(username);
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public UUID getUUID(){
+        return id;
     }
 
     public ArrayList<UUID> getCurrentProjects(){
@@ -84,6 +96,11 @@ public class User{
         }
     }
 
+    public boolean isAdmin(){
+        return adminPerms;
+    }
+
+    /* 
     public static void main(String[] args){
         for ( int i = 0; i  < 10;i++){
             System.out.println(UUID.randomUUID());
@@ -91,7 +108,7 @@ public class User{
         for ( int i = 0; i  < 10;i++){
             System.out.println(new Date());
         }
-        
     }
+    */
 
 }
