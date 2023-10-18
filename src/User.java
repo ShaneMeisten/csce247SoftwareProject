@@ -17,11 +17,11 @@ public class User{
     private String email;
     private boolean adminPerms;
     private double points;
-    private ArrayList<UUID> currentProjects;
-    private ArrayList<UUID> invitedProjects;
+    private ArrayList<Project> currentProjects;
+    private ArrayList<Project> invitedProjects;
 
     public User(UUID id, String name, String role, boolean adminPerms, String team,
-    String username, String password, String phone, double points, String email, ArrayList<UUID> currentProjects, ArrayList<UUID> invitedProjects){
+    String username, String password, String phone, double points, String email, ArrayList<Project> currentProjects, ArrayList<Project> invitedProjects){
         this.id = id;
         this.name = name;
         this.role = role;
