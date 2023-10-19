@@ -50,7 +50,31 @@ public class User{
         this.currentProjects = new ArrayList<UUID>();
         this.invitedProjects = new ArrayList<UUID>();
     }
-    
+
+    public String getName(){
+        return name;
+    }
+    public UUID getId(){
+        return id;
+    }
+    public String getRole(){
+        return role;
+    }
+    public boolean getAdminPerms(){
+        return adminPerms;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public String getPhone(){
+        return phone;
+    }
+    public double getPoints(){
+        return points;
+    }
+    public String getEmail(){
+        return email;
+    }
 
 
     public boolean login(String username, String passsword){

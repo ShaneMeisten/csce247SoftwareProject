@@ -23,6 +23,10 @@ public class Project {
 
     }
 
+    public UUID getUUID(){
+        return id;
+    }
+
     public boolean addTask(Task task){
         return true; //placeholder
 

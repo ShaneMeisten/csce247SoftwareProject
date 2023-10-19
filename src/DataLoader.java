@@ -62,23 +62,23 @@ public class DataLoader extends DataConstants{
     String email = (String)userJSON.get(USER_EMAIL);
 
     // Current Projects
-    ArrayList<Project> currentProjects = new ArrayList<Project>();
+    ArrayList<UUID> currentProjects = new ArrayList<UUID>();
     JSONArray currentProjectsJSON = (JSONArray)userJSON.get(USER_CURRENT_PROJECTS);
     for (Object o : currentProjectsJSON) {
       JSONObject currentProjectJSON = (JSONObject)o;
       Project currentProject = toProject(currentProjectJSON);
-      currentProjects.add(currentProject);
+      currentProjects.add(currentProject.getUUID());
     }
 
     // Invited Projects
-    ArrayList<Project> invitedProjects = new ArrayList<Project>();
+    ArrayList<UUID> invitedProjects = new ArrayList<UUID>();
     JSONArray invitedProjectsJSON = (JSONArray)userJSON.get(USER_INVITED_PROJECTS);
     for (Object o : invitedProjectsJSON) {
       JSONObject invitedProjectJSON = (JSONObject)o;
       Project invitedProject = toProject(invitedProjectJSON);
-      invitedProjects.add(invitedProject);
+      invitedProjects.add(invitedProject.getUUID());
     }
-
+    
     User user = new User(id, name, role, adminPerms, team, userName, password, phone, point, email, currentProjects, invitedProjects);
     return user;
   }
