@@ -53,8 +53,8 @@
         "columnList": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841",
                     "title": "Task Column",
                     "status": false, 
-                    "completionTime": "10/13/23",
-                    "createdTime": "10/12/23", 
+                    "completionTime": "20231013",
+                    "createdTime": "20231012", 
                     "author": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c", 
                     "tasks": [{"id":"9b1ad9f9-9713-4e5a-b165-9f99be5a7f27", 
                                "title": "UI", 
@@ -80,7 +80,7 @@
         }],
         "history": [{"id": "1121b136-228c-4cce-a04a-7668d389d177",
                      "timeStamp": "Tue Oct 17 09:04:55 EDT 2023",
-                     "user": "jBrown",
+                     "user": "1121b136-228c-4cce-a04a-7668d389d177",
                      "changelog": "Created a Task "
         }]
 }]

@@ -19,28 +19,10 @@ public class DataLoader extends DataConstants{
       FileReader reader = new FileReader(USER_FILE_NAME);
       JSONParser parser = new JSONParser();
       JSONArray userCatalogJSON = (JSONArray)parser.parse(reader);
-      ArrayList<Project> currentProjects = new ArrayList<Project>();
-      ArrayList<Project> invitedProjects = new ArrayList<Project>();
       for (int i=0; i<userCatalogJSON.size();i++) {
         JSONObject userJSON = (JSONObject)userCatalogJSON.get(i);
-        UUID id = UUID.fromString((String)userJSON.get(USER_ID));
-        String name = (String)userJSON.get(USER_NAME);
-        String role = (String)userJSON.get(USER_ROLE);
-        boolean adminPerms = (boolean)userJSON.get(USER_PERMS);
-        String team = (String)userJSON.get(USER_TEAM);
-        String userName = (String)userJSON.get(USER_TEAM);
-        String password = (String)userJSON.get(USER_PASSWORD);
-        String phone = (String)userJSON.get(USER_PHONE);
-        double point = (Double)userJSON.get(USER_POINT);
-        String email = (String)userJSON.get(USER_EMAIL);
-        JSONArray currentProjectsJSON = (JSONArray)userJSON.get(USER_CURRENT_PROJECTS);
-        for (Object o : currentProjectsJSON) {
-          JSONObject currentProjectJSON = (JSONObject) o;
-          Project currentProject = toProject(currentProjectJSON);
-          currentProjects.add(currentProject);
-        }
-
-        userCatalog.add(new User(id, name, role, adminPerms, team, userName, password, phone, point, email, currentProjects, invitedProjects));
+        User user = toUser(userJSON);
+        userCatalog.add(user);
       }
       return userCatalog;
     } catch (Exception e) {
@@ -68,18 +50,48 @@ public class DataLoader extends DataConstants{
   }
 
   private static User toUser(JSONObject userJSON) {
+    UUID id = UUID.fromString((String)userJSON.get(USER_ID));
+    String name = (String)userJSON.get(USER_NAME);
+    String role = (String)userJSON.get(USER_ROLE);
+    boolean adminPerms = (boolean)userJSON.get(USER_PERMS);
+    String team = (String)userJSON.get(USER_TEAM);
+    String userName = (String)userJSON.get(USER_TEAM);
+    String password = (String)userJSON.get(USER_PASSWORD);
+    String phone = (String)userJSON.get(USER_PHONE);
+    double point = (Double)userJSON.get(USER_POINT);
+    String email = (String)userJSON.get(USER_EMAIL);
 
+    // Current Projects
+    ArrayList<Project> currentProjects = new ArrayList<Project>();
+    JSONArray currentProjectsJSON = (JSONArray)userJSON.get(USER_CURRENT_PROJECTS);
+    for (Object o : currentProjectsJSON) {
+      JSONObject currentProjectJSON = (JSONObject)o;
+      Project currentProject = toProject(currentProjectJSON);
+      currentProjects.add(currentProject);
+    }
+
+    // Invited Projects
+    ArrayList<Project> invitedProjects = new ArrayList<Project>();
+    JSONArray invitedProjectsJSON = (JSONArray)userJSON.get(USER_INVITED_PROJECTS);
+    for (Object o : invitedProjectsJSON) {
+      JSONObject invitedProjectJSON = (JSONObject)o;
+      Project invitedProject = toProject(invitedProjectJSON);
+      invitedProjects.add(invitedProject);
+    }
+
+    User user = new User(id, name, role, adminPerms, team, userName, password, phone, point, email, currentProjects, invitedProjects);
+    return user;
   }
 
 
   private static Project toProject(JSONObject projectJSON) {
-    UUID projectId = UUID.fromString((String)projectJSON.get("projectId"));
-    String name = (String)projectJSON.get("name");
-    String type = (String)projectJSON.get("type");
-    Layout layout = (Layout)projectJSON.get("layout");
+    UUID projectId = UUID.fromString((String)projectJSON.get(PROJECT_ID));
+    String name = (String)projectJSON.get(PROJECT_NAME);
+    String type = (String)projectJSON.get(PROJECT_TYPE);
+    Layout layout = (Layout)projectJSON.get(PROJECT_LAYOUT);
     // Users
     ArrayList<User> users = new ArrayList<User>();
-    JSONArray usersJSON = (JSONArray)projectJSON.get("users");
+    JSONArray usersJSON = (JSONArray)projectJSON.get(PROJECT_USERS);
     for (Object u : usersJSON) {
       JSONObject userJSON = (JSONObject) u;
       User user = toUser(userJSON);
@@ -106,24 +118,24 @@ public class DataLoader extends DataConstants{
 
     // Column List
     ArrayList<Column> columnList = new ArrayList<Column>();
-    JSONArray columnListJSON = (JSONArray)projectJSON.get("columnList");
+    JSONArray columnListJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
     for (Object c : columnListJSON) {
       JSONObject columnJSON = (JSONObject)c;
-      UUID columnId = UUID.fromString((String)columnJSON.get("id"));
-      String columnTitle = (String)columnJSON.get("title");
-      boolean columnStatus = (boolean)columnJSON.get("status");
+      UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
+      String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
+      boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
       
       // Date implementation ? 
-      String columnCompletionTimeString = (String)columnJSON.get("completionTime");
-      String columnCreatedTimeString = (String)columnJSON.get("createdTime");
+      String columnCompletionTimeString = (String)columnJSON.get(COLUMN_COMPLETION_TIME);
+      String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
       Date columnCompletionTime = new Date(columnCompletionTimeString);
       Date columnCreatedTime = new Date(columnCreatedTimeString);
 
-      UUID authorId = UUID.fromString((String)columnJSON.get("author"));
+      UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
       User author = UserCatalog.getInstance().getUser(authorId);
       // Column Tasks
       ArrayList<Task> columnTasks = new ArrayList<Task>();
-      JSONArray columnTasksJSON = (JSONArray)columnJSON.get("tasks");
+      JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
       for (Object t : columnTasksJSON) {
         JSONObject columnTaskJSON = (JSONObject)t;
         Task columnTask = toTask(columnTaskJSON);
@@ -135,8 +147,17 @@ public class DataLoader extends DataConstants{
     }
 
     // History -> List of Updates
+    JSONObject historyJSON = (JSONObject)projectJSON.get(PROJECT_HISTORY);
+    UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
+    String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
+    Date timeStamp = new Date(timeStampString);
+    UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
+    User historyUser = UserCatalog.getInstance().getUser(historyUserId);
+    String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
+    History history = new History(historyId, timeStamp, historyUser, changelog);
     
-    
+    Project project = new Project(projectId, name, type, layout, users, completedTasks, ongoingTasks, columnList, history);
+    return project;
   }
 
   private static Task toTask(JSONObject taskJSON) {
