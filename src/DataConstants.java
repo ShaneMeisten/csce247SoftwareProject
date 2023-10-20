@@ -23,6 +23,8 @@ public abstract class DataConstants {
   protected static final String PROJECT_TYPE = "type";
   protected static final String PROJECT_LAYOUT = "layout";
   protected static final String PROJECT_USERS = "users";
+  protected static final String PROJECT_COMPLETED_TASKS = "completed-tasks";
+  protected static final String PROJECT_ONGOING_TASKS = "ongoing-tasks";
   protected static final String PROJECT_COLUMNS = "columnList";
   protected static final String PROJECT_HISTORY = "history";
 
@@ -39,6 +41,7 @@ public abstract class DataConstants {
   protected static final String TASK_DESCRIPTION = "description";
   protected static final String TASK_DUE_DATE = "dueDate";
   protected static final String TASK_WEIGHT = "weight";
+  protected static final String TASK_CATEGORIES = "categories";
   protected static final String TASK_COMMENT_THREAD = "commentThread";
   protected static final String TASK_STATUS = "status";
   protected static final String TASK_COMPLETION_TIME = "completionTime";

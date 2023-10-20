@@ -83,7 +83,7 @@ public class UserCatalog {
         return null;
     }
 
-    private static User getUser(UUID userUUID){
+    public static User getUser(UUID userUUID){
         try{
             for (int i = 0; i <userList.size(); i++){
                 if(userList.get(i).getUUID().equals(userUUID))

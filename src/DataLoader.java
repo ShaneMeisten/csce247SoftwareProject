@@ -44,9 +44,11 @@ public class DataLoader extends DataConstants{
         Project project = toProject(projectJSON);
         projects.add(project);
       }
+      return projects;
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return null;
   }
 
   private static User toUser(JSONObject userJSON) {
@@ -100,7 +102,7 @@ public class DataLoader extends DataConstants{
 
     // Completed Tasks
     ArrayList<Task> completedTasks = new ArrayList<Task>();
-    JSONArray completedTasksJSON = (JSONArray)projectJSON.get("completed-tasks");
+    JSONArray completedTasksJSON = (JSONArray)projectJSON.get(PROJECT_COMPLETED_TASKS);
     for (Object t : completedTasksJSON) {
       JSONObject taskJSON = (JSONObject)t;
       Task task = toTask(taskJSON);
@@ -109,7 +111,7 @@ public class DataLoader extends DataConstants{
 
     // Ongoing Tasks
     ArrayList<Task> ongoingTasks = new ArrayList<Task>();
-    JSONArray ongoingTasksJSON = (JSONArray)projectJSON.get("ongoing-tasks");
+    JSONArray ongoingTasksJSON = (JSONArray)projectJSON.get(PROJECT_ONGOING_TASKS);
     for (Object t : ongoingTasksJSON) {
       JSONObject taskJSON = (JSONObject)t;
       Task task = toTask(taskJSON);
@@ -161,6 +163,55 @@ public class DataLoader extends DataConstants{
   }
 
   private static Task toTask(JSONObject taskJSON) {
+    UUID taskId = UUID.fromString((String)taskJSON.get(TASK_ID));
+    String taskTitle = (String)taskJSON.get(TASK_TITLE);
+    String taskDescription = (String)taskJSON.get(TASK_DESCRIPTION);
+    double taskWeight = Double.parseDouble((String)taskJSON.get(TASK_WEIGHT));
+    String taskDueDateString = (String)taskJSON.get(TASK_DUE_DATE);
+    Date taskDueDate = new Date(taskDueDateString);
+    boolean taskStatus = (boolean)taskJSON.get(TASK_STATUS);
+    String completionTimeString = (String)taskJSON.get(TASK_COMPLETION_TIME);
+    Date completionTime = new Date(completionTimeString);
+    UUID authorId = UUID.fromString((String)taskJSON.get(TASK_AUTHOR));
+    User author = UserCatalog.getInstance().getUser(authorId);
+    UUID assignedUserId = UUID.fromString((String)taskJSON.get(TASK_ASSIGNED_USER));
+    User assignedUser = UserCatalog.getInstance().getUser(assignedUserId);
+
+    // Categories
+    ArrayList<String> categories = new ArrayList<String>();
+    JSONArray categoriesJSON = (JSONArray)taskJSON.get(TASK_CATEGORIES);
+    for (Object o : categoriesJSON) {
+      String category = (String)o;
+      categories.add(category);
+    }
+
+    // ToDo List
+    ArrayList<ToDo> todoList = new ArrayList<ToDo>();
+    JSONArray todoListJSON = (JSONArray)taskJSON.get(TASK_TODO_LIST);
+    for (Object o : todoListJSON) {
+      JSONObject todoJSON = (JSONObject)o;
+      ToDo todo = toToDo(todoJSON);
+      todoList.add(todo);
+    }
+
+    // Comment Thread
+    ArrayList<Comment> commentThread = new ArrayList<Comment>();
+    JSONArray commentThreadJSON = (JSONArray)taskJSON.get(TASK_COMMENT_THREAD);
+    for (Object o : commentThreadJSON) {
+      JSONObject commentJSON = (JSONObject)o;
+      Comment comment = toComment(commentJSON);
+      commentThread.add(comment);
+    }
+
+    Task task = new Task(taskId, taskTitle, taskDescription, taskDueDate, taskWeight, categories, commentThread, todoList, taskStatus, completionTime, assignedUser, author);
+    return task;
+  }
+
+  private static ToDo toToDo(JSONObject todoJSON) {
+    
+  }
+
+  private static Comment toComment(JSONObject commentJSON) {
 
   }
 }
