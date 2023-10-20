@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Date;
 
+/**
+ * 
+ * @author Shane Meisten
+ * 
+ */
 
 public class Task {
     
@@ -81,6 +86,22 @@ public class Task {
 
      public User getAuthor(){
         return this.author;
+    }
+
+    public void setWeight(double weight){
+        if(weight < 0 ){
+            this.weight = 0;
+        }else{
+            this.weight = weight;
+        }
+    }
+
+    public void setCompletionTime(double completionTime){
+        if(completionTime < 0){
+            this.completionTime = 0;
+        }else{
+            this.completionTime = completionTime;
+        }
     }
 
     public boolean addToDo(Task task){

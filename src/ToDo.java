@@ -1,4 +1,10 @@
 
+/**
+ * 
+ * @author Shane Meisten
+ * 
+ */
+
 public class ToDo {
     private boolean done;
     private String description;
