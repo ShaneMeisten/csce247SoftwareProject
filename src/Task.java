@@ -19,13 +19,13 @@ public class Task {
     private ArrayList<Comment> commentThread;
     private ArrayList<Task> toDoList;
     private boolean status;
-    private double completionTime;
+    private Date completionTime;
     private User assignedUser;
     private User author;
 
     public Task(UUID id, String title, String description, Date dueDate, 
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
-    ArrayList<Task> toDoList, boolean status, double compleitonTime, User assignedUser, User author){
+    ArrayList<Task> toDoList, boolean status, Date completionTime, User assignedUser, User author){
 
         this.title = title;
         this.description = description;
