@@ -148,18 +148,42 @@ public class DataLoader extends DataConstants{
       columnList.add(column);
     }
 
+    /* 
     // History -> List of Updates
     JSONObject historyJSON = (JSONObject)projectJSON.get(PROJECT_HISTORY);
     UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
     String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
     Date timeStamp = new Date(timeStampString);
     UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
-    User historyUser = UserCatalog.getInstance().getUser(historyUserId);
     String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
-    History history = new History(historyId, timeStamp, historyUser, changelog);
+    Update update = new Update(historyId, timeStamp, historyUserId, changelog);
+    ArrayList<Update> updates = new ArrayList<Update>();
+  */
+
+    ArrayList<Update> updates = new ArrayList<Update>();
+    JSONArray historyJSON = (JSONArray)projectJSON.get(PROJECT_HISTORY);
+    for (Object t : historyJSON) {
+      JSONObject historyJSON_2 = (JSONObject)t;
+      Update update = toUpdate(historyJSON_2);
+      updates.add(update);
+      
+    }
+
+    History history = new History();
+    history.loadHistory(updates);
     
     Project project = new Project(projectId, name, type, layout, users, completedTasks, ongoingTasks, columnList, history);
     return project;
+  }
+
+  private static Update toUpdate(JSONObject historyJSON){
+    UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
+    String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
+    Date timeStamp = new Date(timeStampString);
+    UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
+    String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
+    Update update = new Update(historyId, timeStamp, historyUserId, changelog);
+    return update;
   }
 
   private static Task toTask(JSONObject taskJSON) {
