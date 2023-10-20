@@ -17,6 +17,14 @@ public class Update {
         this.changeLog = changeLog;
     }
 
+    //historyId, timeStamp, historyUser, changelog
+    public Update(UUID changedID, Date timeStamp, UUID userUUID, String changeLog){
+        this.changedID = changedID;
+        this.timeStamp = timeStamp;
+        this.userUUID = userUUID;
+        this.changeLog = changeLog;
+    }
+
     public Date getDate(){
         return timeStamp;
     }
