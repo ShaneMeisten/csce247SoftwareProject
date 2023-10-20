@@ -10,20 +10,31 @@ public class ProjectCatalog {
     }
 
     public projectList getInstance(){
-
+        if (projectCatalog == null) {
+            projectCatalog = new ProjectCatalog();
+        }
+        return projectCatalog;
     }
 
     public static  addProject(String ProjectName, String ProjectType){
-        return; // placeholder return type.
+         projects.add(new Project(ProjectName, ProjectType));
+        
     }
 
     public static removeProject(UUID ProjectUUID){
-        return; //placeholder return type.
+        projects.remove(ProjectUUID);
+        
+
     }
 
     public static Project getProject(UUID ProjectUUID){
-        return null;
-
+        for (Project project : projects) {
+            if (project.getUUID().equals(ProjectUUID)) {
+                return project;
+            }
+        }
+        return null; 
+    }
     }
 
 
