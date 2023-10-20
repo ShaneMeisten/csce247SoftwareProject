@@ -2,6 +2,12 @@ import java.util.UUID;
 import java.util.Date;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Shane Meisten
+ * 
+ */
+
 public class Column {
     private UUID id;
     private String title;
@@ -12,9 +18,17 @@ public class Column {
     private User author;
     private ArrayList<Task> TaskList;
 
-    public Column(String title){
+    public Column(UUID id, String title, double weight, boolean status, Date completionTime,
+                  Date createdTime, User author, ArrayList<Task> TaskList){
         this.title = title;
+        this.id = id;
+        this.setWeight(weight);
+        this.setStatus(status);
+        this.completionTime = completionTime;
+        this.createdTime = createdTime;
+        this.author = author;
         TaskList = new ArrayList<>();
+        
     }
 
     public boolean addTask(Task task){
@@ -39,17 +53,35 @@ public class Column {
     }
 
     public UUID getUUID(){
-        //adding code later
-        return null;
+        return this.id;
+    }
+
+    public String getTitle(){
+        return this.title;
+    }
+
+    public double getWeight(){
+        return this.weight;
+    }
+
+    public boolean getStatus(){
+        return this.status;
+    }
+
+    public Date getCompletionTime(){
+        return this.completionTime;
+    }
+
+    public Date getCreatedTime(){
+        return this.createdTime;
+    }
+
+    public User getAuthor(){
+        return this.author;
     }
 
     public void setStatus(boolean status){
         this.status = status;
-    }
-
-    public boolean setCompletionTime(){
-        //adding code later
-        return true;
     }
 
     public boolean setWeight(double weight){
