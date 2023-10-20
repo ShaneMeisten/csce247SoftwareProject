@@ -17,6 +17,22 @@ public class Update {
         this.changeLog = changeLog;
     }
 
+    public Date getDate(){
+        return timeStamp;
+    }
+
+    public UUID getUserUUID(){
+        return userUUID;
+    }
+
+    public UUID getChangedID(){
+        return changedID;
+    }
+
+    public String getChangedLog(){
+        return changeLog;
+    }
+
     public String toString(){
         return "TIME: [" + timeStamp.toString() + "]  USER: [" + userUUID.toString() + "] Change: " + changeLog + 
         "|    CHANGEDID: [" + changedID.toString() + "]";
