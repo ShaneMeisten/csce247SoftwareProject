@@ -15,20 +15,22 @@ public class Project {
     private Layout layout;
     private ArrayList<Task> ongoingTasks;
     private ArrayList<Task> completedTasks;
-    private ArrayList<User> leaderboard;
-    private ArrayList<Column> ColumnList;
-    private ArrayList<Task> TaskList;
+    private ArrayList<User> users;
+    private ArrayList<Column> columnList;
+    private History history;
 
-    public Project(String name , String type){
+    public Project(UUID id, String name, String type, Layout layout, ArrayList<User> users, 
+                    ArrayList<Task> completedTasks, ArrayList<Task> ongoingTasks, 
+                    ArrayList<Column> columnList, History history){
         this.id = id;
         this.name = name;
         this.type = type;
         this.layout = layout;
         this.ongoingTasks = ongoingTasks;
         this.completedTasks = completedTasks;
-        this.leaderboard = leaderboard;
-        this.ColumnList = ColumnList;
-        this.TaskList = TaskList;
+        this.users = users;
+        this.columnList = columnList;
+        this.history = history;
     }
 
     public UUID getUUID(){
@@ -53,8 +55,8 @@ public class Project {
 
 
     public boolean addTask(Task task){
-        if (!TaskList.contains(task)) {
-            TaskList.add(task);
+        if (!taskList.contains(task)) {
+            taskList.add(task);
             return true;
         } else {
             return false; 
@@ -63,8 +65,8 @@ public class Project {
     }
 
     public boolean removeTask(Task task){
-        if (TaskList.contains(task)) {
-            TaskList.remove(task);
+        if (taskList.contains(task)) {
+            taskList.remove(task);
             return true; 
         } else {
             return false; 
@@ -72,17 +74,17 @@ public class Project {
     }
 
     public boolean addColumn(Column Column){
-        if (ColumnList.contains(Column)) {
+        if (columnList.contains(Column)) {
             return false; 
         } else {
-            ColumnList.add(Column);
+            columnList.add(Column);
             return true; 
         }
 
     }
 
     public boolean addTaskToColumn(Task task, Column column){
-        if (ColumnList.contains(column)) { 
+        if (columnList.contains(column)) { 
             if (column.addTask(task)) {
                 return true; 
             } else {
@@ -96,7 +98,7 @@ public class Project {
     }
 
     public boolean removeTaskToColumn(Task task, Column column){
-    if (ColumnList.contains(column)) {
+    if (columnList.contains(column)) {
         if (column.removeTask(task)) {
             return true; 
         } else {
@@ -124,7 +126,7 @@ public class Project {
     }
 
     public void setProjectStatus(Task task , boolean status){
-        for (Task projectTask : TaskList) {
+        for (Task projectTask : taskList) {
             if (projectTask.equals(task)) {
                 projectTask.setStatus(status); 
                 break; 
@@ -132,9 +134,9 @@ public class Project {
         }
     }
 
-    public boolean addToLeaderboard(User user){
-        if (!leaderboard.contains(user)) {
-            leaderboard.add(user);
+    public boolean addUser(User user){
+        if (!users.contains(user)) {
+            users.add(user);
             return true; 
         } else {
             return false;

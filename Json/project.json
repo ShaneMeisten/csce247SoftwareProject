@@ -54,6 +54,7 @@
         
         "columnList": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841",
                     "title": "Task Column",
+                    "weight": 4.5,
                     "status": false, 
                     "completionTime": "20231013",
                     "createdTime": "20231012", 

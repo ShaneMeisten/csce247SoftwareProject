@@ -9,7 +9,7 @@ public class ProjectCatalog {
 
     }
 
-    public projectList getInstance(){
+    public ProjectCatalog getInstance(){
         if (projectCatalog == null) {
             projectCatalog = new ProjectCatalog();
         }

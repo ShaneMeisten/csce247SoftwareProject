@@ -125,6 +125,7 @@ public class DataLoader extends DataConstants{
       JSONObject columnJSON = (JSONObject)c;
       UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
       String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
+      double columnWeight = Double.parseDouble((String)columnJSON.get(COLUMN_WEIGHT));
       boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
       
       // Date implementation ? 
@@ -144,7 +145,7 @@ public class DataLoader extends DataConstants{
         columnTasks.add(columnTask);
       }
 
-      Column column = new Column(columnId, columnTitle, columnStatus, columnCompletionTime, columnCreatedTime, author, columnTasks);
+      Column column = new Column(columnId, columnTitle, columnWeight, columnStatus, columnCompletionTime, columnCreatedTime, author, columnTasks);
       columnList.add(column);
     }
 
@@ -246,5 +247,6 @@ public class DataLoader extends DataConstants{
       }
     }
     Comment comment = new Comment(commentId, name, description, author, date, replies);
+    return comment;
   }
 }

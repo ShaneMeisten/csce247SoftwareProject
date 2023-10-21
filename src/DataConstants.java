@@ -30,6 +30,7 @@ public abstract class DataConstants {
 
   protected static final String COLUMN_ID = "id";
   protected static final String COLUMN_TITLE = "title";
+  protected static final String COLUMN_WEIGHT = "weight";
   protected static final String COLUMN_STATUS = "status";
   protected static final String COLUMN_COMPLETION_TIME = "completionTime";
   protected static final String COLUMN_CREATED_TIME = "createdTime";
