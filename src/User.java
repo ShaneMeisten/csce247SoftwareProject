@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 /*
@@ -16,12 +17,11 @@ public class User{
     private String phone;
     private String email;
     private boolean adminPerms;
-    private double points;
-    private ArrayList<UUID> currentProjects;
+    private HashMap<UUID, Double> currentProjects;
     private ArrayList<UUID> invitedProjects;
 
     public User(UUID id, String name, String role, boolean adminPerms, String team,
-    String username, String password, String phone, double points, String email, ArrayList<UUID> currentProjects, ArrayList<UUID> invitedProjects){
+    String username, String password, String phone,  String email, HashMap<UUID, Double> currentProjects, ArrayList<UUID> invitedProjects){
         this.id = id;
         this.name = name;
         this.role = role;
@@ -30,7 +30,6 @@ public class User{
         this.username = username;
         this.password = password;
         this.phone = phone;
-        this.points = points;
         this.email = email;
         this.currentProjects = currentProjects;
         this.invitedProjects = invitedProjects;
@@ -45,9 +44,8 @@ public class User{
         this.username = username;
         this.password = password;
         this.phone = phone;
-        this.points = 0;
         this.email = email;
-        this.currentProjects = new ArrayList<UUID>();
+        this.currentProjects = new  HashMap<UUID, Double>();
         this.invitedProjects = new ArrayList<UUID>();
     }
 
@@ -69,9 +67,7 @@ public class User{
     public String getPhone(){
         return phone;
     }
-    public double getPoints(){
-        return points;
-    }
+
     public String getEmail(){
         return email;
     }
@@ -79,6 +75,56 @@ public class User{
 
     public boolean login(String username, String passsword){
         if (this.username.equals(username) && this.password.equals(passsword)) return true;
+        return false;
+    }
+
+    public Boolean containsProject(UUID projectUUID){
+        for(UUID id: currentProjects.keySet()){
+            if(id.compareTo(projectUUID) == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean AcceptInvite(int invite){
+        if(invite >= 0 && invite <= invitedProjects.size()){
+            currentProjects.put(invitedProjects.get(invite), 0.0);
+            invitedProjects.remove(invite);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean RemoveProject(int invite){
+        if(invite >= 0 && invite <= currentProjects.size()){
+            currentProjects.remove(invite);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addPoints(UUID projectUUID, double add){
+        for(UUID id : currentProjects.keySet()){
+            if(id.compareTo(projectUUID) == 0){
+                currentProjects.replace(projectUUID, currentProjects.get(projectUUID) + add);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removePoints(UUID projectUUID, double sub){
+        for(UUID id : currentProjects.keySet()){
+            if(id.compareTo(projectUUID) == 0){
+                if(sub > currentProjects.get(id)){
+                    currentProjects.replace(projectUUID, 0.0);
+                    return true;
+                }
+                currentProjects.replace(projectUUID, currentProjects.get(projectUUID) - sub);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -95,7 +141,12 @@ public class User{
     }
 
     public ArrayList<UUID> getCurrentProjects(){
-        return this.currentProjects;
+        ArrayList<UUID> currentProjects = new ArrayList<UUID>();
+        for(UUID i: this.currentProjects.keySet()) currentProjects.add(i);
+        return currentProjects;
+    }
+    public Double getProjectPoints(UUID projectUUID){
+        return currentProjects.get(projectUUID);
     }
     
     public ArrayList<UUID> getInvitedProjects(){
@@ -112,7 +163,7 @@ public class User{
 
     public boolean addInvite(UUID newUUID){
         try{
-            currentProjects.add(newUUID);
+            currentProjects.put(newUUID, 0.0);
             return true;
         }
         catch(Exception e) {
@@ -123,16 +174,5 @@ public class User{
     public boolean isAdmin(){
         return adminPerms;
     }
-
-    /* 
-    public static void main(String[] args){
-        for ( int i = 0; i  < 10;i++){
-            System.out.println(UUID.randomUUID());
-        }
-        for ( int i = 0; i  < 10;i++){
-            System.out.println(new Date());
-        }
-    }
-    */
 
 }
