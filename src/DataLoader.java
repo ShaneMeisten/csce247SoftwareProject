@@ -235,9 +235,9 @@ public class DataLoader extends DataConstants{
     String dateString = (String)commentJSON.get(COMMENT_DATE);
     Date date = new Date(dateString);
 
-    ArrayList<Comment> replies;
+    ArrayList<Comment> replies = new ArrayList<Comment>();
     JSONArray repliesJSON = (JSONArray)commentJSON.get(COMMENT_REPLY);
-    if (repliesJSON != null) {
+    if (!repliesJSON.isEmpty()) {
       replies = new ArrayList<Comment>();
       for (Object o : repliesJSON) {
         JSONObject replyJSON = (JSONObject)o;
@@ -245,9 +245,6 @@ public class DataLoader extends DataConstants{
         replies.add(reply);
       }
     }
-    else 
-      replies = null;
-    
     Comment comment = new Comment(commentId, name, description, author, date, replies);
   }
 }
