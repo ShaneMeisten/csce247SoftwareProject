@@ -42,10 +42,11 @@
                                                   "description": "?",
                                                   "author": "370894ce-0c0f-4638-ba48-217a779b8b4b7",
                                                   "date": "Tue Oct 17 09:04:55 EDT 2023",
-                                                  "reply": [{"name": "Move This to Completed!",
+                                                  "replies": [{"name": "Move This to Completed!",
                                                              "description": "My First Reply!",
                                                              "author": "32f68f5a-4d6d-4081-af24-895bdbce8f46",
-                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
+                                                             "date": "Tue Oct 17 09:04:55 EDT 2023", 
+                                                             "replies": []}]
                                                 }]
                                
 
@@ -66,10 +67,11 @@
                                                   "description": "How simple do you want it to be?",
                                                   "author": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
                                                   "date": "Tue Oct 17 09:04:55 EDT 2023",
-                                                  "reply": [{"name": "Jackson Brown",
+                                                  "replies": [{"name": "Jackson Brown",
                                                              "description": "keep it to the same design as the other ones",
                                                              "author": "1121b136-228c-4cce-a04a-7668d389d177",
-                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
+                                                             "date": "Tue Oct 17 09:04:55 EDT 2023", 
+                                                             "replies": []}]
                                 }],
                                 "status": false,
                                 "completionTime": 21.5,

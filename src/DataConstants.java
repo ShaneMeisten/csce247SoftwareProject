@@ -49,18 +49,17 @@ public abstract class DataConstants {
   protected static final String TASK_AUTHOR = "author";
   protected static final String TASK_TODO_LIST = "toDoList";
 
-  protected static final String COMMENT_THREAD_NAME = "name";
-  protected static final String COMMENT_THREAD_DESCRIPTION = "description";
-  protected static final String COMMENT_THREAD_AUTHOR = "author";
-  protected static final String COMMENT_THREAD_DATE = "date";
-  protected static final String COMMENT_THREAD_REPLY = "reply";
+  protected static final String COMMENT_ID = "id";
+  protected static final String COMMENT_NAME = "name";
+  protected static final String COMMENT_DESCRIPTION = "description";
+  protected static final String COMMENT_AUTHOR = "author";
+  protected static final String COMMENT_DATE = "date";
+  protected static final String COMMENT_REPLY = "reply";
   
   protected static final String TODOLIST_ID = "id";
 
-  protected static final String REPLY_NAME = "name";
-  protected static final String REPLY_DESCRIPTION = "description";
-  protected static final String REPLY_AUTHOR = "author";
-  protected static final String REPLY_DATE = "date";
+  protected static final String TODO_DONE = "done";
+  protected static final String TODO_DESCRIPTION = "description";
 
   protected static final String HISTORY_ID = "id";
   protected static final String HISTORY_TIMESTAMP = "timeStamp";

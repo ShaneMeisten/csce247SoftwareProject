@@ -148,23 +148,12 @@ public class DataLoader extends DataConstants{
       columnList.add(column);
     }
 
-    /* 
-    // History -> List of Updates
-    JSONObject historyJSON = (JSONObject)projectJSON.get(PROJECT_HISTORY);
-    UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
-    String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
-    Date timeStamp = new Date(timeStampString);
-    UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
-    String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
-    Update update = new Update(historyId, timeStamp, historyUserId, changelog);
-    ArrayList<Update> updates = new ArrayList<Update>();
-  */
-
+    // History
     ArrayList<Update> updates = new ArrayList<Update>();
     JSONArray historyJSON = (JSONArray)projectJSON.get(PROJECT_HISTORY);
     for (Object t : historyJSON) {
-      JSONObject historyJSON_2 = (JSONObject)t;
-      Update update = toUpdate(historyJSON_2);
+      JSONObject updateJSON = (JSONObject)t;
+      Update update = toUpdate(updateJSON);
       updates.add(update);
       
     }
@@ -232,10 +221,33 @@ public class DataLoader extends DataConstants{
   }
 
   private static ToDo toToDo(JSONObject todoJSON) {
-    
+    boolean done = (boolean)todoJSON.get(TODO_DONE);
+    String description = (String)todoJSON.get(TODO_DESCRIPTION);
+    ToDo todo = new ToDo(done, description);
+    return todo;
   }
 
   private static Comment toComment(JSONObject commentJSON) {
+    UUID commentId = UUID.fromString((String)commentJSON.get(COMMENT_ID));
+    String name = (String)commentJSON.get(COMMENT_NAME);
+    String description = (String)commentJSON.get(COMMENT_DESCRIPTION);
+    UUID author = UUID.fromString((String)commentJSON.get(COMMENT_AUTHOR));
+    String dateString = (String)commentJSON.get(COMMENT_DATE);
+    Date date = new Date(dateString);
 
+    ArrayList<Comment> replies;
+    JSONArray repliesJSON = (JSONArray)commentJSON.get(COMMENT_REPLY);
+    if (repliesJSON != null) {
+      replies = new ArrayList<Comment>();
+      for (Object o : repliesJSON) {
+        JSONObject replyJSON = (JSONObject)o;
+        Comment reply = toComment(replyJSON);
+        replies.add(reply);
+      }
+    }
+    else 
+      replies = null;
+    
+    Comment comment = new Comment(commentId, name, description, author, date, replies);
   }
 }
