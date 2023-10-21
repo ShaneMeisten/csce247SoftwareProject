@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 /*
@@ -95,6 +96,16 @@ public class UserCatalog {
             return null;
         }
 
+    }
+
+    public static HashMap<UUID, Double> getLeaderboard(UUID projectUUID){
+        HashMap<UUID, Double> userProject = new HashMap<UUID, Double>();
+        for(int i = 0; i < userList.size(); i++){
+            if(userList.get(i).containsProject(projectUUID)){
+                userProject.put(userList.get(i).getUUID(), userList.get(i).getProjectPoints(projectUUID));
+            }
+        }
+        return userProject;
     }
 
 }
