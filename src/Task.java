@@ -17,7 +17,7 @@ public class Task {
     private double weight;
     private ArrayList<String> categories;
     private ArrayList<Comment> commentThread;
-    private ArrayList<Task> toDoList;
+    private ArrayList<ToDo> toDoList;
     private boolean status;
     private Date completionTime;
     private User assignedUser;
@@ -25,7 +25,7 @@ public class Task {
 
     public Task(UUID id, String title, String description, Date dueDate, 
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
-    ArrayList<Task> toDoList, boolean status, Date completionTime, User assignedUser, User author){
+    ArrayList<ToDo> toDoList, boolean status, Date completionTime, User assignedUser, User author){
 
         this.title = title;
         this.description = description;
@@ -68,7 +68,7 @@ public class Task {
         return this.commentThread;
     }
 
-    public ArrayList<Task> getToDoList(){
+    public ArrayList<ToDo> getToDoList(){
         return this.toDoList;
     }
 
@@ -76,7 +76,7 @@ public class Task {
         return this.status;
     }
 
-     public double getCompletionTime(){
+     public Date getCompletionTime(){
         return this.completionTime;
     }
 
@@ -96,24 +96,20 @@ public class Task {
         }
     }
 
-    public void setCompletionTime(double completionTime){
-        if(completionTime < 0){
-            this.completionTime = 0;
-        }else{
-            this.completionTime = completionTime;
-        }
+    public void setCompletionTime(Date completionTime){
+        this.completionTime = completionTime;
     }
 
-    public boolean addToDo(Task task){
-        if(task != null){
-        toDoList.add(task);
+    public boolean addToDo(ToDo todo){
+        if(todo != null){
+        toDoList.add(todo);
         return true;
         }
         return false;
     }
 
-    public Task removeToDo(UUID id){
-        for(Task toDo : toDoList){
+    public ToDo removeToDo(UUID id){
+        for(ToDo toDo : toDoList){
                 if(toDo.getID() == id){
                     return toDo;
                 }
@@ -121,8 +117,8 @@ public class Task {
         return null;
     }
 
-    public Task getToDo(UUID id){
-        for(Task toDo : toDoList){
+    public ToDo getToDo(UUID id){
+        for(ToDo toDo : toDoList){
                 if(toDo.getID() == id){
                     return toDo;
                 }
