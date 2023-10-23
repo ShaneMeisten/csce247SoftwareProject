@@ -47,9 +47,12 @@ public class Column {
         }
     }
 
-    public ArrayList<Task> viewTask(){
-        //adding code later
-        return null;
+    public Task viewTask(Task task){
+        if(TaskList.contains(task)){
+        return task;
+        }else{
+            return null;
+        }
     }
 
     public UUID getUUID(){
