@@ -2,14 +2,14 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class ProjectCatalog {
-    private ProjectCatalog projectCatalog;
+    private static ProjectCatalog projectCatalog;
     public static ArrayList<Project> projects;
 
     private ProjectCatalog() {
 
     }
 
-    public ProjectCatalog getInstance(){
+    public static ProjectCatalog getInstance(){
         if (projectCatalog == null) {
             projectCatalog = new ProjectCatalog();
         }
