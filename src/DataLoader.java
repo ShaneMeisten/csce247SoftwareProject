@@ -1,12 +1,13 @@
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
+import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.util.Date;
 
 /**
  * @author Aidan Godwin
@@ -60,16 +61,16 @@ public class DataLoader extends DataConstants{
     String userName = (String)userJSON.get(USER_TEAM);
     String password = (String)userJSON.get(USER_PASSWORD);
     String phone = (String)userJSON.get(USER_PHONE);
-    double point = (Double)userJSON.get(USER_POINT);
     String email = (String)userJSON.get(USER_EMAIL);
 
     // Current Projects
-    ArrayList<UUID> currentProjects = new ArrayList<UUID>();
+    HashMap<UUID,Double> currentProjects = new HashMap<UUID,Double>();
     JSONArray currentProjectsJSON = (JSONArray)userJSON.get(USER_CURRENT_PROJECTS);
     for (Object o : currentProjectsJSON) {
       JSONObject currentProjectJSON = (JSONObject)o;
-      Project currentProject = toProject(currentProjectJSON);
-      currentProjects.add(currentProject.getUUID());
+      UUID projectId = UUID.fromString((String)currentProjectJSON.get(USER_PROJECT_ID));
+      double projectPoints = Double.parseDouble((String)currentProjectJSON.get(USER_PROJECT_POINTS));
+      currentProjects.put(projectId, projectPoints);
     }
 
     // Invited Projects
@@ -77,11 +78,11 @@ public class DataLoader extends DataConstants{
     JSONArray invitedProjectsJSON = (JSONArray)userJSON.get(USER_INVITED_PROJECTS);
     for (Object o : invitedProjectsJSON) {
       JSONObject invitedProjectJSON = (JSONObject)o;
-      Project invitedProject = toProject(invitedProjectJSON);
-      invitedProjects.add(invitedProject.getUUID());
+      UUID projectId = UUID.fromString((String)invitedProjectJSON.get(USER_PROJECT_ID));
+      invitedProjects.add(projectId);
     }
     
-    User user = new User(id, name, role, adminPerms, team, userName, password, phone, point, email, currentProjects, invitedProjects);
+    User user = new User(id, name, role, adminPerms, team, userName, password, phone, email, currentProjects, invitedProjects);
     return user;
   }
 
