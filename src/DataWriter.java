@@ -126,7 +126,44 @@ public class DataWriter extends DataConstants{
   }
 
   private static JSONObject getTaskJSON(Task task) {
-    // TODO
+    JSONObject taskDetails = new JSONObject();
+    taskDetails.put(TASK_ID, task.getID().toString());
+    taskDetails.put(TASK_TITLE, task.getTitle());
+    taskDetails.put(TASK_DESCRIPTION, task.getDescription());
+    taskDetails.put(TASK_WEIGHT, task.getWeight());
+    taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
+    taskDetails.put(TASK_STATUS, task.getStatus());
+    taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime().toString());
+    taskDetails.put(TASK_AUTHOR, task.getAuthor().getId().toString());
+    taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getId().toString());
+
+    // Categories
+    JSONArray categoriesJSON = new JSONArray();
+    ArrayList<String> categories = task.getCategories();
+    for (String category : categories) {
+      categoriesJSON.add(category);
+    }
+    taskDetails.put(TASK_CATEGORIES, categoriesJSON);
+
+    // ToDoList
+    JSONArray todoListJSON = new JSONArray();
+    ArrayList<ToDo> todoList = task.getToDoList();
+    for (ToDo todo : todoList) {
+      JSONObject todoJSON = getToDoJSON(todo);
+      todoListJSON.add(todoJSON);
+    }
+    taskDetails.put(TASK_TODO_LIST, todoListJSON);
+
+    // Comments
+    JSONArray commentsJSON = new JSONArray();
+    ArrayList<Comment> comments = task.getCommentThread();
+    for (Comment comment : comments) {
+      JSONObject commentJSON = getCommentJSON(comment);
+      commentsJSON.add(commentJSON);
+    }
+    taskDetails.put(TASK_COMMENT_THREAD, commentsJSON);
+
+    return taskDetails;
   }
 
   private static JSONObject getColumnJSON(Column column) {
