@@ -61,6 +61,9 @@ public class User{
     public boolean getAdminPerms(){
         return adminPerms;
     }
+    public String getTeam() {
+        return team;
+    }
     public String getPassword(){
         return password;
     }

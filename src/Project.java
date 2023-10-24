@@ -13,9 +13,9 @@ public class Project {
     private String name;
     private String type;
     private Layout layout;
-    private ArrayList<Task> ongoingTasks;
-    private ArrayList<Task> completedTasks;
     private ArrayList<User> users;
+    private ArrayList<Task> completedTasks;
+    private ArrayList<Task> ongoingTasks;
     private ArrayList<Column> columnList;
     private History history;
 
