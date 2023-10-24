@@ -20,6 +20,9 @@ public class ToDo {
     public boolean getDone(){
         return this.done;
     }
+    public UUID getID(UUID id){
+        return this.id;
+    }
 
     public String getDescription(){
         return this.description;
