@@ -134,7 +134,12 @@ public class DataWriter extends DataConstants{
   }
 
   private static JSONObject getUpdateJSON(Update update) {
-    // TODO
+    JSONObject updateDetails = new JSONObject();
+    updateDetails.put(UPDATE_ID, update.getChangedID().toString()); 
+    updateDetails.put(UPDATE_TIMESTAMP, update.getDate().toString());
+    updateDetails.put(UPDATE_USER, update.getUserUUID().toString());
+    updateDetails.put(UPDATE_CHANGE_LOG, update.getChangedLog());
+    return updateDetails;
   }
 
   private static JSONObject getCommentJSON(Comment comment) {

@@ -66,8 +66,8 @@ public abstract class DataConstants {
   protected static final String TODO_DONE = "done";
   protected static final String TODO_DESCRIPTION = "description";
 
-  protected static final String HISTORY_ID = "id";
-  protected static final String HISTORY_TIMESTAMP = "timeStamp";
-  protected static final String HISTORY_USER = "user";
-  protected static final String HISTORY_CHANGE_LOG = "changelog";
+  protected static final String UPDATE_ID = "id";
+  protected static final String UPDATE_TIMESTAMP = "timeStamp";
+  protected static final String UPDATE_USER = "user";
+  protected static final String UPDATE_CHANGE_LOG = "changelog";
 }

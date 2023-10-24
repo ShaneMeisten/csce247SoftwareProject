@@ -168,11 +168,11 @@ public class DataLoader extends DataConstants{
   }
 
   private static Update toUpdate(JSONObject historyJSON){
-    UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
-    String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
+    UUID historyId = UUID.fromString((String)historyJSON.get(UPDATE_ID));
+    String timeStampString = (String)historyJSON.get(UPDATE_TIMESTAMP);
     Date timeStamp = new Date(timeStampString);
-    UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
-    String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
+    UUID historyUserId = UUID.fromString((String)historyJSON.get(UPDATE_USER));
+    String changelog = (String)historyJSON.get(UPDATE_CHANGE_LOG);
     Update update = new Update(historyId, timeStamp, historyUserId, changelog);
     return update;
   }
