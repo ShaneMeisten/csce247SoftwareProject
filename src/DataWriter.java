@@ -143,10 +143,34 @@ public class DataWriter extends DataConstants{
   }
 
   private static JSONObject getCommentJSON(Comment comment) {
-    // TODO
+    JSONObject commentDetails = new JSONObject();
+    commentDetails.put(COMMENT_ID, comment.getId().toString());
+    commentDetails.put(COMMENT_NAME, comment.getName());
+    commentDetails.put(COMMENT_DESCRIPTION, comment.getDescription());
+    commentDetails.put(COMMENT_AUTHOR, comment.getAuthorUUID().toString());
+    commentDetails.put(COMMENT_DATE, comment.getDate().toString());
+    
+    // Replies
+    JSONArray repliesJSON = new JSONArray();
+    ArrayList<Comment> replies = comment.getReplies();
+    if (replies.isEmpty())
+      commentDetails.put(COMMENT_REPLY, repliesJSON);
+    else {
+      for (Comment reply : replies) {
+        JSONObject replyJSON = getCommentJSON(reply);
+        repliesJSON.add(replyJSON);
+      }
+      commentDetails.put(COMMENT_REPLY, repliesJSON);
+    }
+
+    return commentDetails;
   }
 
   private static JSONObject getToDoJSON(ToDo todo) {
-    // TODO
+    JSONObject todoDetails = new JSONObject();
+    todoDetails.put(TODO_ID, todo.getID().toString());
+    todoDetails.put(TODO_DONE, todo.getDone());
+    todoDetails.put(TODO_DESCRIPTION, todo.getDescription());
+    return todoDetails;
   }
 }
