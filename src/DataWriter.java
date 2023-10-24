@@ -89,15 +89,59 @@ public class DataWriter extends DataConstants{
     projectDetails.put(PROJECT_LAYOUT,project.getLayout());
 
     // Completed Tasks
-    projectDetails.put(PROJECT_COMPLETED_TASKS,project.getCompletedTasks());
+    JSONArray completedTasksJSON = new JSONArray();
+    ArrayList<Task> completedTasks = project.getCompletedTasks();
+    for (Task task : completedTasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      completedTasksJSON.add(taskJSON);
+    }
+    projectDetails.put(PROJECT_COMPLETED_TASKS, completedTasksJSON);
 
-    // Invited Tasks
-    projectDetails.put(PROJECT_ONGOING_TASKS,project.getOngoingTasks());
+    // Ongoing Tasks
+    JSONArray ongoingTasksJSON = new JSONArray();
+    ArrayList<Task> ongoingTasks = project.getOngoingTasks();
+    for (Task task : ongoingTasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      ongoingTasksJSON.add(taskJSON);
+    }
+    projectDetails.put(PROJECT_ONGOING_TASKS, ongoingTasksJSON);
 
     // Columns
-    projectDetails.put(PROJECT_COLUMNS,project.getColumns());
+    JSONArray columnListJSON = new JSONArray();
+    ArrayList<Column> columnList = project.getColumnList();
+    for (Column column : columnList) {
+      JSONObject columnJSON = getColumnJSON(column);
+      columnListJSON.add(columnJSON);
+    }
+    projectDetails.put(PROJECT_COLUMNS, columnListJSON);
 
     // History
-    projectDetails.put(PROJECT_HISTORY,project.getHistory());
+    JSONArray historyJSON = new JSONArray();
+    History history = project.getHistory();
+    for (Update update : history.getHistoryList()) {
+      JSONObject updateJSON = getUpdateJSON(update);
+      historyJSON.add(updateJSON);
+    }
+    projectDetails.put(PROJECT_HISTORY, historyJSON);
+  }
+
+  private static JSONObject getTaskJSON(Task task) {
+    // TODO
+  }
+
+  private static JSONObject getColumnJSON(Column column) {
+    // TODO
+  }
+
+  private static JSONObject getUpdateJSON(Update update) {
+    // TODO
+  }
+
+  private static JSONObject getCommentJSON(Comment comment) {
+    // TODO
+  }
+
+  private static JSONObject getToDoJSON(ToDo todo) {
+    // TODO
   }
 }

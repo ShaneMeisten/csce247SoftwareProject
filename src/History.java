@@ -48,4 +48,8 @@ public class History {
     public void add(Update update){
         historyList.add(update);
     }
+
+    public ArrayList<Update> getHistoryList() {
+        return historyList;
+    }
 }
