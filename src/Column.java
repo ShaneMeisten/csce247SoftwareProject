@@ -16,7 +16,7 @@ public class Column {
     private Date completionTime;
     private Date createdTime;
     private User author;
-    private ArrayList<Task> TaskList;
+    private ArrayList<Task> TaskList= new ArrayList<>();
 
     public Column(UUID id, String title, double weight, boolean status, Date completionTime,
                   Date createdTime, User author, ArrayList<Task> TaskList){
@@ -27,7 +27,7 @@ public class Column {
         this.completionTime = completionTime;
         this.createdTime = createdTime;
         this.author = author;
-        TaskList = new ArrayList<>();
+        this.TaskList = TaskList;
         
     }
 
@@ -84,7 +84,11 @@ public class Column {
     }
 
     public void setStatus(boolean status){
-        this.status = status;
+        if(status !=true && status !=false){
+            this.status = false;
+        }else{
+            this.status = status;
+        }
     }
 
     public boolean setWeight(double weight){
