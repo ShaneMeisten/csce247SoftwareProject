@@ -163,7 +163,7 @@ public class DataLoader extends DataConstants{
     History history = new History();
     history.loadHistory(updates);
     
-    Project project = new Project(projectId, name, type, layout, users, completedTasks, ongoingTasks, columnList, history);
+    Project project = new Project(projectId, name, type, layout, completedTasks, ongoingTasks, columnList, history);
     return project;
   }
 
@@ -226,7 +226,11 @@ public class DataLoader extends DataConstants{
     UUID todoId = UUID.fromString((String)todoJSON.get(TODO_ID));
     boolean done = (boolean)todoJSON.get(TODO_DONE);
     String description = (String)todoJSON.get(TODO_DESCRIPTION);
+<<<<<<< HEAD
     ToDo todo = new ToDo(done, description,todoId);
+=======
+    ToDo todo = new ToDo(done, description, todoId);
+>>>>>>> 480f15f5a6ff689a50c3e0e0dc7d1574797c6fa0
     return todo;
   }
 
