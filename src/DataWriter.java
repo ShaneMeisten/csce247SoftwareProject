@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -48,7 +49,7 @@ public class DataWriter extends DataConstants{
   private static JSONObject getUserJSON(User user) {
     JSONObject userDetails = new JSONObject();
     userDetails.put(USER_NAME, user.getName());
-    userDetails.put(USER_ID, user.getUUID());
+    userDetails.put(USER_ID, user.getUUID().toString());
     userDetails.put(USER_ROLE, user.getRole());
     userDetails.put(USER_PERMS, user.getAdminPerms());
     userDetails.put(USER_TEAM, user.getTeam());
@@ -56,8 +57,26 @@ public class DataWriter extends DataConstants{
     userDetails.put(USER_PASSWORD, user.getPassword());
     userDetails.put(USER_PHONE, user.getPhone());
     userDetails.put(USER_EMAIL, user.getEmail());
-    userDetails.put(USER_CURRENT_PROJECTS, user.getCurrentProjects());
-    userDetails.put(USER_INVITED_PROJECTS, user.getInvitedProjects());
+
+    // Current Projects
+    JSONArray currentProjectsJSON = new JSONArray();
+    ArrayList<UUID> currentProjects = user.getCurrentProjects();
+    for (UUID projectId : currentProjects) {
+      Project project = ProjectCatalog.getInstance().getProject(projectId);
+      JSONObject projectJSON = getProjectJSON(project);
+      currentProjectsJSON.add(projectJSON);
+    }
+    userDetails.put(USER_CURRENT_PROJECTS, currentProjectsJSON);
+
+    // Invited Projects
+    JSONArray invitedProjectsJSON = new JSONArray();
+    ArrayList<UUID> invitedProjects = user.getInvitedProjects();
+    for (UUID projectId : invitedProjects) {
+      Project project = ProjectCatalog.getInstance().getProject(projectId);
+      JSONObject projectJSON = getProjectJSON(project);
+      invitedProjectsJSON.add(projectJSON);
+    }
+    userDetails.put(USER_INVITED_PROJECTS, invitedProjectsJSON);
 
     return userDetails;
   }
@@ -68,10 +87,20 @@ public class DataWriter extends DataConstants{
     projectDetails.put(PROJECT_NAME,project.getName());
     projectDetails.put(PROJECT_TYPE,project.getType());
     projectDetails.put(PROJECT_LAYOUT,project.getLayout());
+
+    // Users
     projectDetails.put(PROJECT_USERS,project.getUsers());
+
+    // Completed Tasks
     projectDetails.put(PROJECT_COMPLETED_TASKS,project.getCompletedTasks());
+
+    // Invited Tasks
     projectDetails.put(PROJECT_ONGOING_TASKS,project.getOngoingTasks());
+
+    // Columns
     projectDetails.put(PROJECT_COLUMNS,project.getColumns());
+
+    // History
     projectDetails.put(PROJECT_HISTORY,project.getHistory());
   }
 }

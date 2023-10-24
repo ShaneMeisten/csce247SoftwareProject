@@ -13,13 +13,12 @@ public class Project {
     private String name;
     private String type;
     private Layout layout;
-    private ArrayList<User> users;
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> ongoingTasks;
     private ArrayList<Column> columnList;
     private History history;
 
-    public Project(UUID id, String name, String type, Layout layout, ArrayList<User> users, 
+    public Project(UUID id, String name, String type, Layout layout,
                     ArrayList<Task> completedTasks, ArrayList<Task> ongoingTasks, 
                     ArrayList<Column> columnList, History history){
         this.id = id;
@@ -28,7 +27,6 @@ public class Project {
         this.layout = layout;
         this.ongoingTasks = ongoingTasks;
         this.completedTasks = completedTasks;
-        this.users = users;
         this.columnList = columnList;
         this.history = history;
     }
@@ -133,21 +131,4 @@ public class Project {
             }
         }
     }
-
-    public boolean addUser(User user){
-        if (!users.contains(user)) {
-            users.add(user);
-            return true; 
-        } else {
-            return false;
-        }
-    }
-
-
-
-
-
-
-    
-
 }
