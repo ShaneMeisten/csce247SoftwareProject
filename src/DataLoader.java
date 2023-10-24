@@ -223,9 +223,10 @@ public class DataLoader extends DataConstants{
   }
 
   private static ToDo toToDo(JSONObject todoJSON) {
+    UUID todoId = UUID.fromString((String)todoJSON.get(TODO_ID));
     boolean done = (boolean)todoJSON.get(TODO_DONE);
     String description = (String)todoJSON.get(TODO_DESCRIPTION);
-    ToDo todo = new ToDo(done, description);
+    ToDo todo = new ToDo(todoId, done, description);
     return todo;
   }
 
