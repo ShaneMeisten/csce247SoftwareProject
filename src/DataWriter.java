@@ -88,9 +88,6 @@ public class DataWriter extends DataConstants{
     projectDetails.put(PROJECT_TYPE,project.getType());
     projectDetails.put(PROJECT_LAYOUT,project.getLayout());
 
-    // Users
-    projectDetails.put(PROJECT_USERS,project.getUsers());
-
     // Completed Tasks
     projectDetails.put(PROJECT_COMPLETED_TASKS,project.getCompletedTasks());
 

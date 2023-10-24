@@ -163,7 +163,7 @@ public class DataLoader extends DataConstants{
     History history = new History();
     history.loadHistory(updates);
     
-    Project project = new Project(projectId, name, type, layout, users, completedTasks, ongoingTasks, columnList, history);
+    Project project = new Project(projectId, name, type, layout, completedTasks, ongoingTasks, columnList, history);
     return project;
   }
 
