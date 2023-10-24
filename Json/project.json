@@ -15,7 +15,7 @@
                                "completionTime" : "Tue Oct 17 09:04:55 EDT 2023",
                                "author" : "2a2bc3d9-fbdb-4589-a1f6-c56f8ea0cd22",
                                "assignedUser" : "6678badc-6172-4a11-83b2-71dcc05d4615",
-                               "ToDoList" : [{"done" : true, "description" : "completed"}],
+                               "ToDoList" : [{"done" : true, "description" : "completed", "id" : "e0d2356c-0f2f-4414-a1f1-46c7d500264f"}],
                                "commentThread": [{"name": "First Comment!",
                                                   "description": "?",
                                                   "author": "ed788d91-2ec5-498b-90da-a6f0ab065587",

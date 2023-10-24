@@ -68,7 +68,7 @@ public class Task {
         return this.commentThread;
     }
 
-    public ArrayList<ToDo> getToDoList(){
+    public ArrayList<Task> getToDoList(){
         return this.toDoList;
     }
 
@@ -100,7 +100,7 @@ public class Task {
         this.completionTime = completionTime;
     }
 
-    public boolean addToDo(ToDo todo){
+    public boolean addToDo(ToDO todo){
         if(todo != null){
         toDoList.add(todo);
         return true;
@@ -108,7 +108,7 @@ public class Task {
         return false;
     }
 
-    public ToDo removeToDo(UUID id){
+    public Task removeToDo(UUID id){
         for(ToDo toDo : toDoList){
                 if(toDo.getID() == id){
                     return toDo;
@@ -117,8 +117,8 @@ public class Task {
         return null;
     }
 
-    public ToDo getToDo(UUID id){
-        for(ToDo toDo : toDoList){
+    public Task getToDo(UUID id){
+        for(Task toDo : toDoList){
                 if(toDo.getID() == id){
                     return toDo;
                 }
