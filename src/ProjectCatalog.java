@@ -39,6 +39,19 @@ public class ProjectCatalog {
         }
         return null; 
     }
+    
+
+    public static ArrayList<String> readUserProjectUUID(ArrayList<UUID> projectUUID) {
+        ArrayList<String> readProject = new ArrayList<String>();
+        for (Project current: projects) {
+            for(UUID id: projectUUID){
+                if(current.getUUID().compareTo(id) == 0) {
+                    if(readProject.contains(current.getName())) continue;
+                    readProject.add(current.getName());
+                }
+            }
+        }
+        return readProject;
     }
 
 
