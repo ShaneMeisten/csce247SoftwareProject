@@ -98,13 +98,31 @@ public class UserCatalog {
 
     }
 
-    public static HashMap<UUID, Double> getLeaderboard(UUID projectUUID){
-        HashMap<UUID, Double> userProject = new HashMap<UUID, Double>();
+    private static ArrayList<User> sortArray(ArrayList<User> users, UUID projectUUID){
+        if(users.size() == 0) return null;
+        //Implement selection sort
+        //Resourced from https://www.geeksforgeeks.org/selection-sort/
+        for(int i = 0; i < users.size(); i++){
+            int hold = i;
+            for(int j = i + 1; j< users.size(); j++){
+                if(users.get(j).getProjectPoints(projectUUID) < (users.get(hold).getProjectPoints(projectUUID))) 
+                    hold = j;
+            }
+            User holdUser = users.get(hold);
+            users.set(hold, users.get(i));
+            users.set(i, holdUser);
+        }
+        return users;
+    }
+
+    public static ArrayList<User> getLeaderboard(UUID projectUUID){
+        ArrayList<User> userProject = new ArrayList<User>();
         for(int i = 0; i < userList.size(); i++){
             if(userList.get(i).containsProject(projectUUID)){
-                userProject.put(userList.get(i).getUUID(), userList.get(i).getProjectPoints(projectUUID));
+                userProject.add(userList.get(i));
             }
         }
+        userProject = sortArray(userProject, projectUUID);
         return userProject;
     }
 
