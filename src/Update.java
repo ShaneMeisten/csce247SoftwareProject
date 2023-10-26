@@ -45,4 +45,14 @@ public class Update {
         return "TIME: [" + timeStamp.toString() + "]  USER: [" + userUUID.toString() + "] Change: " + changeLog + 
         "|    CHANGEDID: [" + changedID.toString() + "]";
     }
+
+    public static void main(String[] args){
+        ArrayList<Integer> amongus = new ArrayList<Integer>();
+        amongus.add(1);
+        amongus.add(2);
+        System.out.println(amongus.size());
+        for(int i = 0; i < amongus.size(); i++){
+            System.out.println("amongus");
+        }
+    }
 }

@@ -168,11 +168,11 @@ public class DataLoader extends DataConstants{
   }
 
   private static Update toUpdate(JSONObject historyJSON){
-    UUID historyId = UUID.fromString((String)historyJSON.get(HISTORY_ID));
-    String timeStampString = (String)historyJSON.get(HISTORY_TIMESTAMP);
+    UUID historyId = UUID.fromString((String)historyJSON.get(UPDATE_ID));
+    String timeStampString = (String)historyJSON.get(UPDATE_TIMESTAMP);
     Date timeStamp = new Date(timeStampString);
-    UUID historyUserId = UUID.fromString((String)historyJSON.get(HISTORY_USER));
-    String changelog = (String)historyJSON.get(HISTORY_CHANGE_LOG);
+    UUID historyUserId = UUID.fromString((String)historyJSON.get(UPDATE_USER));
+    String changelog = (String)historyJSON.get(UPDATE_CHANGE_LOG);
     Update update = new Update(historyId, timeStamp, historyUserId, changelog);
     return update;
   }
@@ -226,11 +226,7 @@ public class DataLoader extends DataConstants{
     UUID todoId = UUID.fromString((String)todoJSON.get(TODO_ID));
     boolean done = (boolean)todoJSON.get(TODO_DONE);
     String description = (String)todoJSON.get(TODO_DESCRIPTION);
-<<<<<<< HEAD
     ToDo todo = new ToDo(done, description,todoId);
-=======
-    ToDo todo = new ToDo(done, description, todoId);
->>>>>>> 480f15f5a6ff689a50c3e0e0dc7d1574797c6fa0
     return todo;
   }
 

@@ -89,15 +89,125 @@ public class DataWriter extends DataConstants{
     projectDetails.put(PROJECT_LAYOUT,project.getLayout());
 
     // Completed Tasks
-    projectDetails.put(PROJECT_COMPLETED_TASKS,project.getCompletedTasks());
+    JSONArray completedTasksJSON = new JSONArray();
+    ArrayList<Task> completedTasks = project.getCompletedTasks();
+    for (Task task : completedTasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      completedTasksJSON.add(taskJSON);
+    }
+    projectDetails.put(PROJECT_COMPLETED_TASKS, completedTasksJSON);
 
-    // Invited Tasks
-    projectDetails.put(PROJECT_ONGOING_TASKS,project.getOngoingTasks());
+    // Ongoing Tasks
+    JSONArray ongoingTasksJSON = new JSONArray();
+    ArrayList<Task> ongoingTasks = project.getOngoingTasks();
+    for (Task task : ongoingTasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      ongoingTasksJSON.add(taskJSON);
+    }
+    projectDetails.put(PROJECT_ONGOING_TASKS, ongoingTasksJSON);
 
     // Columns
-    projectDetails.put(PROJECT_COLUMNS,project.getColumns());
+    JSONArray columnListJSON = new JSONArray();
+    ArrayList<Column> columnList = project.getColumnList();
+    for (Column column : columnList) {
+      JSONObject columnJSON = getColumnJSON(column);
+      columnListJSON.add(columnJSON);
+    }
+    projectDetails.put(PROJECT_COLUMNS, columnListJSON);
 
     // History
-    projectDetails.put(PROJECT_HISTORY,project.getHistory());
+    JSONArray historyJSON = new JSONArray();
+    History history = project.getHistory();
+    for (Update update : history.getHistoryList()) {
+      JSONObject updateJSON = getUpdateJSON(update);
+      historyJSON.add(updateJSON);
+    }
+    projectDetails.put(PROJECT_HISTORY, historyJSON);
+  }
+
+  private static JSONObject getTaskJSON(Task task) {
+    JSONObject taskDetails = new JSONObject();
+    taskDetails.put(TASK_ID, task.getID().toString());
+    taskDetails.put(TASK_TITLE, task.getTitle());
+    taskDetails.put(TASK_DESCRIPTION, task.getDescription());
+    taskDetails.put(TASK_WEIGHT, task.getWeight());
+    taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
+    taskDetails.put(TASK_STATUS, task.getStatus());
+    taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime().toString());
+    taskDetails.put(TASK_AUTHOR, task.getAuthor().getId().toString());
+    taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getId().toString());
+
+    // Categories
+    JSONArray categoriesJSON = new JSONArray();
+    ArrayList<String> categories = task.getCategories();
+    for (String category : categories) {
+      categoriesJSON.add(category);
+    }
+    taskDetails.put(TASK_CATEGORIES, categoriesJSON);
+
+    // ToDoList
+    JSONArray todoListJSON = new JSONArray();
+    ArrayList<ToDo> todoList = task.getToDoList();
+    for (ToDo todo : todoList) {
+      JSONObject todoJSON = getToDoJSON(todo);
+      todoListJSON.add(todoJSON);
+    }
+    taskDetails.put(TASK_TODO_LIST, todoListJSON);
+
+    // Comments
+    JSONArray commentsJSON = new JSONArray();
+    ArrayList<Comment> comments = task.getCommentThread();
+    for (Comment comment : comments) {
+      JSONObject commentJSON = getCommentJSON(comment);
+      commentsJSON.add(commentJSON);
+    }
+    taskDetails.put(TASK_COMMENT_THREAD, commentsJSON);
+
+    return taskDetails;
+  }
+
+  private static JSONObject getColumnJSON(Column column) {
+    // TODO
+  }
+
+  private static JSONObject getUpdateJSON(Update update) {
+    JSONObject updateDetails = new JSONObject();
+    updateDetails.put(UPDATE_ID, update.getChangedID().toString()); 
+    updateDetails.put(UPDATE_TIMESTAMP, update.getDate().toString());
+    updateDetails.put(UPDATE_USER, update.getUserUUID().toString());
+    updateDetails.put(UPDATE_CHANGE_LOG, update.getChangedLog());
+    return updateDetails;
+  }
+
+  private static JSONObject getCommentJSON(Comment comment) {
+    JSONObject commentDetails = new JSONObject();
+    commentDetails.put(COMMENT_ID, comment.getId().toString());
+    commentDetails.put(COMMENT_NAME, comment.getName());
+    commentDetails.put(COMMENT_DESCRIPTION, comment.getDescription());
+    commentDetails.put(COMMENT_AUTHOR, comment.getAuthorUUID().toString());
+    commentDetails.put(COMMENT_DATE, comment.getDate().toString());
+    
+    // Replies
+    JSONArray repliesJSON = new JSONArray();
+    ArrayList<Comment> replies = comment.getReplies();
+    if (replies.isEmpty())
+      commentDetails.put(COMMENT_REPLY, repliesJSON);
+    else {
+      for (Comment reply : replies) {
+        JSONObject replyJSON = getCommentJSON(reply);
+        repliesJSON.add(replyJSON);
+      }
+      commentDetails.put(COMMENT_REPLY, repliesJSON);
+    }
+
+    return commentDetails;
+  }
+
+  private static JSONObject getToDoJSON(ToDo todo) {
+    JSONObject todoDetails = new JSONObject();
+    todoDetails.put(TODO_ID, todo.getID().toString());
+    todoDetails.put(TODO_DONE, todo.getDone());
+    todoDetails.put(TODO_DESCRIPTION, todo.getDescription());
+    return todoDetails;
   }
 }

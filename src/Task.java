@@ -71,7 +71,7 @@ public class Task {
         return this.description;
     }
 
-    public Date getDueData(){
+    public Date getDueDate(){
         return this.dueDate;
     }
 

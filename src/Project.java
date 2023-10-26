@@ -31,6 +31,11 @@ public class Project {
         this.history = history;
     }
 
+    public void addHistory(UUID userUUID, UUID changedID, String changeLog){
+        Update newUpdate = new Update(userUUID,changedID, changeLog);
+        history.add(newUpdate);
+    }
+
     public UUID getUUID(){
         return id;
     }

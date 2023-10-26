@@ -30,6 +30,10 @@ public class Comment {
         this.replies = new ArrayList<Comment>();
     }
 
+    public UUID getId(){
+        return id;
+    }
+
     public UUID getAuthorUUID(){
         return author;
     }

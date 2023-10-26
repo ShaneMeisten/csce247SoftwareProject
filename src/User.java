@@ -52,9 +52,7 @@ public class User{
     public String getName(){
         return name;
     }
-    public UUID getId(){
-        return id;
-    }
+
     public String getRole(){
         return role;
     }
@@ -165,13 +163,9 @@ public class User{
     }
 
     public boolean addInvite(UUID newUUID){
-        try{
-            currentProjects.put(newUUID, 0.0);
-            return true;
-        }
-        catch(Exception e) {
-            return false;
-        }
+        if (invitedProjects.contains(newUUID)) return false;
+        invitedProjects.add(newUUID);
+        return true;
     }
 
     public boolean isAdmin(){
