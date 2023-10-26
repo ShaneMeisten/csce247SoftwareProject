@@ -49,6 +49,10 @@ public class User{
         this.invitedProjects = new ArrayList<UUID>();
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getName(){
         return name;
     }

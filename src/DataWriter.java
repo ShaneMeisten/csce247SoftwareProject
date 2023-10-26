@@ -167,7 +167,25 @@ public class DataWriter extends DataConstants{
   }
 
   private static JSONObject getColumnJSON(Column column) {
-    // TODO
+    JSONObject columnDetails = new JSONObject();
+    columnDetails.put(COLUMN_ID, column.getUUID());
+    columnDetails.put(COLUMN_TITLE, column.getTitle());
+    columnDetails.put(COLUMN_WEIGHT, column.getWeight());
+    columnDetails.put(COLUMN_STATUS, column.getStatus());
+    columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
+    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime());
+    columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getId().toString());
+
+    // Task List
+    JSONArray tasksJSON = new JSONArray();
+    ArrayList<Task> tasks = column.getTasks();
+    for (Task task : tasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      tasksJSON.add(taskJSON);
+    }
+    columnDetails.put(COLUMN_TASKS, tasksJSON);
+
+    return columnDetails;
   }
 
   private static JSONObject getUpdateJSON(Update update) {

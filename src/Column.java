@@ -99,6 +99,10 @@ public class Column {
         return this.author;
     }
 
+    public ArrayList<Task> getTasks() {
+        return this.TaskList;
+    }
+
     public void setStatus(boolean status){
         if(status !=true && status !=false){
             this.status = false;
