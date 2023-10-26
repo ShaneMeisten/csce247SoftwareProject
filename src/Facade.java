@@ -20,6 +20,8 @@ public class Facade {
      * seeUsersInCurrentProject
      * removeUserFromCurrentProject
      * getLeaderBoard
+     * addUserToCurrentProject
+     * RemovePointsFromUserInCurrentProject
      * 
      * Methods not implemented:
      * viewColumn
@@ -31,6 +33,7 @@ public class Facade {
      * Create Project
      * Comment on task
      * view task
+     * 
      * 
      * 
      */
@@ -107,6 +110,25 @@ public class Facade {
     public ArrayList<User> getLeaderBoard() {
         if(currentProject == null) return null;
         return userCatalog.getLeaderboard(currentProject.getUUID());
+    }
+
+    //Either user has pending invite or not invited
+    public boolean addUserToCurrentProject(int user) {
+        if(currentProject == null || currentUser == null) return false;
+        if(user < 0 || user >= userCatalog.getUsers().size()) return false;
+        return userCatalog.addUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+    }
+
+    public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
+        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
+        return seeUsersInCurrentProject().get(user).removePoints(currentProject.getUUID(), points);
+    }
+
+    public boolean AddPointsToUserInCurrentProject(int user, int points) {
+        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
+        return seeUsersInCurrentProject().get(user).addPoints(currentProject.getUUID(), points);
     }
 
     public ArrayList<Column> viewColumns() {
