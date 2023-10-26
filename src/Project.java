@@ -52,14 +52,28 @@ public class Project {
         return layout;
     }
 
-  
+    public ArrayList<Task> getCompletedTasks(){
+        return completedTasks;
+    }
+
+    public ArrayList<Task> getOngoingTasks(){
+        return ongoingTasks;
+    }
+
+    public ArrayList<Column> getColumnList(){
+        return columnList;
+    }
+
+    public History getHistory(){
+        return history;
+    }
 
 
 
 
     public boolean addTask(Task task){
-        if (!taskList.contains(task)) {
-            taskList.add(task);
+        if (!ongoingTasks.contains(task)) {
+            ongoingTasks.add(task);
             return true;
         } else {
             return false; 
@@ -68,8 +82,8 @@ public class Project {
     }
 
     public boolean removeTask(Task task){
-        if (taskList.contains(task)) {
-            taskList.remove(task);
+        if (ongoingTasks.contains(task)) {
+            ongoingTasks.remove(task);
             return true; 
         } else {
             return false; 
