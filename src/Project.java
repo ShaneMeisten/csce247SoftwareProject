@@ -72,8 +72,8 @@ public class Project {
 
 
     public boolean addTask(Task task){
-        if (!taskList.contains(task)) {
-            taskList.add(task);
+        if (!ongoingTasks.contains(task)) {
+            ongoingTasks.add(task);
             return true;
         } else {
             return false; 
@@ -82,8 +82,8 @@ public class Project {
     }
 
     public boolean removeTask(Task task){
-        if (taskList.contains(task)) {
-            taskList.remove(task);
+        if (ongoingTasks.contains(task)) {
+            ongoingTasks.remove(task);
             return true; 
         } else {
             return false; 
