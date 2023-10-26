@@ -60,7 +60,7 @@ public class Project {
         return ongoingTasks;
     }
 
-    public ArrayList<Task> getColumnList(){
+    public ArrayList<Column> getColumnList(){
         return columnList;
     }
 
