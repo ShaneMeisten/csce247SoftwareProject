@@ -71,6 +71,9 @@ public class Column {
         }
     }
 
+    /*
+     * These are all the accessors of the column class
+     */
     public UUID getUUID(){
         return this.id;
     }
@@ -99,6 +102,10 @@ public class Column {
         return this.author;
     }
 
+    /**
+     * This sets the status of a specific task in the column
+     * @param status
+     */
     public void setStatus(boolean status){
         if(status !=true && status !=false){
             this.status = false;
@@ -107,12 +114,11 @@ public class Column {
         }
     }
 
-    public boolean setWeight(double weight){
+    public void setWeight(double weight){
         if(weight > 0 ){
             this.weight = weight;
-            return true;
         }else{
-            return false;
+            this.weight = 0;
         }
     }
 }
