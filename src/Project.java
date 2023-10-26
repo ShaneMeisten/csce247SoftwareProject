@@ -143,11 +143,23 @@ public class Project {
     }
 
     public void setProjectStatus(Task task , boolean status){
-        for (Task projectTask : taskList) {
-            if (projectTask.equals(task)) {
-                projectTask.setStatus(status); 
-                break; 
+        if (status) 
+            for (Task projectTask : ongoingTasks) {
+                if (projectTask.equals(task)) {
+                    projectTask.setStatus(status); 
+                    completedTasks.add(projectTask);
+                    ongoingTasks.remove(projectTask);
+                    break; 
+                }
             }
-        }
-    }
+        else
+            for (Task projectTask : completedTasks) {
+                if (projectTask.equals(task)) {
+                    projectTask.setStatus(status); 
+                    ongoingTasks.add(projectTask);
+                    completedTasks.remove(projectTask);
+                    break; 
+                }
+            }
+    }   
 }

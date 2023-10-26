@@ -123,6 +123,8 @@ public class DataWriter extends DataConstants{
       historyJSON.add(updateJSON);
     }
     projectDetails.put(PROJECT_HISTORY, historyJSON);
+
+    return projectDetails;
   }
 
   private static JSONObject getTaskJSON(Task task) {

@@ -115,6 +115,10 @@ public class Task {
         }
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     /**
      * adds to the ToDo list
      * @param todo

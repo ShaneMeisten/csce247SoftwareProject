@@ -16,15 +16,15 @@ public class ProjectCatalog {
         return projectCatalog;
     }
 
-    public static  addProject(String ProjectName, String ProjectType){
+    public static boolean addProject(String ProjectName, String ProjectType){
          projects.add(new Project(ProjectName, ProjectType));
-        
+         return true;
     }
 
-    public static removeProject(UUID ProjectUUID){
-        projects.remove(ProjectUUID);
-        
-
+    public static Project removeProject(UUID ProjectUUID){
+        Project remove = projectCatalog.getProject(ProjectUUID)
+        projects.remove(remove);
+        return remove;
     }
 
     public ArrayList<Project> getProjects() {
