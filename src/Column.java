@@ -55,6 +55,11 @@ public class Column {
         }
     }
 
+    /**
+     * removes a specfic task based on the task that is passed through as an argument
+     * @param task
+     * @return a boolean value based on if it was able to remove it
+     */
     public boolean removeTask(Task task){
         if(TaskList.remove(task)){
             return true;
@@ -62,10 +67,15 @@ public class Column {
             return false;
         }
     }
-
+    
+    /**
+     * This is used to view a specfic task based on the task that is passed through as an argument
+     * @param task
+     * @return the task that is being looked for if it is found in the Array List, otherwise it returns null
+     */
     public Task viewTask(Task task){
         if(TaskList.contains(task)){
-        return task;
+            return task;
         }else{
             return null;
         }
@@ -103,7 +113,7 @@ public class Column {
     }
 
     /**
-     * This sets the status of a specific task in the column
+     * This sets the status of a specific task in a column
      * @param status
      */
     public void setStatus(boolean status){
@@ -113,7 +123,10 @@ public class Column {
             this.status = status;
         }
     }
-
+    /**
+     * This sets the weight of a specific task in a column
+     * @param weight
+     */
     public void setWeight(double weight){
         if(weight > 0 ){
             this.weight = weight;
