@@ -52,7 +52,21 @@ public class Project {
         return layout;
     }
 
-  
+    public ArrayList<Task> getCompletedTasks(){
+        return completedTasks;
+    }
+
+    public ArrayList<Task> getOngoingTasks(){
+        return ongoingTasks;
+    }
+
+    public ArrayList<Task> getColumnList(){
+        return columnList;
+    }
+
+    public History getHistory(){
+        return history;
+    }
 
 
 
