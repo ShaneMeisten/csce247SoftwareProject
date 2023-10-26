@@ -4,7 +4,6 @@
         "name": "New Division Expansion",
         "type": "New Feature",
         "layout": "TASK_LIST",
-        "users": ["1121b136-228c-4cce-a04a-7668d389d177","a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"],
         "completed-tasks" : [{ "id" : "f0f27708-f4dd-4419-8200-07e1f75a9a73",
                                "title" : "My first Done Task!",
                                "description" : "Test demo of task completion",

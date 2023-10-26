@@ -23,6 +23,22 @@ public class Task {
     private User assignedUser;
     private User author;
 
+    /**
+     * 
+     * Constructor for the Task class, used for the Json file
+     * @param id
+     * @param title
+     * @param description
+     * @param dueDate
+     * @param weight
+     * @param categories
+     * @param commentThread
+     * @param toDoList
+     * @param status
+     * @param completionTime
+     * @param assignedUser
+     * @param author
+     */
     public Task(UUID id, String title, String description, Date dueDate, 
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
     ArrayList<ToDo> toDoList, boolean status, Date completionTime, User assignedUser, User author){
@@ -40,6 +56,9 @@ public class Task {
         this.author = author;
         }
 
+    /*
+     * All accessors for the class
+     */
     public UUID getID(){
         return this.id;
     }
@@ -96,10 +115,11 @@ public class Task {
         }
     }
 
-    public void setCompletionTime(Date completionTime){
-        this.completionTime = completionTime;
-    }
-
+    /**
+     * adds to the ToDo list
+     * @param todo
+     * @return a boolean based on if it can add to the List
+     */
     public boolean addToDo(ToDo todo){
         if(todo != null){
         toDoList.add(todo);
@@ -107,16 +127,24 @@ public class Task {
         }
         return false;
     }
-
-    public ToDo removeToDo(UUID id){
+    /**
+     * removes a ToDo item 
+     * @param id
+     * @return a boolean based on if there is a ToDo object that is matches the id
+     */
+    public boolean removeToDo(UUID id){
         for(ToDo toDo : toDoList){
                 if(toDo.getID() == id){
-                    return toDo;
+                    return true;
                 }
         }
-        return null;
+        return false;
     }
-
+    /**
+     * gets a ToDo object 
+     * @param id
+     * @return the ToDo object that matches the id in the parameter
+     */
     public ToDo getToDo(UUID id){
         for(ToDo toDo : toDoList){
                 if(toDo.getID() == id){

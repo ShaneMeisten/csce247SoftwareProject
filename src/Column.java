@@ -17,7 +17,18 @@ public class Column {
     private Date createdTime;
     private User author;
     private ArrayList<Task> TaskList= new ArrayList<>();
-
+    
+    /**
+     * Constructor used for the Json file
+     * @param id
+     * @param title
+     * @param weight
+     * @param status
+     * @param completionTime
+     * @param createdTime
+     * @param author
+     * @param TaskList
+     */
     public Column(UUID id, String title, double weight, boolean status, Date completionTime,
                   Date createdTime, User author, ArrayList<Task> TaskList){
         this.title = title;
@@ -31,6 +42,11 @@ public class Column {
         
     }
 
+    /**
+     * adds a task to the TaskList
+     * @param task
+     * @return a boolean based on if it can add to the List
+     */
     public boolean addTask(Task task){
         if(TaskList.add(task)){
             return true;
