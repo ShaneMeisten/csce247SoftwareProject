@@ -11,18 +11,28 @@
                                "dueDate" : "Tue Oct 17 23:59:59 EDT 2023",
                                "categories" : ["new", "fun"],
                                "status" : true,
-                               "completionTime" : "Tue Oct 17 09:04:55 EDT 2023",
+                               "completionTime" : 10,
                                "author" : "2a2bc3d9-fbdb-4589-a1f6-c56f8ea0cd22",
                                "assignedUser" : "6678badc-6172-4a11-83b2-71dcc05d4615",
-                               "ToDoList" : [{"done" : true, "description" : "completed", "id" : "e0d2356c-0f2f-4414-a1f1-46c7d500264f"}],
-                               "commentThread": [{"name": "First Comment!",
+                               "ToDoList" : [{"done" : true, "description" : "completed", "id" : "e0d2356c-0f2f-4414-a1f1-46c7d500264f"},
+                                             {"done" : false, "description": "Still needed!", "id" : "9114f390-f300-4f8e-af9f-d66ae2b87adb"}],
+                               "commentThread": [{"id": "c0452ad3-affa-46c6-8f82-65d3a651bae7",
+                                                  "name": "First Comment!",
                                                   "description": "?",
                                                   "author": "ed788d91-2ec5-498b-90da-a6f0ab065587",
                                                   "date": "Tue Oct 17 09:04:55 EDT 2023",
-                                                  "reply": [{"name": "Welcome!",
+                                                  "reply": [{"id": "7a20c6a9-2a8b-47a9-b052-c3db9af9fa5e",
+                                                             "name": "Welcome!",
                                                              "description": "My First Reply!",
                                                              "author": "81b68daf-2394-4f1d-af54-f599ea76a209",
-                                                             "date": "Tue Oct 17 09:04:55 EDT 2023"}]
+                                                             "date": "Tue Oct 17 09:15:47 EDT 2023",
+                                                             "reply": []},
+                                                            {"id": "b0f4e138-7e23-4966-affe-05e07883ab2f",
+                                                             "name": "Hi me!",
+                                                             "description": "My Self Reply!",
+                                                             "author": "ed788d91-2ec5-498b-90da-a6f0ab065587",
+                                                             "date": "Tue Oct 17 10:14:34 EDT 2023",
+                                                             "reply": []}]
                                                 }]
                                
 
@@ -33,7 +43,7 @@
                                "weight" : 3.5,
                                "categories" : ["test"],
                                "status" : false,
-                               "completionTime" : ["Tue Oct 17 09:04:55 EDT 2023"],
+                               "completionTime" : 7.5,
                                "author" : "b607b942-d2a3-4500-93a7-8e126ca9411f",
                                "assignedUser" : "c1404d81-378c-4c2e-9b2a-54136547721a",
                                "ToDoList" : [{"done" : false, "description" : "Get this task Completed"}],
@@ -41,11 +51,11 @@
                                                   "description": "?",
                                                   "author": "370894ce-0c0f-4638-ba48-217a779b8b4b7",
                                                   "date": "Tue Oct 17 09:04:55 EDT 2023",
-                                                  "replies": [{"name": "Move This to Completed!",
+                                                  "reply": [{"name": "Move This to Completed!",
                                                              "description": "My First Reply!",
                                                              "author": "32f68f5a-4d6d-4081-af24-895bdbce8f46",
                                                              "date": "Tue Oct 17 09:04:55 EDT 2023", 
-                                                             "replies": []}]
+                                                             "reply": []}]
                                                 }]
                                
 
@@ -67,11 +77,11 @@
                                                   "description": "How simple do you want it to be?",
                                                   "author": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
                                                   "date": "Tue Oct 17 09:04:55 EDT 2023",
-                                                  "replies": [{"name": "Jackson Brown",
+                                                  "reply": [{"name": "Jackson Brown",
                                                              "description": "keep it to the same design as the other ones",
                                                              "author": "1121b136-228c-4cce-a04a-7668d389d177",
                                                              "date": "Tue Oct 17 09:04:55 EDT 2023", 
-                                                             "replies": []}]
+                                                             "reply": []}]
                                 }],
                                 "status": false,
                                 "completionTime": 21.5,
