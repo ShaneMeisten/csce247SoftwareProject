@@ -126,4 +126,14 @@ public class UserCatalog {
         return userProject;
     }
 
+    public static ArrayList<User> getUsersInProjectUUID(UUID projectUUID){
+        ArrayList<User> userProject = new ArrayList<User>();
+        for(int i = 0; i <= userList.size(); i++){
+            if(userList.get(i).containsProject(projectUUID)){
+                userProject.add(userList.get(i));
+            }
+        }
+        return userProject;
+    }
+
 }

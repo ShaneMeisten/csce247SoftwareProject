@@ -41,13 +41,13 @@ public class ProjectCatalog {
     }
     
 
-    public static ArrayList<String> readUserProjectUUID(ArrayList<UUID> projectUUID) {
-        ArrayList<String> readProject = new ArrayList<String>();
+    public static ArrayList<Project> readUserProjectUUID(ArrayList<UUID> projectUUID) {
+        ArrayList<Project> readProject = new ArrayList<Project>();
         for (Project current: projects) {
             for(UUID id: projectUUID){
                 if(current.getUUID().compareTo(id) == 0) {
-                    if(readProject.contains(current.getName())) continue;
-                    readProject.add(current.getName());
+                    if(readProject.contains(current)) continue;
+                    readProject.add(current);
                 }
             }
         }

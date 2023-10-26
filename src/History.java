@@ -15,7 +15,7 @@ public class History {
         sortHistory();
     }
 
-    public  ArrayList<Update> getHistory(UUID userID){
+    public  ArrayList<Update> getHistory(){
         return historyList;
     }
     
@@ -37,7 +37,7 @@ public class History {
     }
     public  ArrayList<Update> accessHistoryChangedByUUID(UUID ChangedID){
         ArrayList<Update> userUpdate = new ArrayList<Update>();
-        for (int i = 0; i < historyList.size(); i++){
+        for (int i = 0; i <= historyList.size(); i++){
             if(historyList.get(i).getUserUUID().compareTo(ChangedID) == 0){
                 userUpdate.add(historyList.get(i));
             }
