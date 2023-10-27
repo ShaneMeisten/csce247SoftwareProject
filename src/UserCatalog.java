@@ -42,7 +42,7 @@ public class UserCatalog {
     }
 
     public static boolean removeUser(User mainUser, UUID toRemoveUser){
-        if (!mainUser.isAdmin()  && getUserBool(toRemoveUser)) return false;
+        if (!mainUser.isAdmin()  || !getUserBool(toRemoveUser)) return false;
         userList.remove(getUser(toRemoveUser));
         return true;
     }
@@ -66,7 +66,7 @@ public class UserCatalog {
     private static boolean getUserBool(UUID userUUID){
         try{
             for (int i = 0; i <= userList.size(); i++){
-                if(userList.get(i).getUUID().equals(userUUID))
+                if(userList.get(i).getUUID().compareTo(userUUID) == 0)
                 return true;
             }
             return false;
@@ -78,7 +78,7 @@ public class UserCatalog {
     }
 
     public static User retrieveUser(String username, String passsword){
-        for (int i = 0; i <= userList.size(); i++){
+        for (int i = 0; i < userList.size(); i++){
                 if(userList.get(i).login(username, passsword)) return userList.get(i);
         }
         return null;
@@ -86,7 +86,7 @@ public class UserCatalog {
 
     public static User getUser(UUID userUUID){
         try{
-            for (int i = 0; i <userList.size(); i++){
+            for (int i = 0; i < userList.size(); i++){
                 if(userList.get(i).getUUID().equals(userUUID))
                 return userList.get(i);
             }
@@ -102,9 +102,9 @@ public class UserCatalog {
         if(users.size() == 0) return null;
         //Implement selection sort
         //Resourced from https://www.geeksforgeeks.org/selection-sort/
-        for(int i = 0; i <= users.size(); i++){
+        for(int i = 0; i < users.size(); i++){
             int hold = i;
-            for(int j = i + 1; j<= users.size(); j++){
+            for(int j = i + 1; j< users.size(); j++){
                 if(users.get(j).getProjectPoints(projectUUID) < (users.get(hold).getProjectPoints(projectUUID))) 
                     hold = j;
             }
@@ -117,7 +117,7 @@ public class UserCatalog {
 
     public static ArrayList<User> getLeaderboard(UUID projectUUID){
         ArrayList<User> userProject = new ArrayList<User>();
-        for(int i = 0; i <= userList.size(); i++){
+        for(int i = 0; i < userList.size(); i++){
             if(userList.get(i).containsProject(projectUUID)){
                 userProject.add(userList.get(i));
             }
@@ -128,7 +128,7 @@ public class UserCatalog {
 
     public static ArrayList<User> getUsersInProjectUUID(UUID projectUUID){
         ArrayList<User> userProject = new ArrayList<User>();
-        for(int i = 0; i <= userList.size(); i++){
+        for(int i = 0; i < userList.size(); i++){
             if(userList.get(i).containsProject(projectUUID)){
                 userProject.add(userList.get(i));
             }
