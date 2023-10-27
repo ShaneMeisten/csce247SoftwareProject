@@ -17,8 +17,15 @@ public class ProjectCatalog {
     }
 
     public static boolean addProject(String ProjectName, String ProjectType){
-         projects.add(new Project(ProjectName, ProjectType));
-         return true;
+        UUID id = UUID.randomUUID();
+        Layout layout = new Layout(); 
+        ArrayList<Task> completedTasks = new ArrayList<>();
+        ArrayList<Task> ongoingTasks = new ArrayList<>();
+        ArrayList<Column> columnList = new ArrayList<>();
+        History history = new History(); 
+    
+        projects.add(new Project(id, ProjectName, ProjectType, layout, completedTasks, ongoingTasks, columnList, history));
+        return true;
     }
 
     public static Project removeProject(UUID ProjectUUID){

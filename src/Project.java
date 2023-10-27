@@ -127,19 +127,42 @@ public class Project {
 }
 
     public ArrayList<Column> viewColumn(String name){
-        // insert code
-        return new ArrayList<>();
+       ArrayList<Column> matchingColumns = new ArrayList<>();
+
+    for (Column column : columnList) {
+        if (column.getTitle().equals(name)) {
+            matchingColumns.add(column);
+        }
+    }
+    
+    return matchingColumns;
     }
 
     public ArrayList<Task> viewColumnTask(String column , String task){
-        //insert code
-        return new ArrayList<>();
+        ArrayList<Task> matchedTasks = new ArrayList<>();
+
+        for (Column columns : columnList) {
+            if (columns.equals(column)) { 
+                for (Task tasks : column.getTasks()) { 
+                    if (task.equals(task)) { 
+                        matchedTasks.add(task);
+                    }
+                }
+                break; 
+            }
+        }
+    
+        return matchedTasks;
     }
 
     public Task viewUnassignedTask(String task){
-       
-       // insert code 
-        return null;
+
+        for (Task tasks : ongoingTasks) {
+            if (tasks.getTitle().equals(task)) { 
+                return tasks;
+            }
+        }
+        return null; 
     }
 
     public void setProjectStatus(Task task , boolean status){
