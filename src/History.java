@@ -24,9 +24,9 @@ public class History {
         if(historyList.size() == 0) return;
         //Implement selection sort
         //Resourced from https://www.geeksforgeeks.org/selection-sort/
-        for(int i = 0; i <= historyList.size(); i++){
+        for(int i = 0; i < historyList.size(); i++){
             int hold = i;
-            for(int j = i + 1; j<= historyList.size(); j++){
+            for(int j = i + 1; j < historyList.size(); j++){
                 if(historyList.get(j).getDate().before(historyList.get(hold).getDate())) 
                     hold = j;
             }
@@ -37,7 +37,7 @@ public class History {
     }
     public  ArrayList<Update> accessHistoryChangedByUUID(UUID ChangedID){
         ArrayList<Update> userUpdate = new ArrayList<Update>();
-        for (int i = 0; i <= historyList.size(); i++){
+        for (int i = 0; i < historyList.size(); i++){
             if(historyList.get(i).getUserUUID().compareTo(ChangedID) == 0){
                 userUpdate.add(historyList.get(i));
             }
