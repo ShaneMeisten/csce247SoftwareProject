@@ -111,18 +111,15 @@ public class Column {
     public User getAuthor(){
         return this.author;
     }
-
-<<<<<<< HEAD
-    /**
-     * This sets the status of a specific task in a column
-     * @param status
-     */
-=======
+    
     public ArrayList<Task> getTasks() {
         return this.TaskList;
     }
 
->>>>>>> 348e1e12653256370dcd72faad6d7e835e00d308
+    /**
+     * This sets the status of a specific task in a column
+     * @param status
+     */
     public void setStatus(boolean status){
         if(status !=true && status !=false){
             this.status = false;

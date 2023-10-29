@@ -136,8 +136,8 @@ public class DataWriter extends DataConstants{
     taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
     taskDetails.put(TASK_STATUS, task.getStatus());
     taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime().toString());
-    taskDetails.put(TASK_AUTHOR, task.getAuthor().getId().toString());
-    taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getId().toString());
+    taskDetails.put(TASK_AUTHOR, task.getAuthor().getUUID().toString());
+    taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getUUID().toString());
 
     // Categories
     JSONArray categoriesJSON = new JSONArray();
@@ -176,7 +176,7 @@ public class DataWriter extends DataConstants{
     columnDetails.put(COLUMN_STATUS, column.getStatus());
     columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
     columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime());
-    columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getId().toString());
+    columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
 
     // Task List
     JSONArray tasksJSON = new JSONArray();

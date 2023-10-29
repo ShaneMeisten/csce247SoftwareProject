@@ -18,7 +18,7 @@ public class ProjectCatalog {
 
     public static boolean addProject(String ProjectName, String ProjectType){
         UUID id = UUID.randomUUID();
-        Layout layout = new Layout(); 
+        Layout layout = null; 
         ArrayList<Task> completedTasks = new ArrayList<>();
         ArrayList<Task> ongoingTasks = new ArrayList<>();
         ArrayList<Column> columnList = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ProjectCatalog {
     }
 
     public static Project removeProject(UUID ProjectUUID){
-        Project remove = projectCatalog.getProject(ProjectUUID)
+        Project remove = projectCatalog.getProject(ProjectUUID);
         projects.remove(remove);
         return remove;
     }
