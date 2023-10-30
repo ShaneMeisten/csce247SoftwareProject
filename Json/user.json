@@ -11,7 +11,8 @@
      "email": "JacksonBrown@gmail.com",
      "currentProjects": [{"id": "1121b136-228c-4cce-a04a-7668d389d177", "points": 12},
                          {"id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c", "points": 2.4}],
-     "invitedProjects": [{"id": "1121b136-228c-4cce-a04a-7668d389d177"}]
+     "invitedProjects": [{"id": "df7d154f-6028-4e97-96ee-77e8a9c28841"},
+                         {"id": "a6983ad4-4856-4218-b2e1-26d393c1ca63"}]
 
     },{
      "id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c",
@@ -25,5 +26,6 @@
      "email": "Matthew.Pierce@gmail.com",
      "currentProjects": [{"id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c", "points": 10.2}, 
                          {"id": "1121b136-228c-4cce-a04a-7668d389d177", "points": 1.7}],
-     "invitedProjects": [{"id": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c"}]
+     "invitedProjects": [{"id": "a6983ad4-4856-4218-b2e1-26d393c1ca63"},
+                         {"id": "df7d154f-6028-4e97-96ee-77e8a9c28841"}]
     }]

@@ -31,6 +31,12 @@ public class Project {
         this.history = history;
     }
 
+
+    //@author Cameron Reyes, please add generic Project method then get rid of this. 
+    public Project(String projectName) {
+        this.id = UUID.randomUUID();
+    }
+
     public void addHistory(UUID userUUID, UUID changedID, String changeLog){
         Update newUpdate = new Update(userUUID,changedID, changeLog);
         history.add(newUpdate);
@@ -72,8 +78,8 @@ public class Project {
 
 
     public boolean addTask(Task task){
-        if (!taskList.contains(task)) {
-            taskList.add(task);
+        if (!ongoingTasks.contains(task)) {
+            ongoingTasks.add(task);
             return true;
         } else {
             return false; 
@@ -82,8 +88,8 @@ public class Project {
     }
 
     public boolean removeTask(Task task){
-        if (taskList.contains(task)) {
-            taskList.remove(task);
+        if (ongoingTasks.contains(task)) {
+            ongoingTasks.remove(task);
             return true; 
         } else {
             return false; 
@@ -127,27 +133,62 @@ public class Project {
 }
 
     public ArrayList<Column> viewColumn(String name){
-        // insert code
-        return new ArrayList<>();
+       ArrayList<Column> matchingColumns = new ArrayList<>();
+
+    for (Column column : columnList) {
+        if (column.getTitle().equals(name)) {
+            matchingColumns.add(column);
+        }
+    }
+    
+    return matchingColumns;
     }
 
     public ArrayList<Task> viewColumnTask(String column , String task){
-        //insert code
-        return new ArrayList<>();
-    }
+        ArrayList<Task> matchedTasks = new ArrayList<>();
 
-    public Task viewUnassignedTask(String task){
-       
-       // insert code 
-        return null;
-    }
-
-    public void setProjectStatus(Task task , boolean status){
-        for (Task projectTask : taskList) {
-            if (projectTask.equals(task)) {
-                projectTask.setStatus(status); 
+        for (Column columns : columnList) {
+            if (columns.equals(column)) { 
+                for (Task tasks : column.getTasks()) { 
+                    if (task.equals(task)) { 
+                        matchedTasks.add(task);
+                    }
+                }
                 break; 
             }
         }
+    
+        return matchedTasks;
     }
+
+    public Task viewUnassignedTask(String task){
+
+        for (Task tasks : ongoingTasks) {
+            if (tasks.getTitle().equals(task)) { 
+                return tasks;
+            }
+        }
+        return null; 
+    }
+
+    public void setProjectStatus(Task task , boolean status){
+        if (status) 
+            for (Task projectTask : ongoingTasks) {
+                if (projectTask.equals(task)) {
+                    projectTask.setStatus(status); 
+                    completedTasks.add(projectTask);
+                    ongoingTasks.remove(projectTask);
+                    break; 
+                }
+            }
+        else
+            for (Task projectTask : completedTasks) {
+                if (projectTask.equals(task)) {
+                    projectTask.setStatus(status); 
+                    ongoingTasks.add(projectTask);
+                    completedTasks.remove(projectTask);
+                    break; 
+                }
+            }
+    }   
 }

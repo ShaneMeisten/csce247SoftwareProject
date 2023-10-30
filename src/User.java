@@ -49,10 +49,6 @@ public class User{
         this.invitedProjects = new ArrayList<UUID>();
     }
 
-    public UUID getId() {
-        return id;
-    }
-
     public String getName(){
         return name;
     }
@@ -77,6 +73,25 @@ public class User{
         return email;
     }
 
+    public void becomeAdmin() {
+        this.adminPerms = true;
+    }
+
+    public void removeAdmin() {
+        this.adminPerms = false;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public UUID getUUID(){
+        return id;
+    }
+
+    public boolean isAdmin(){
+        return adminPerms;
+    }
 
     public boolean login(String username, String passsword){
         if (this.username.equals(username) && this.password.equals(passsword)) return true;
@@ -95,7 +110,7 @@ public class User{
     public boolean AcceptInvite(int invite){
         if(invite >= 0 && invite <= invitedProjects.size()){
             currentProjects.put(invitedProjects.get(invite), 0.0);
-            invitedProjects.remove(invite);
+            invitedProjects.remove(getInvitedProjects().get(invite));
             return true;
         }
         return false;
@@ -103,7 +118,7 @@ public class User{
 
     public boolean RemoveProject(int invite){
         if(invite >= 0 && invite <= currentProjects.size()){
-            currentProjects.remove(invite);
+            currentProjects.remove(getCurrentProjects().get(invite));
             return true;
         }
         return false;
@@ -137,14 +152,6 @@ public class User{
         return this.username.equals(username);
     }
 
-    public String getUsername(){
-        return username;
-    }
-
-    public UUID getUUID(){
-        return id;
-    }
-
     public ArrayList<UUID> getCurrentProjects(){
         ArrayList<UUID> currentProjects = new ArrayList<UUID>();
         for(UUID i: this.currentProjects.keySet()) currentProjects.add(i);
@@ -170,10 +177,6 @@ public class User{
         if (invitedProjects.contains(newUUID)) return false;
         invitedProjects.add(newUUID);
         return true;
-    }
-
-    public boolean isAdmin(){
-        return adminPerms;
     }
 
 }

@@ -115,12 +115,17 @@ public class Task {
         }
     }
 
+<<<<<<< HEAD
     public void setCompletionTime(double completionTime){
         if(completionTime < 0){
             this.completionTime = 0;
         }else{
             this.completionTime = completionTime;
         }
+=======
+    public void setStatus(boolean status) {
+        this.status = status;
+>>>>>>> 448dd623da3b543b8506c6917837f36b8e84820e
     }
 
     /**

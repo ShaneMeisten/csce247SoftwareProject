@@ -16,15 +16,22 @@ public class ProjectCatalog {
         return projectCatalog;
     }
 
-    public static  addProject(String ProjectName, String ProjectType){
-         projects.add(new Project(ProjectName, ProjectType));
-        
+    public static boolean addProject(String ProjectName, String ProjectType){
+        UUID id = UUID.randomUUID();
+        Layout layout = null; 
+        ArrayList<Task> completedTasks = new ArrayList<>();
+        ArrayList<Task> ongoingTasks = new ArrayList<>();
+        ArrayList<Column> columnList = new ArrayList<>();
+        History history = new History(); 
+    
+        projects.add(new Project(id, ProjectName, ProjectType, layout, completedTasks, ongoingTasks, columnList, history));
+        return true;
     }
 
-    public static removeProject(UUID ProjectUUID){
-        projects.remove(ProjectUUID);
-        
-
+    public static Project removeProject(UUID ProjectUUID){
+        Project remove = projectCatalog.getProject(ProjectUUID);
+        projects.remove(remove);
+        return remove;
     }
 
     public ArrayList<Project> getProjects() {
