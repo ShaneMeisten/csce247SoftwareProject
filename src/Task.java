@@ -19,7 +19,7 @@ public class Task {
     private ArrayList<Comment> commentThread;
     private ArrayList<ToDo> toDoList;
     private boolean status;
-    private Date completionTime;
+    private double completionTime;
     private User assignedUser;
     private User author;
 
@@ -41,17 +41,17 @@ public class Task {
      */
     public Task(UUID id, String title, String description, Date dueDate, 
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
-    ArrayList<ToDo> toDoList, boolean status, Date completionTime, User assignedUser, User author){
+    ArrayList<ToDo> toDoList, boolean status, double completionTime, User assignedUser, User author){
 
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.weight = weight;
+        this.setWeight(weight);
         this.categories = categories;
         this.commentThread = commentThread;
         this.toDoList = toDoList;
         this.status = status;
-        this.completionTime = completionTime;
+        this.setCompletionTime(completionTime);
         this.assignedUser = assignedUser;
         this.author = author;
         }
@@ -95,7 +95,7 @@ public class Task {
         return this.status;
     }
 
-     public Date getCompletionTime(){
+     public double getCompletionTime(){
         return this.completionTime;
     }
 
@@ -112,6 +112,14 @@ public class Task {
             this.weight = 0;
         }else{
             this.weight = weight;
+        }
+    }
+
+    public void setCompletionTime(double completionTime){
+        if(completionTime < 0){
+            this.completionTime = 0;
+        }else{
+            this.completionTime = completionTime;
         }
     }
 
@@ -152,5 +160,5 @@ public class Task {
                 }
         }
         return null;
-    } 
+    }
 }
