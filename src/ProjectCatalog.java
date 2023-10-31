@@ -38,7 +38,7 @@ public class ProjectCatalog {
         return projects;
     }
 
-    public static Project getProject(UUID ProjectUUID){
+    public Project getProject(UUID ProjectUUID){
         for (Project project : projects) {
             if (project.getUUID().equals(ProjectUUID)) {
                 return project;
