@@ -138,6 +138,7 @@ public class DataLoader extends DataConstants{
 
       UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
       User author = userCatalog.getUser(authorId);
+      
       // Column Tasks
       ArrayList<Task> columnTasks = new ArrayList<Task>();
       JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);

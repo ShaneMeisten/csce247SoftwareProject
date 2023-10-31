@@ -144,14 +144,14 @@ public class Project {
     return matchingColumns;
     }
 
-    public ArrayList<Task> viewColumnTask(String column , String task){
+    public ArrayList<Task> viewColumnTask(Column column, String taskName){
         ArrayList<Task> matchedTasks = new ArrayList<>();
 
-        for (Column columns : columnList) {
-            if (columns.equals(column)) { 
-                for (Task tasks : column.getTasks()) { 
-                    if (task.equals(task)) { 
-                        matchedTasks.add(task);
+        for (Column tempColumn : columnList) {
+            if (tempColumn.equals(column)) { 
+                for (Task task2 : column.getTasks()) { 
+                    if (task2.getTitle().equals(taskName)) { 
+                        matchedTasks.add(task2);
                     }
                 }
                 break; 
@@ -161,10 +161,10 @@ public class Project {
         return matchedTasks;
     }
 
-    public Task viewUnassignedTask(String task){
+    public Task viewUnassignedTask(String taskName){
 
         for (Task tasks : ongoingTasks) {
-            if (tasks.getTitle().equals(task)) { 
+            if (tasks.getTitle().equals(taskName)) { 
                 return tasks;
             }
         }
