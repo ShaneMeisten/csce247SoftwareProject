@@ -13,7 +13,7 @@ public class Column {
     private String title;
     private double weight;
     private boolean status;
-    private Date completionTime;
+    private double completionTime;
     private Date createdTime;
     private User author;
     private ArrayList<Task> TaskList= new ArrayList<>();
@@ -29,13 +29,13 @@ public class Column {
      * @param author
      * @param TaskList
      */
-    public Column(UUID id, String title, double weight, boolean status, Date completionTime,
+    public Column(UUID id, String title, double weight, boolean status, double completionTime,
                   Date createdTime, User author, ArrayList<Task> TaskList){
         this.title = title;
         this.id = id;
         this.setWeight(weight);
         this.setStatus(status);
-        this.completionTime = completionTime;
+        this.setCompletionTime(completionTime);
         this.createdTime = createdTime;
         this.author = author;
         this.TaskList = TaskList;
@@ -100,7 +100,7 @@ public class Column {
         return this.status;
     }
 
-    public Date getCompletionTime(){
+    public double getCompletionTime(){
         return this.completionTime;
     }
 
@@ -111,26 +111,20 @@ public class Column {
     public User getAuthor(){
         return this.author;
     }
-<<<<<<< HEAD
 
     /**
      * This sets the status of a specific task in a column
      * @param status
      */
-=======
     
->>>>>>> 448dd623da3b543b8506c6917837f36b8e84820e
     public ArrayList<Task> getTasks() {
         return this.TaskList;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * This sets the status of a specific task in a column
      * @param status
      */
->>>>>>> 448dd623da3b543b8506c6917837f36b8e84820e
     public void setStatus(boolean status){
         if(status !=true && status !=false){
             this.status = false;
@@ -147,6 +141,14 @@ public class Column {
             this.weight = weight;
         }else{
             this.weight = 0;
+        }
+    }
+
+    public void setCompletionTime(double completionTime){
+        if(completionTime < 0 ){
+            this.completionTime = 0;
+        }else{
+            this.completionTime = completionTime;
         }
     }
 }
