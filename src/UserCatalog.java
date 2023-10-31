@@ -38,12 +38,12 @@ public class UserCatalog {
 
     public static boolean addUserToProject(UUID userID, UUID projectID){
         if (!getUserBool(userID)) return false;
-        getUser(userID).addInvite(projectID); return true;
+        userCatalog.getUser(userID).addInvite(projectID); return true;
     }
 
     public static boolean removeUser(User mainUser, UUID toRemoveUser){
         if (!mainUser.isAdmin()  || !getUserBool(toRemoveUser)) return false;
-        userList.remove(getUser(toRemoveUser));
+        userList.remove(userCatalog.getUser(toRemoveUser));
         return true;
     }
 
