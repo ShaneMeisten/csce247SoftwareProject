@@ -132,9 +132,8 @@ public class DataLoader extends DataConstants{
       boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
       
       // Date implementation
-      String columnCompletionTimeString = (String)columnJSON.get(COLUMN_COMPLETION_TIME);
+      double columnCompletionTime = Double.parseDouble((String)columnJSON.get(COLUMN_COMPLETION_TIME));
       String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
-      Date columnCompletionTime = new Date(columnCompletionTimeString);
       Date columnCreatedTime = new Date(columnCreatedTimeString);
 
       UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
