@@ -36,7 +36,7 @@ public class UserCatalog {
         return true;
     }
 
-    public static boolean addUserToProject(UUID userID, UUID projectID){
+    public static boolean inviteUserToProject(UUID userID, UUID projectID){
         if (!getUserBool(userID)) return false;
         getUser(userID).addInvite(projectID); return true;
     }
