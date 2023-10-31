@@ -12,6 +12,11 @@ public class DatabaseTester {
 
 
   public static void main(String[] args) {
+    DataLoader loader = new DataLoader();
+    DataWriter writer = new DataWriter();
+    UserCatalog users = UserCatalog.getInstance();
+    ProjectCatalog projects = ProjectCatalog.getInstance();
+
     UUID id1 = user1;
     String name1 = "John Johnson";
     String role1 = "Janitor";
@@ -38,12 +43,49 @@ public class DatabaseTester {
     String password2 = "b@ker$dozen";
     String phone2 = "444-555-6666";
     String email2 = "BBBaker@gmail.com";
-    boolean adminPerms2 = true;
+    boolean adminPerms2 = false;
     HashMap<UUID, Double> currentProjects2 = new HashMap<UUID, Double>();
     ArrayList<UUID> invitedProjects2 = new ArrayList<UUID>();
     currentProjects2.put(project4, 95.0);
     currentProjects2.put(project3, 4.3);
     invitedProjects2.add(project2);
     invitedProjects2.add(project1);
+
+    User user2 = new User(id2, name2, role2, adminPerms2, team2, username2, password2, phone2, email2, currentProjects2, invitedProjects2);
+
+    // TODO create and add projects 
+
+    // Add all and Write
+    users.addUser(user1);
+    users.addUser(user2);
+    writer.saveUsers();
+
+    // Print
+    System.out.println("All Users:");
+    ArrayList<User> printable = users.getUsers();
+    for (User u : printable)
+      System.out.println(u.getName());
+
+    // Remove all
+    users.removeUser(user1, user2.getUUID());
+    users.removeUser(user1, user1.getUUID());
+
+    // Print
+    System.out.println("All Users:");
+    printable = users.getUsers();
+    for (User u : printable)
+      System.out.println(u.getName());
+
+
+    // Load
+    ArrayList<User> loadedUsers = loader.getUsers();
+    for (User u : loadedUsers)
+      users.addUser(u);
+
+    // Print
+    System.out.println("All Users:");
+    printable = users.getUsers();
+    for (User u : printable)
+      System.out.println(u.getName());
   }
 }
