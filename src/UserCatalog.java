@@ -84,7 +84,7 @@ public class UserCatalog {
         return null;
     }
 
-    public static User getUser(UUID userUUID){
+    public User getUser(UUID userUUID){
         try{
             for (int i = 0; i < userList.size(); i++){
                 if(userList.get(i).getUUID().equals(userUUID))
@@ -95,7 +95,6 @@ public class UserCatalog {
         catch(Exception e){
             return null;
         }
-
     }
 
     private static ArrayList<User> sortArray(ArrayList<User> users, UUID projectUUID){

@@ -13,6 +13,8 @@ import org.json.simple.parser.JSONParser;
  * @author Aidan Godwin
  */
 public class DataLoader extends DataConstants{
+  public static UserCatalog userCatalog = UserCatalog.getInstance();
+
   public static ArrayList<User> getUsers() {
     ArrayList<User> userCatalog = new ArrayList<User>();
 
@@ -129,14 +131,14 @@ public class DataLoader extends DataConstants{
       double columnWeight = Double.parseDouble((String)columnJSON.get(COLUMN_WEIGHT));
       boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
       
-      // Date implementation ? 
+      // Date implementation
       String columnCompletionTimeString = (String)columnJSON.get(COLUMN_COMPLETION_TIME);
       String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
       Date columnCompletionTime = new Date(columnCompletionTimeString);
       Date columnCreatedTime = new Date(columnCreatedTimeString);
 
       UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
-      User author = UserCatalog.getInstance().getUser(authorId);
+      User author = userCatalog.getUser(authorId);
       // Column Tasks
       ArrayList<Task> columnTasks = new ArrayList<Task>();
       JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
@@ -185,12 +187,11 @@ public class DataLoader extends DataConstants{
     String taskDueDateString = (String)taskJSON.get(TASK_DUE_DATE);
     Date taskDueDate = new Date(taskDueDateString);
     boolean taskStatus = (boolean)taskJSON.get(TASK_STATUS);
-    String completionTimeString = (String)taskJSON.get(TASK_COMPLETION_TIME);
     double completionTime = Double.parseDouble((String)taskJSON.get(TASK_COMPLETION_TIME));
     UUID authorId = UUID.fromString((String)taskJSON.get(TASK_AUTHOR));
-    User author = UserCatalog.getInstance().getUser(authorId);
+    User author = userCatalog.getUser(authorId);
     UUID assignedUserId = UUID.fromString((String)taskJSON.get(TASK_ASSIGNED_USER));
-    User assignedUser = UserCatalog.getInstance().getUser(assignedUserId);
+    User assignedUser = userCatalog.getUser(assignedUserId);
 
     // Categories
     ArrayList<String> categories = new ArrayList<String>();
