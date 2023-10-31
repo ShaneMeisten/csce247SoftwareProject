@@ -186,7 +186,7 @@ public class DataLoader extends DataConstants{
     Date taskDueDate = new Date(taskDueDateString);
     boolean taskStatus = (boolean)taskJSON.get(TASK_STATUS);
     String completionTimeString = (String)taskJSON.get(TASK_COMPLETION_TIME);
-    Date completionTime = new Date(completionTimeString);
+    double completionTime = Double.parseDouble((String)taskJSON.get(TASK_COMPLETION_TIME));
     UUID authorId = UUID.fromString((String)taskJSON.get(TASK_AUTHOR));
     User author = UserCatalog.getInstance().getUser(authorId);
     UUID assignedUserId = UUID.fromString((String)taskJSON.get(TASK_ASSIGNED_USER));
