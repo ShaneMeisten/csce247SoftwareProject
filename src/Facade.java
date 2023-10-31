@@ -49,6 +49,14 @@ public class Facade {
         return false;
     }
 
+    public void logout() {
+        currentUser = null;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
@@ -123,10 +131,14 @@ public class Facade {
     }
 
     //Either user has pending invite or not invited
-    public boolean addUserToCurrentProject(int user) {
+    public boolean inviteUserToCurrentProject(int user) {
         if(currentProject == null || currentUser == null) return false;
         if(user < 0 || user >= userCatalog.getUsers().size()) return false;
-        return userCatalog.addUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+        return userCatalog.inviteUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+    }
+
+    public boolean InviteUserToProject(UUID user, UUID project) {
+        return userCatalog.inviteUserToProject(user, project);
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {

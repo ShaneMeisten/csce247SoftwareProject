@@ -31,12 +31,6 @@ public class Project {
         this.history = history;
     }
 
-
-    //@author Cameron Reyes, please add generic Project method then get rid of this. 
-    public Project(String projectName) {
-        this.id = UUID.randomUUID();
-    }
-
     public void addHistory(UUID userUUID, UUID changedID, String changeLog){
         Update newUpdate = new Update(userUUID,changedID, changeLog);
         history.add(newUpdate);
