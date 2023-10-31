@@ -16,7 +16,7 @@ public class ProjectCatalog {
         return projectCatalog;
     }
 
-    public static boolean addProject(String ProjectName, String ProjectType){
+    public boolean addProject(String ProjectName, String ProjectType){
         UUID id = UUID.randomUUID();
         Layout layout = null; 
         ArrayList<Task> completedTasks = new ArrayList<>();

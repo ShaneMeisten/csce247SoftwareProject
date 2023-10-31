@@ -22,15 +22,15 @@ public class Facade {
      * getLeaderBoard
      * addUserToCurrentProject
      * RemovePointsFromUserInCurrentProject
+     * CreateProject
+     * viewColumn
      * 
      * Methods not implemented:
-     * viewColumn
      * viewColumns
      * viewUnassingedTask
      * 
      * Methods to Add:
      * Create User
-     * Create Project
      * Comment on task
      * view task
      * 
@@ -63,6 +63,16 @@ public class Facade {
         if (currentUser == null) return false;
         currentUser.AcceptInvite(invite);
         return true;
+    }
+
+    public boolean createProject(UUID id, String name, String type, Layout layout,
+    ArrayList<Task> completedTasks, ArrayList<Task> ongoingTasks, 
+    ArrayList<Column> columnList, History history){
+        Project project = new Project(id, name, type, layout, completedTasks, ongoingTasks, columnList, history);
+        if(projectCatalog.addProject(name, type)){
+            return true;
+        }
+        return false;
     }
 
     public boolean RemoveProject(int invite) {
@@ -133,6 +143,11 @@ public class Facade {
 
     public boolean createUser(User user) {
         return userCatalog.addUser(user);
+    }
+
+      public Column viewColumn(String title) {
+        if(currentProject == null) return null;
+        return currentProject.viewColumn(title);
     }
 
     /*
