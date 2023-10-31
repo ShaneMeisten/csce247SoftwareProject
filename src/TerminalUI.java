@@ -1,7 +1,12 @@
+import java.util.Scanner;
+
 public class TerminalUI {
     Facade facade = new Facade();
+    Scanner scanner = new Scanner(System.in);
     public TerminalUI() {
         loadData();
+        if(!login()) return;
+
     }
 
     /*
@@ -43,6 +48,48 @@ public class TerminalUI {
         facade.login("Atticus Finch", "Finch123");
         facade.AcceptInvite(0);
 
+    }
 
+    /*
+     * Allows the user to login, create account, or exit the program
+     * 
+     * @return boolean      Returns if the user has created an account(true) or wants to quit(false)
+     */
+
+    public boolean login() {
+        while(true) {
+            System.out.println("Welcome\n(1)Login\n(2)Create Account\n(3)Quit");
+            String userKB = scanner.nextLine();
+            if (userKB.equals("1")) {
+                System.out.println("Enter Username:");
+                String username = scanner.nextLine();
+                System.out.println("Enter Passowrd:");
+                String password = scanner.nextLine();
+                if(facade.login(username, password)) {
+                    return true;
+                }
+                continue;
+                
+            }
+            else if (userKB.equals("2")) {
+                System.out.println("Enter Name:");
+                String name = scanner.nextLine();
+                System.out.println("Enter Username:");
+                String username = scanner.nextLine();
+                System.out.println("Enter Passowrd:");
+                String password = scanner.nextLine();
+                System.out.println("Enter Phone Number:");
+                String phone = scanner.nextLine();
+                System.out.println("Enter Email:");
+                String email = scanner.nextLine();
+                User newUser = new User(name, username, password, phone, email);
+                if(facade.createUser(newUser)) return true;
+                System.out.println("Issue Creating User");
+                continue;
+            }
+            else if (userKB.equals("3")) {
+                return false;
+            }
+        }
     }
 }
