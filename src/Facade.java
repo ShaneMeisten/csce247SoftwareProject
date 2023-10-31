@@ -39,8 +39,8 @@ public class Facade {
      */
 
     public Facade() {
-        projectCatalog.getInstance();
-        userCatalog.getInstance();
+        projectCatalog = ProjectCatalog.getInstance();
+        userCatalog = UserCatalog.getInstance();
     }
 
     public boolean login(String username, String password) {
@@ -131,6 +131,12 @@ public class Facade {
         return seeUsersInCurrentProject().get(user).addPoints(currentProject.getUUID(), points);
     }
 
+    public boolean createUser(User user) {
+        return userCatalog.addUser(user);
+    }
+
+    /*
+
     public ArrayList<Column> viewColumns() {
         if(currentProject == null) return null;
         return currentProject.viewColumns();
@@ -145,5 +151,6 @@ public class Facade {
         if(currentProject == null) return null;
         return currentProject.viewUnassignedTask();
     }
+     */
 
 }

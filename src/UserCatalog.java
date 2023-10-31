@@ -38,12 +38,12 @@ public class UserCatalog {
 
     public static boolean addUserToProject(UUID userID, UUID projectID){
         if (!getUserBool(userID)) return false;
-        getUser(userID).addInvite(projectID); return true;
+        userCatalog.getUser(userID).addInvite(projectID); return true;
     }
 
     public static boolean removeUser(User mainUser, UUID toRemoveUser){
         if (!mainUser.isAdmin()  || !getUserBool(toRemoveUser)) return false;
-        userList.remove(getUser(toRemoveUser));
+        userList.remove(userCatalog.getUser(toRemoveUser));
         return true;
     }
 
@@ -84,7 +84,7 @@ public class UserCatalog {
         return null;
     }
 
-    public static User getUser(UUID userUUID){
+    public User getUser(UUID userUUID){
         try{
             for (int i = 0; i < userList.size(); i++){
                 if(userList.get(i).getUUID().equals(userUUID))
@@ -95,7 +95,6 @@ public class UserCatalog {
         catch(Exception e){
             return null;
         }
-
     }
 
     private static ArrayList<User> sortArray(ArrayList<User> users, UUID projectUUID){

@@ -111,11 +111,14 @@ public class Column {
     public User getAuthor(){
         return this.author;
     }
+<<<<<<< HEAD
 
     /**
      * This sets the status of a specific task in a column
      * @param status
      */
+=======
+>>>>>>> 9be4f93ea43503b09694f59e3eef2c1d54380b7d
     
     public ArrayList<Task> getTasks() {
         return this.TaskList;

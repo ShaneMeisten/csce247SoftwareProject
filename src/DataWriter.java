@@ -135,7 +135,7 @@ public class DataWriter extends DataConstants{
     taskDetails.put(TASK_WEIGHT, task.getWeight());
     taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
     taskDetails.put(TASK_STATUS, task.getStatus());
-    taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime().toString());
+    taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime());
     taskDetails.put(TASK_AUTHOR, task.getAuthor().getUUID().toString());
     taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getUUID().toString());
 
