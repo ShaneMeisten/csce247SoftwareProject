@@ -44,10 +44,15 @@ public class Facade {
         userCatalog = UserCatalog.getInstance();
     }
 
+    
     public boolean login(String username, String password) {
         currentUser = userCatalog.retrieveUser(username, password);
         if(currentUser != null) return true;
         return false;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 
     public ArrayList<Project> getUserCurrentProjects() {
@@ -124,7 +129,7 @@ public class Facade {
     public boolean addUserToCurrentProject(int user) {
         if(currentProject == null || currentUser == null) return false;
         if(user < 0 || user >= userCatalog.getUsers().size()) return false;
-        return userCatalog.addUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+        return userCatalog.inviteUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
