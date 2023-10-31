@@ -53,6 +53,10 @@ public class Facade {
         currentUser = null;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());

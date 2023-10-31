@@ -47,7 +47,6 @@ public class TerminalUI {
         facade.AcceptInvite(0);
         facade.login("Atticus Finch", "Finch123");
         facade.AcceptInvite(0);
-
     }
 
     /*
@@ -90,6 +89,34 @@ public class TerminalUI {
             else if (userKB.equals("3")) {
                 return false;
             }
+        }
+    }
+
+    
+    public boolean UserHomePage() {
+        User currentUser = facade.getCurrentUser();
+        System.out.println("Welcome " + currentUser.getName());
+        while(true) {
+            System.out.println("(1)See Current Projects\n(2)See Invited Projects\n(3)quit");
+            String command = scanner.nextLine();
+            if (command.equals("1")) {
+                int counter = 0;
+                for(Project project : facade.getUserCurrentProjects()) {
+                    System.out.println(counter + ":\t" + project.getName());
+                    counter++;
+                }
+            }
+            else if (command.equals("2")) {
+                int counter = 0;
+                for(Project project : facade.getUserInvitedProjects()) {
+                    System.out.println(counter + ":\t" + project.getName());
+                    counter++;
+                }
+            }
+            else if (command.equals("3")) {
+                return false;
+            }
+
         }
     }
 }
