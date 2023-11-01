@@ -167,7 +167,7 @@ public class TerminalUI {
                 System.out.println("(" + counter + ") " + column.getTitle());
             }
             }
-            System.out.println("(A)\nAdd Column(U) unassigned Task\n(C) completed Task\n(P) print Project\n(Q) Exit Project");
+            System.out.println("(A) Add Column\n(T) Add task(U) unassigned Task\n(C) completed Task\n(P) print Project\n(Q) Exit Project");
             String command = scanner.nextLine();
             if(command.toLowerCase().equals("q")) {
                 return;
@@ -177,6 +177,16 @@ public class TerminalUI {
                 String name = scanner.nextLine();
                 facade.addColumnToCurrentProject(name);
                 continue;
+            }
+            else if(command.toLowerCase().equals("t")){
+                String asignee = "Jeff Goldblum";
+                System.out.println("Enter Task name:");
+                String taskName = scanner.nextLine();
+                System.out.println("Enter the Task description:");
+                String taskDes = scanner.nextLine();
+
+                Task task = new Task(taskName, taskDes, asignee);
+                facade.addTaskToTaskList(task);
             }
             else if (command.toLowerCase().equals("p")) {
                 System.out.println("Enter File Name to Save Project: ");
