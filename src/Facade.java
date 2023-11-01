@@ -44,6 +44,10 @@ public class Facade {
         userCatalog = UserCatalog.getInstance();
     }
 
+    public void createProject(String name) {
+        projectCatalog.addProject(name);
+    }
+
     
     public boolean login(String username, String password) {
         currentUser = userCatalog.retrieveUser(username, password);
@@ -57,11 +61,13 @@ public class Facade {
 
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
+        if (currentUser.getCurrentProjects().size() == 0) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
     }
 
     public ArrayList<Project> getUserInvitedProjects() {
         if (currentUser == null) return null;
+        if (currentUser.getInvitedProjects().size() == 0) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
     }
 
@@ -132,6 +138,10 @@ public class Facade {
         return userCatalog.inviteUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
     }
 
+    public void InviteUserToProject(UUID user, UUID project) {
+        userCatalog.inviteUserToProject(user, project);
+    }
+
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
         if(currentUser.isAdmin() == false || currentProject == null) return false;
         if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
@@ -146,6 +156,14 @@ public class Facade {
 
     public boolean createUser(User user) {
         return userCatalog.addUser(user);
+    }
+
+    public Project getCurrentProject() {
+        return currentProject;
+    }
+
+    public Project getProject(int project) {
+        return projectCatalog.getProjects().get(project);
     }
 
       public Column viewColumn(String title) {

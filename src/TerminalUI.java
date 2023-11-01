@@ -10,9 +10,8 @@ public class TerminalUI {
     Facade facade = new Facade();
     Scanner scanner = new Scanner(System.in);
     public TerminalUI() {
-        loadData();
-        if(!login()) return;
-        if(!UserHomePage()) login();
+        //loadData();
+        login();
         
 
     }
@@ -38,13 +37,13 @@ public class TerminalUI {
         facade.createUser(Jeff);
         facade.createUser(AtticusF);
 
-        facade.createProject("Electric Missiles", "SCRUM");
+        facade.createProject("Electric Missiles");
         //In Electric Missles
         //Create Doing Column
         //Create task "Curve the metal to make a cylindrical shape" to the 'Doing' column.
         //Create task "Make impossible burger possible"
-        facade.createProject("Soap Free Washers", "SCRUM");
-        facade.createProject("Air Computers", "SCRUM");
+        facade.createProject("Soap Free Washers");
+        facade.createProject("Air Computers");
 
         facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(0).getUUID());
         facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(1).getUUID());
@@ -66,10 +65,9 @@ public class TerminalUI {
     /*
      * Allows the user to login, create account, or exit the program
      * 
-     * @return boolean      Returns if the user has created an account(true) or wants to quit(false)
      */
 
-    public boolean login() {
+    public void login() {
         while(true) {
             System.out.println("Welcome\n(1)Login\n(2)Create Account\n(3)Quit");
             String userKB = scanner.nextLine();
@@ -79,7 +77,7 @@ public class TerminalUI {
                 System.out.println("Enter Passowrd:");
                 String password = scanner.nextLine();
                 if(facade.login(username, password)) {
-                    return true;
+                    UserHomePage();
                 }
                 continue;
                 
@@ -96,18 +94,21 @@ public class TerminalUI {
                 System.out.println("Enter Email:");
                 String email = scanner.nextLine();
                 User newUser = new User(name, username, password, phone, email);
-                if(facade.createUser(newUser)) return true;
+                if(facade.createUser(newUser)) continue;
                 System.out.println("Issue Creating User");
                 continue;
             }
             else if (userKB.equals("3")) {
-                return false;
+                return;
             }
         }
     }
 
-    
-    public boolean UserHomePage() {
+    /*
+     * Home page for the user to see and access current/invited projects
+     */
+
+    public void UserHomePage() {
         User currentUser = facade.getCurrentUser();
         System.out.println("Welcome " + currentUser.getName());
         while(true) {
@@ -116,31 +117,132 @@ public class TerminalUI {
             if (command.equals("1")) {
                 int counter = 0;
                 System.out.println("Printing Current Projects:\n\tEnter the number to open project\n\tPress Q to exit");
-                for(Project project : facade.getUserCurrentProjects()) {
-                    System.out.println(counter + ":\t" + project.getName());
-                    counter++;
-                }
-                String invite = scanner.nextLine();
-                if(invite.toLowerCase().equals("q")) continue;
-                if(facade.setCurrentProject(Integer.valueOf(invite))) return true;
-                else System.out.println("Incorrect Value");
+                if (facade.getUserCurrentProjects() != null) {
+                        for(Project project : facade.getUserCurrentProjects()) {
+                        System.out.println(counter + ":\t" + project.getName());
+                        counter++;
+                    }
+                    String invite = scanner.nextLine();
+                    if(invite.toLowerCase().equals("q")) continue;
+                    if(facade.setCurrentProject(Integer.valueOf(invite))) UserProjectPage();
+                    else System.out.println("Incorrect Value");
+                }   
+                else System.out.println("No Current Projects");
             }
             else if (command.equals("2")) {
                 int counter = 0;
                 System.out.println("Printing Current Projects:\n\tEnter the number to open project\n\tPress Q to exit");
-                for(Project project : facade.getUserInvitedProjects()) {
-                    System.out.println(counter + ":\t" + project.getName());
-                    counter++;
+                if(facade.getUserInvitedProjects() != null) {
+                        for(Project project : facade.getUserInvitedProjects()) {
+                        System.out.println(counter + ":\t" + project.getName());
+                        counter++;
+                    }
+                    String invite = scanner.nextLine();
+                    if(invite.toLowerCase().equals("q")) continue;
+                    if(facade.AcceptInvite(Integer.valueOf(invite))) continue;
+                    else System.out.println("Incorrect Value");
                 }
-                String invite = scanner.nextLine();
-                if(invite.toLowerCase().equals("q")) continue;
-                if(facade.AcceptInvite(Integer.valueOf(invite))) return true;
-                else System.out.println("Incorrect Value");
+                else System.out.println("No Invited Projects");
+                
             }
             else if (command.equals("3")) {
-                return false;
+                return;
             }
 
         }
     }
+    //Has bug currently due to else statement, just make an else if for size of command
+
+    /*
+     * Allows the ability to see the Project and it's columns and task
+     */
+
+    public void UserProjectPage() {
+        Project currProject = facade.getCurrentProject();
+        while (true) {
+            System.out.println(currProject.getName());
+            int counter = 0;
+            if(currProject.getColumnList().size() > 0) {
+                for (Column column: currProject.getColumnList()) {
+                System.out.println("(" + counter + ") " + column.getTitle());
+            }
+            }
+            System.out.println("(A)\nAdd Column(U) unassigned Task\n(C) completed Task\n(P) print Project\n(Q) Exit Project");
+            String command = scanner.nextLine();
+            if(command.toLowerCase().equals("q")) {
+                return;
+            }
+             else if (command.toLowerCase().equals("a")) {
+                System.out.println("Enter Column name:");
+                String name = scanner.nextLine();
+                facade.addColumnToCurrentProject(name);
+                continue;
+            }
+            else if (command.toLowerCase().equals("p")) {
+                System.out.println("Enter File Name to Save Project: ");
+                String filename = scanner.nextLine();
+                /*
+                 * 
+                 * Implement Method to save to file
+                 * 
+                 */
+            }
+            else if (command.toLowerCase().equals("c")) {
+                counter = 0;
+                System.out.println("Viewing unassigned Task:\n\tEnter the number to open project\n\tPress Q to exit");
+                for(Task task: currProject.getCompletedTasks()) {
+                    System.out.println("(" + counter + ") " + task.getTitle());
+                }
+                String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("q")) continue;
+                if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getCompletedTasks().size())
+                    taskPage(currProject.getCompletedTasks().get(Integer.valueOf(invite)));
+                else System.out.println("Wrong input");
+            }
+
+            else if (command.toLowerCase().equals("u")) {
+                counter = 0;
+                System.out.println("Viewing unassigned Task:\n\tEnter the number to open project\n\tPress Q to exit");
+                for(Task task: currProject.getOngoingTasks()) {
+                    System.out.println("(" + counter + ") " + task.getTitle());
+                }
+                String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("q")) continue;
+                if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
+                    taskPage(currProject.getOngoingTasks().get(Integer.valueOf(invite)));
+                else System.out.println("Wrong input");
+            }
+            else {
+                //For columns
+                counter = 0;
+                Column currentColumn = currProject.getColumnList().get(Integer.valueOf(command));
+                System.out.println("Viewing Column Task for " + currentColumn.getTitle() + ":\n\tEnter the number to open project\n\tPress Q to exit");
+                for(Task task: currentColumn.getTasks()) {
+                    System.out.println("(" + counter + ") " + task.getTitle());
+                }
+                String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("q")) continue;
+                if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
+                    taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)));
+                else System.out.println("Wrong input");
+            }
+        }
+        
+    }
+
+    public void taskPage(Task task) {
+        /*
+         * Add ability to locate a task in project based on UUID
+         * 
+         */
+        //List task info
+        //if user inputs "Q" return
+        //Make Comment Ability
+    }
+
+    public static void main (String[] args) {
+    TerminalUI ui = new TerminalUI();
+    }
 }
+
+

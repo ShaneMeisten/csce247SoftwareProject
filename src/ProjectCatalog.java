@@ -16,16 +16,15 @@ public class ProjectCatalog {
         return projectCatalog;
     }
 
-    public boolean addProject(String ProjectName, String ProjectType){
+    public void addProject(String ProjectName){
         UUID id = UUID.randomUUID();
-        Layout layout = null; 
+        Layout layout = Layout.SCRUM; 
         ArrayList<Task> completedTasks = new ArrayList<>();
         ArrayList<Task> ongoingTasks = new ArrayList<>();
         ArrayList<Column> columnList = new ArrayList<>();
         History history = new History(); 
-    
+        String ProjectType = "";
         projects.add(new Project(id, ProjectName, ProjectType, layout, completedTasks, ongoingTasks, columnList, history));
-        return true;
     }
 
     public static Project removeProject(UUID ProjectUUID){
