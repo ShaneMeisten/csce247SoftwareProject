@@ -22,6 +22,7 @@ public class Task {
     private double completionTime;
     private User assignedUser;
     private User author;
+    private String asignee;
 
     /**
      * 
@@ -55,6 +56,11 @@ public class Task {
         this.assignedUser = assignedUser;
         this.author = author;
         }
+    public Task(String title, String description, String asignee){
+        this.title = title;
+        this.description = description;
+        this.asignee = asignee;
+    }
 
     /*
      * All accessors for the class
@@ -105,6 +111,10 @@ public class Task {
 
      public User getAuthor(){
         return this.author;
+    }
+    
+    public String getAsignee(){
+        return this.asignee;
     }
 
     public void setWeight(double weight){

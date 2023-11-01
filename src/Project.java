@@ -16,6 +16,7 @@ public class Project {
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> ongoingTasks;
     private ArrayList<Column> columnList;
+    private ArrayList<String> columnListTitle = new ArrayList<>();
     private History history;
 
     public Project(UUID id, String name, String type, Layout layout,
@@ -94,6 +95,14 @@ public class Project {
         } else {
             return false; 
         }
+    }
+
+    public boolean addColumn(String title){
+        if(columnListTitle.contains(title)){
+            return false;
+        }
+        columnListTitle.add(title);
+        return true;
     }
 
     public boolean addColumn(Column Column){

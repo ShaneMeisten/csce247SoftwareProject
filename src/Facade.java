@@ -7,6 +7,7 @@ public class Facade {
     private UserCatalog userCatalog;
     private Project currentProject;
     private User currentUser;
+    private Column column;
 
     /*
      * Current Methods:
@@ -177,5 +178,19 @@ public class Facade {
     public Task viewUnassingedTask(String title) {
         if(currentProject == null) return null;
         return currentProject.viewUnassignedTask(title);
+    }
+
+    public boolean addColumnToCurrentProject(String columnTitle){
+        if(currentProject.addColumn(columnTitle)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addTaskToTaskList(Task task){
+        if(column.addTask(task)){
+            return true;
+        }
+        return false;
     }
 }
