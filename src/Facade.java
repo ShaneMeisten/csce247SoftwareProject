@@ -31,7 +31,6 @@ public class Facade {
      * Methods not implemented:
      * 
      * Methods to Add:
-     * Create User
      * Comment on task
      * view task
      * 

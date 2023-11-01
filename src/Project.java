@@ -31,6 +31,12 @@ public class Project {
         this.history = history;
     }
 
+
+    //@author Cameron Reyes, please add generic Project method then get rid of this. 
+    public Project(String projectName) {
+        this.id = UUID.randomUUID();
+    }
+
     public void addHistory(UUID userUUID, UUID changedID, String changeLog){
         Update newUpdate = new Update(userUUID,changedID, changeLog);
         history.add(newUpdate);
@@ -126,16 +132,18 @@ public class Project {
     }
 }
 
-    public ArrayList<Column> viewColumn(String name){
-       ArrayList<Column> matchingColumns = new ArrayList<>();
+    public Column viewColumn(String name){
 
     for (Column column : columnList) {
         if (column.getTitle().equals(name)) {
-            matchingColumns.add(column);
+            return column;
         }
     }
-    
-    return matchingColumns;
+    return null;
+    }
+
+     public ArrayList<Column> viewColumns(){
+        return columnList;
     }
 
     public ArrayList<Task> viewColumnTask(Column column, String taskName){
