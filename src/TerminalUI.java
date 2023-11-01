@@ -181,6 +181,7 @@ public class TerminalUI {
             else if (command.toLowerCase().equals("p")) {
                 System.out.println("Enter File Name to Save Project: ");
                 String filename = scanner.nextLine();
+                facade.printCurrentProject(filename);
                 /*
                  * 
                  * Implement Method to save to file
@@ -251,13 +252,20 @@ public class TerminalUI {
     }
 
     public void taskPage(Task task) {
-        /*
-         * Add ability to locate a task in project based on UUID
-         * 
-         */
-        //List task info
-        //if user inputs "Q" return
-        //Make Comment Ability
+        while (true) {
+             System.out.println("Task: " + task.getTitle() + "\nDescription: " + task.getDescription() + "\nAssignee" + task.getAsignee());
+            System.out.println("(0) Change Asignee\n(1) Mark complete\n(Q) Exit");
+            String command = scanner.nextLine();
+            if(command.equals("0")) {
+                System.out.println("Enter Assignee");
+                String assignee = scanner.nextLine();
+                task.setAssignee(assignee);
+            }
+            else if (command.equals("1")) {
+                task.setComplete();
+            }
+            else if (command.toLowerCase().equals("q")) return;
+        }
     }
 
     public static void main (String[] args) {

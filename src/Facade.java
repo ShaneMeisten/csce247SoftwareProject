@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
 
 public class Facade {
@@ -48,6 +47,13 @@ public class Facade {
         projectCatalog.addProject(name);
     }
 
+
+    public void printCurrentProject(String filename) {
+        /*
+         * Implement method to print the current project to the filename.txt
+         */
+    }
+
     
     public boolean login(String username, String password) {
         currentUser = userCatalog.retrieveUser(username, password);
@@ -76,6 +82,8 @@ public class Facade {
         currentUser.AcceptInvite(invite);
         return true;
     }
+
+    //Will implement later
     /* 
     public void createProject(Project project){  
         projectCatalog.addProject(project.getName(), project.getType());
