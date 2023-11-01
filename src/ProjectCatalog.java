@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class ProjectCatalog {
     private static ProjectCatalog projectCatalog;
-    public static ArrayList<Project> projects;
+    public static ArrayList<Project> projects = new ArrayList<Project>();
 
     private ProjectCatalog() {
 

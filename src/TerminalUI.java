@@ -10,7 +10,7 @@ public class TerminalUI {
     Facade facade = new Facade();
     Scanner scanner = new Scanner(System.in);
     public TerminalUI() {
-        //loadData();
+        loadData();
         login();
         
 

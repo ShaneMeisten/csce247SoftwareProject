@@ -76,13 +76,12 @@ public class Facade {
         currentUser.AcceptInvite(invite);
         return true;
     }
-
-    public boolean createProject(Project project){  
-        if(projectCatalog.addProject(project.getName(), project.getType())){
-            return true;
-        }
-        return false;
+    /* 
+    public void createProject(Project project){  
+        projectCatalog.addProject(project.getName(), project.getType());
+      
     }
+    */
 
     public boolean RemoveProject(int invite) {
         if (currentUser == null) return false;
