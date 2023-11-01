@@ -43,19 +43,30 @@ public class Facade {
         userCatalog = UserCatalog.getInstance();
     }
 
+    public void createProject(String name) {
+        projectCatalog.addProject(name);
+    }
+
+    
     public boolean login(String username, String password) {
         currentUser = userCatalog.retrieveUser(username, password);
         if(currentUser != null) return true;
         return false;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
+        if (currentUser.getCurrentProjects().size() == 0) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
     }
 
     public ArrayList<Project> getUserInvitedProjects() {
         if (currentUser == null) return null;
+        if (currentUser.getInvitedProjects().size() == 0) return null;
         return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
     }
 
@@ -64,13 +75,12 @@ public class Facade {
         currentUser.AcceptInvite(invite);
         return true;
     }
-
-    public boolean createProject(Project project){  
-        if(projectCatalog.addProject(project.getName(), project.getType())){
-            return true;
-        }
-        return false;
+    /* 
+    public void createProject(Project project){  
+        projectCatalog.addProject(project.getName(), project.getType());
+      
     }
+    */
 
     public boolean RemoveProject(int invite) {
         if (currentUser == null) return false;
@@ -123,7 +133,11 @@ public class Facade {
     public boolean addUserToCurrentProject(int user) {
         if(currentProject == null || currentUser == null) return false;
         if(user < 0 || user >= userCatalog.getUsers().size()) return false;
-        return userCatalog.addUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+        return userCatalog.inviteUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+    }
+
+    public void InviteUserToProject(UUID user, UUID project) {
+        userCatalog.inviteUserToProject(user, project);
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
@@ -140,6 +154,14 @@ public class Facade {
 
     public boolean createUser(User user) {
         return userCatalog.addUser(user);
+    }
+
+    public Project getCurrentProject() {
+        return currentProject;
+    }
+
+    public Project getProject(int project) {
+        return projectCatalog.getProjects().get(project);
     }
 
       public Column viewColumn(String title) {
