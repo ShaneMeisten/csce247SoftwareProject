@@ -142,13 +142,13 @@ public class Facade {
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
-        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(currentUser.getAdminPerms() == false || currentProject == null) return false;
         if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
         return seeUsersInCurrentProject().get(user).removePoints(currentProject.getUUID(), points);
     }
 
     public boolean AddPointsToUserInCurrentProject(int user, int points) {
-        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(currentUser.getAdminPerms() == false || currentProject == null) return false;
         if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
         return seeUsersInCurrentProject().get(user).addPoints(currentProject.getUUID(), points);
     }

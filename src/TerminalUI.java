@@ -206,7 +206,12 @@ public class TerminalUI {
                 for(Task task: currProject.getOngoingTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
                 }
+                System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("a")) {
+                    Task newTask = createTask();
+                    currProject.getOngoingTasks().add(newTask);
+                }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
                     taskPage(currProject.getOngoingTasks().get(Integer.valueOf(invite)));
@@ -220,7 +225,12 @@ public class TerminalUI {
                 for(Task task: currentColumn.getTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
                 }
+                System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("a")) {
+                    Task newTask = createTask();
+                    currentColumn.addTask(newTask);
+                }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
                     taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)));
@@ -228,6 +238,16 @@ public class TerminalUI {
             }
         }
         
+    }
+
+    public Task createTask() {
+        System.out.println("Enter title");
+        String title = scanner.nextLine();
+        System.out.println("Enter Description");
+        String description = scanner.nextLine();
+        System.out.println("Enter Asignee");
+        String asignee = scanner.nextLine();
+        return new Task(title, description, asignee);
     }
 
     public void taskPage(Task task) {
