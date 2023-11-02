@@ -9,6 +9,14 @@ public class DatabaseTester {
   public static final UUID project2 = UUID.fromString("14f1f749-e6df-42dc-85cc-d986926c6166");
   public static final UUID project3 = UUID.fromString("ff0871e3-5046-4abb-bbe2-06c045d06a78");
   public static final UUID project4 = UUID.fromString("e9f73e53-565f-460d-ac82-961e29d3d922");
+  public static final UUID column1 = UUID.fromString("fc86508e-7741-4bf2-a361-023e722b5bf2");
+  public static final UUID column2 = UUID.fromString("a34b7792-ee27-4898-998f-3a02fabea495");
+  public static final UUID column3 = UUID.fromString("608ecc89-a3c4-493b-9f9c-f4ec2e9225df");
+  public static final UUID column4 = UUID.fromString("0077d443-e2bf-4efa-90f0-ae93ea50864d");
+  public static final UUID column5 = UUID.fromString("44d6021a-a4be-426a-9743-ef8ff5e7b92c");
+  public static final UUID column6 = UUID.fromString("08d6d4b4-8ec3-4295-96a8-bee93cd58ed5");
+  public static final UUID column7 = UUID.fromString("1437e88f-9d80-47f4-8693-47b4a12190e3");
+  public static final UUID column8 = UUID.fromString("f324991b-c874-41a8-9984-9956a0e8363f");
   public static final UUID task1 = UUID.fromString("d25010c8-82cc-446f-abc1-bf7934a06d20");
   public static final UUID task2 = UUID.fromString("a8626395-a0e4-4f7b-9aac-1e006922792e");
   public static final UUID task3 = UUID.fromString("251f6dc2-ece5-4094-af2d-871820c77810");
