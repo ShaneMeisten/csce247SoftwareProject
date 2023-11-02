@@ -195,7 +195,7 @@ public class Facade {
     }
 
     public boolean addColumnToCurrentProject(String columnTitle){
-        Column newColumn = new Column(columnTitle)
+        Column newColumn = new Column(columnTitle);
         if(currentProject.addColumn(newColumn)){
             return true;
         }
