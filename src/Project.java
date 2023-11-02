@@ -15,7 +15,7 @@ public class Project {
     private Layout layout;
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> ongoingTasks;
-    private ArrayList<Column> columnList;
+    private ArrayList<Column> columnList = new ArrayList<Column>();
     private ArrayList<String> columnListTitle = new ArrayList<>();
     private History history;
 

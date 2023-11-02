@@ -51,6 +51,7 @@ public class TerminalUI {
         facade.AcceptInvite(0);
         facade.AcceptInvite(0);
         facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
         facade.login("Jeff", "Goldblum123");
         facade.AcceptInvite(0);
         facade.setCurrentProject(0);
