@@ -79,9 +79,11 @@ public class TerminalUI {
             String userKB = scanner.nextLine();
             if (userKB.equals("1")) {
                 System.out.println("Enter Username:");
-                String username = scanner.nextLine();
+                //String username = scanner.nextLine();
+                String username = "Atticus Madden";
                 System.out.println("Enter Passowrd:");
-                String password = scanner.nextLine();
+                //String password = scanner.nextLine();
+                String password = "Madden123";
                 if(facade.login(username, password)) {
                     UserHomePage();
                 }
@@ -130,8 +132,9 @@ public class TerminalUI {
                     }
                     String invite = scanner.nextLine();
                     if(invite.toLowerCase().equals("q")) continue;
-                    if(facade.setCurrentProject(Integer.valueOf(invite))) UserProjectPage();
-                    else System.out.println("Incorrect Value");
+                    invite = "0";
+                    facade.setCurrentProject(0); UserProjectPage();
+                    //else System.out.println("Incorrect Value");
                 }   
                 else System.out.println("No Current Projects");
             }
@@ -230,6 +233,7 @@ public class TerminalUI {
                 if(invite.toLowerCase().equals("a")) {
                     Task newTask = createTask();
                     currProject.getOngoingTasks().add(newTask);
+                    continue;
                 }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
@@ -250,12 +254,13 @@ public class TerminalUI {
                 if(invite.toLowerCase().equals("a")) {
                     Task newTask = createTask();
                     currentColumn.addTask(newTask);
+                    continue;
                 }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
                     taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)), currentColumn);
                 else System.out.println("Wrong input");
-            }
+            }   
         }
         
     }
