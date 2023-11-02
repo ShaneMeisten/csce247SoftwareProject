@@ -16,7 +16,7 @@ public class Project {
     private ArrayList<Task> completedTasks;
     private ArrayList<Task> ongoingTasks;
     private ArrayList<Column> columnList = new ArrayList<Column>();
-    private ArrayList<String> columnListTitle = new ArrayList<>();
+    private ArrayList<String> columnListTitle = new ArrayList<>();          // Not in UML - Just for Hard Coded Presentation
     private History history;
 
     public Project(UUID id, String name, String type, Layout layout,
@@ -97,6 +97,7 @@ public class Project {
         }
     }
 
+    // Not in UML, just for hard coded presentation
     public boolean addColumn(String title){
         if(columnListTitle.contains(title)){
             return false;
