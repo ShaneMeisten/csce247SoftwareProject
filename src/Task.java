@@ -183,6 +183,10 @@ public class Task {
 
     public void setComplete(){
         this.status = true;
+<<<<<<< HEAD
+=======
+    }
+>>>>>>> 1538355c68a2c12b2e073628e174a6a9ee602986
     //UUID author, String name, String description
     }
     public void addComment(String description, String name, UUID id) {

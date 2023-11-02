@@ -122,7 +122,7 @@ public class TerminalUI {
             String command = scanner.nextLine();
             if (command.equals("1")) {
                 int counter = 0;
-                System.out.println("Printing Current Projects:\n\tEnter the number to open project\n\tPress Q to exit");
+                System.out.println("Printing Current Projects:\n\tEnter the number to open project\nQ: to exit");
                 if (facade.getUserCurrentProjects() != null) {
                         for(Project project : facade.getUserCurrentProjects()) {
                         System.out.println(counter + ":\t" + project.getName());
@@ -173,7 +173,7 @@ public class TerminalUI {
                 System.out.println("(" + counter + ") " + column.getTitle());
             }
             }
-            System.out.println("(A) Add Column\n(T) Add task(U) unassigned Task\n(C) completed Task\n(P) print Project\n(Q) Exit Project");
+            System.out.println("(A) Add Column\n(T) Add task\n(U) unassigned Task\n(C) completed Task\n(P) print Project\n(Q) Exit Project");
             String command = scanner.nextLine();
             if(command.toLowerCase().equals("q")) {
                 return;
@@ -185,14 +185,14 @@ public class TerminalUI {
                 continue;
             }
             else if(command.toLowerCase().equals("t")){
-                String asignee = "Jeff Goldblum";
                 System.out.println("Enter Task name:");
                 String taskName = scanner.nextLine();
                 System.out.println("Enter the Task description:");
                 String taskDes = scanner.nextLine();
-
+                System.out.println("Enter Asignee");
+                String asignee = scanner.nextLine();
                 Task task = new Task(taskName, taskDes, asignee);
-                facade.addTaskToTaskList(task);
+                facade.getCurrentProject().addTask(task);
             }
             else if (command.toLowerCase().equals("p")) {
                 System.out.println("Enter File Name to Save Project: ");
@@ -206,14 +206,15 @@ public class TerminalUI {
             }
             else if (command.toLowerCase().equals("c")) {
                 counter = 0;
-                System.out.println("Viewing unassigned Task:\n\tEnter the number to open project\n\tPress Q to exit");
+                System.out.println("Viewing unassigned Task:\n\tEnter the number to open project\n(Q) to exit");
                 for(Task task: currProject.getCompletedTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
+                    counter++;
                 }
                 String invite = scanner.nextLine();
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getCompletedTasks().size())
-                    taskPage(currProject.getCompletedTasks().get(Integer.valueOf(invite)));
+                    taskPage(currProject.getCompletedTasks().get(Integer.valueOf(invite)), null);
                 else System.out.println("Wrong input");
             }
 
@@ -222,6 +223,7 @@ public class TerminalUI {
                 System.out.println("Viewing unassigned Task:\n\tEnter the number to open project\n\tPress Q to exit");
                 for(Task task: currProject.getOngoingTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
+                    counter++;
                 }
                 System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
@@ -231,7 +233,7 @@ public class TerminalUI {
                 }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
-                    taskPage(currProject.getOngoingTasks().get(Integer.valueOf(invite)));
+                    taskPage(currProject.getOngoingTasks().get(Integer.valueOf(invite)), null);
                 else System.out.println("Wrong input");
             }
             else {
@@ -241,6 +243,7 @@ public class TerminalUI {
                 System.out.println("Viewing Column Task for " + currentColumn.getTitle() + ":\n\tEnter the number to open project\n\tPress Q to exit");
                 for(Task task: currentColumn.getTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
+                    counter++;
                 }
                 System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
@@ -250,7 +253,7 @@ public class TerminalUI {
                 }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
-                    taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)));
+                    taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)), currentColumn);
                 else System.out.println("Wrong input");
             }
         }
@@ -267,10 +270,14 @@ public class TerminalUI {
         return new Task(title, description, asignee);
     }
 
-    public void taskPage(Task task) {
+    public void taskPage(Task task, Column column) {
+        boolean ongoing = false;
+        if (column == null) {
+            ongoing = true;
+        }
         while (true) {
-             System.out.println("Task: " + task.getTitle() + "\nDescription: " + task.getDescription() + "\nAssignee" + task.getAsignee());
-            System.out.println("(0) Change Asignee\n(1) Mark complete\n(2)See Comments(Q) Exit");
+             System.out.println("Task: " + task.getTitle() + "\nDescription: " + task.getDescription() + "\nAssignee: " + task.getAsignee());
+            System.out.println("(0)Change Asignee\n(1)Mark complete\n(2)See Comments\n(M)Move to Column\n(Q) Exit");
             String command = scanner.nextLine();
             if(command.equals("0")) {
                 System.out.println("Enter Assignee");
@@ -281,21 +288,43 @@ public class TerminalUI {
                 task.setComplete();
             }
             else if (command.equals("2")) commentPage(task);
+            else if (command.toLowerCase().equals("m")) {
+                int counter  = 0;
+                System.out.println("Enter Column");
+                for(Column column2 : facade.getCurrentProject().getColumnList()) {
+                    System.out.println("(" + counter + ")\t" + column2.getTitle());
+                }
+                System.out.println("(U) move to unassigned");
+                String command_2 = scanner.nextLine();
+                if(ongoing == true) {
+                    facade.getCurrentProject().getOngoingTasks().remove(task);
+                }
+                else {
+                    column.removeTask(task);
+                }
+                if (command_2.equals("U")) {
+                    facade.getCurrentProject().getOngoingTasks().add(task);
+                }
+                else{
+                    facade.getCurrentProject().getColumnList().get(Integer.valueOf(command_2)).addTask(task);
+                }
+            }
             else if (command.toLowerCase().equals("q")) return;
         }
     }
 
     public void commentPage(Task task) {
-        if(task.getComment().size() == 0) {
-            System.out.println("No Comments");
-            return;
-        }
         while (true) {
             System.out.println("Comments:");
             int counter = 0;
-            for(Comment comment: task.getComment()) {
+            if(task.getComment().size() == 0) {
+            System.out.println("No Comments");
+            }
+            else {
+                for(Comment comment: task.getComment()) {
                 System.out.println("(" + counter + ")\t" + comment.getName() + "\n\t" + comment.getDescription());
                 counter ++;
+                }
             }
             System.out.println("(A) Add Comment\n(Q) Quit");
             String commmand = scanner.nextLine();
