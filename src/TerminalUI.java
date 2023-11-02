@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -38,10 +39,6 @@ public class TerminalUI {
         facade.createUser(AtticusF);
 
         facade.createProject("Electric Missiles");
-        //In Electric Missles
-        //Create Doing Column
-        //Create task "Curve the metal to make a cylindrical shape" to the 'Doing' column.
-        //Create task "Make impossible burger possible"
         facade.createProject("Soap Free Washers");
         facade.createProject("Air Computers");
 
@@ -56,8 +53,16 @@ public class TerminalUI {
         facade.AcceptInvite(0);
         facade.login("Jeff", "Goldblum123");
         facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
+        facade.addColumnToCurrentProject("Doing");
+        Task newtask = new Task("Curve the metal to make a cylindrical shape", "none", "none");
+        Task newtask2 = new Task("Make impossible burger possible", "none", "none");
+        facade.getCurrentProject().getColumnList().get(0).addTask(newtask);
+        facade.getCurrentProject().getColumnList().get(0).addTask(newtask2);
+        facade.getCurrentProject().getColumnList().get(0).getTasks().get(0).addComment("Not cylindrical enough", "Jeff", Jeff.getUUID()); 
         // Create exisiting Comment "Not cylindrical enough" - by Jeff for task  "Curve the metal to make a cylindrical shape"
         facade.login("Atticus Finch", "Finch123");
+        facade.getCurrentProject().getColumnList().get(0).getTasks().get(0).addComment("What's a cylinder", "Atticus Finch", AtticusF.getUUID()); 
         //// Create exisiting Comment  "What's a cylinder" by Atticus Finch for task  "Curve the metal to make a cylindrical shape"
         facade.AcceptInvite(0);
     }
@@ -254,7 +259,7 @@ public class TerminalUI {
     public void taskPage(Task task) {
         while (true) {
              System.out.println("Task: " + task.getTitle() + "\nDescription: " + task.getDescription() + "\nAssignee" + task.getAsignee());
-            System.out.println("(0) Change Asignee\n(1) Mark complete\n(Q) Exit");
+            System.out.println("(0) Change Asignee\n(1) Mark complete\n(2)See Comments(Q) Exit");
             String command = scanner.nextLine();
             if(command.equals("0")) {
                 System.out.println("Enter Assignee");
@@ -264,8 +269,61 @@ public class TerminalUI {
             else if (command.equals("1")) {
                 task.setComplete();
             }
+            else if (command.equals("2")) commentPage(task);
             else if (command.toLowerCase().equals("q")) return;
         }
+    }
+
+    public void commentPage(Task task) {
+        if(task.getComment().size() == 0) {
+            System.out.println("No Comments");
+            return;
+        }
+        while (true) {
+            System.out.println("Comments:");
+            int counter = 0;
+            for(Comment comment: task.getComment()) {
+                System.out.println("(" + counter + ")\t" + comment.getName() + "\n\t" + comment.getDescription());
+                counter ++;
+            }
+            System.out.println("(A) Add Comment\n(Q) Quit");
+            String commmand = scanner.nextLine();
+            if (commmand.toLowerCase().equals("a")) {
+                System.out.println("Enter description");
+                String description = scanner.nextLine();
+                task.addComment(description, facade.getCurrentUser().getName(), facade.getCurrentUser().getUUID());
+            }
+            else if (commmand.toLowerCase().equals("q")) {
+                return;
+            }
+            else if (Integer.valueOf(commmand) >= 0 && Integer.valueOf(commmand) < task.getComment().size()) {
+                commentPage2(task.getComment().get(Integer.valueOf(commmand)));
+            }
+        }
+        
+    }
+
+    public void commentPage2(Comment comment) {
+        System.out.println("Comments for: " + comment.getName());
+        int counter = 0;
+        for(Comment comments: comment.getReplies()) {
+            System.out.println("(" + counter + ")\t" + comment.getName() + "\n\t" + comment.getDescription());
+            counter ++;
+        }
+        System.out.println("(A) Add Comment\n(Q) Quit");
+        String commmand = scanner.nextLine();
+        if (commmand.toLowerCase().equals("a")) {
+            System.out.println("Enter description");
+            String description = scanner.nextLine();
+            comment.addReply(new Comment(facade.getCurrentUser().getUUID(), facade.getCurrentUser().getName(), description));
+
+        }
+            else if (commmand.toLowerCase().equals("q")) {
+                return;
+            }
+            else if (Integer.valueOf(commmand) >= 0 && Integer.valueOf(commmand) < comment.getReplies().size()) {
+                commentPage2(comment.getReplies().get(Integer.valueOf(commmand)));
+            }
     }
 
     public static void main (String[] args) {

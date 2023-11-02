@@ -23,6 +23,7 @@ public class Task {
     private User assignedUser;
     private User author;
     private String asignee;
+    private ArrayList<Comment> comment = new ArrayList<Comment>();
 
     /**
      * 
@@ -174,5 +175,15 @@ public class Task {
                 }
         }
         return null;
+    }
+
+    //UUID author, String name, String description
+
+    public void addComment(String description, String name, UUID id) {
+        this.comment.add(new Comment (id, name, description));
+    }
+
+    public ArrayList<Comment> getComment() {
+        return comment;
     }
 }
