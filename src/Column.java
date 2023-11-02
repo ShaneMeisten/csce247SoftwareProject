@@ -16,7 +16,7 @@ public class Column {
     private double completionTime;
     private Date createdTime;
     private User author;
-    private ArrayList<Task> TaskList= new ArrayList<>();
+    private ArrayList<Task> TaskList= new ArrayList<Task>();
     
     /**
      * Constructor used for the Json file
