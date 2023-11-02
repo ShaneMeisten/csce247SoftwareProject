@@ -23,6 +23,7 @@ public class Task {
     private User assignedUser;
     private User author;
     private String asignee;
+    private ArrayList<Comment> comment = new ArrayList<Comment>();
 
     /**
      * 
@@ -180,7 +181,18 @@ public class Task {
         return null;
     }
 
+<<<<<<< HEAD
     public void setComplete(){
         this.status = true;
+=======
+    //UUID author, String name, String description
+
+    public void addComment(String description, String name, UUID id) {
+        this.comment.add(new Comment (id, name, description));
+    }
+
+    public ArrayList<Comment> getComment() {
+        return comment;
+>>>>>>> ccd0f3c495fc1a1aa258e9e028ad57a82ad67062
     }
 }
