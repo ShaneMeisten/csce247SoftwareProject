@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.UUID;
+import java.io.*;
 
 public class Facade {
     private ProjectCatalog projectCatalog;
@@ -48,6 +48,18 @@ public class Facade {
         projectCatalog.addProject(name);
     }
 
+
+    public void printCurrentProject(String filename) {
+         try {
+            FileWriter writer = new FileWriter(filename);
+            writer.write("Projects:\n"+projectCatalog.getProjects()+"\nColumns:\n"+
+                        currentProject.viewColumns()+"\nTasks:\n"+currentProject.getCompletedTasks()+currentProject.getOngoingTasks());
+        }catch (IOException e){
+            System.out.println("Error encountered!");
+            e.printStackTrace();
+        }
+    }
+
     
     public boolean login(String username, String password) {
         currentUser = userCatalog.retrieveUser(username, password);
@@ -76,6 +88,8 @@ public class Facade {
         currentUser.AcceptInvite(invite);
         return true;
     }
+
+    //Will implement later
     /* 
     public void createProject(Project project){  
         projectCatalog.addProject(project.getName(), project.getType());
@@ -142,13 +156,13 @@ public class Facade {
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {
-        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(currentUser.getAdminPerms() == false || currentProject == null) return false;
         if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
         return seeUsersInCurrentProject().get(user).removePoints(currentProject.getUUID(), points);
     }
 
     public boolean AddPointsToUserInCurrentProject(int user, int points) {
-        if(currentUser.isAdmin() == false || currentProject == null) return false;
+        if(currentUser.getAdminPerms() == false || currentProject == null) return false;
         if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
         return seeUsersInCurrentProject().get(user).addPoints(currentProject.getUUID(), points);
     }
@@ -193,4 +207,5 @@ public class Facade {
         }
         return false;
     }
+
 }

@@ -191,6 +191,7 @@ public class TerminalUI {
             else if (command.toLowerCase().equals("p")) {
                 System.out.println("Enter File Name to Save Project: ");
                 String filename = scanner.nextLine();
+                facade.printCurrentProject(filename);
                 /*
                  * 
                  * Implement Method to save to file
@@ -216,7 +217,12 @@ public class TerminalUI {
                 for(Task task: currProject.getOngoingTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
                 }
+                System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("a")) {
+                    Task newTask = createTask();
+                    currProject.getOngoingTasks().add(newTask);
+                }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
                     taskPage(currProject.getOngoingTasks().get(Integer.valueOf(invite)));
@@ -230,7 +236,12 @@ public class TerminalUI {
                 for(Task task: currentColumn.getTasks()) {
                     System.out.println("(" + counter + ") " + task.getTitle());
                 }
+                System.out.println("(A) Create new task");
                 String invite = scanner.nextLine();
+                if(invite.toLowerCase().equals("a")) {
+                    Task newTask = createTask();
+                    currentColumn.addTask(newTask);
+                }
                 if(invite.toLowerCase().equals("q")) continue;
                 if(Integer.valueOf(invite) >= 0 && Integer.valueOf(invite) < currProject.getOngoingTasks().size())
                     taskPage(currentColumn.getTasks().get(Integer.valueOf(invite)));
@@ -240,14 +251,31 @@ public class TerminalUI {
         
     }
 
+    public Task createTask() {
+        System.out.println("Enter title");
+        String title = scanner.nextLine();
+        System.out.println("Enter Description");
+        String description = scanner.nextLine();
+        System.out.println("Enter Asignee");
+        String asignee = scanner.nextLine();
+        return new Task(title, description, asignee);
+    }
+
     public void taskPage(Task task) {
-        /*
-         * Add ability to locate a task in project based on UUID
-         * 
-         */
-        //List task info
-        //if user inputs "Q" return
-        //Make Comment Ability
+        while (true) {
+             System.out.println("Task: " + task.getTitle() + "\nDescription: " + task.getDescription() + "\nAssignee" + task.getAsignee());
+            System.out.println("(0) Change Asignee\n(1) Mark complete\n(Q) Exit");
+            String command = scanner.nextLine();
+            if(command.equals("0")) {
+                System.out.println("Enter Assignee");
+                String assignee = scanner.nextLine();
+                task.setAssignee(assignee);
+            }
+            else if (command.equals("1")) {
+                task.setComplete();
+            }
+            else if (command.toLowerCase().equals("q")) return;
+        }
     }
 
     public static void main (String[] args) {

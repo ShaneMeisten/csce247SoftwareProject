@@ -137,6 +137,10 @@ public class Task {
         }
     }
 
+    public void setAssignee(String asignee){
+        this.asignee = asignee;
+    }
+
     /**
      * adds to the ToDo list
      * @param todo
@@ -174,5 +178,9 @@ public class Task {
                 }
         }
         return null;
+    }
+
+    public void setComplete(){
+        this.status = true;
     }
 }

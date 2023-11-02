@@ -42,6 +42,10 @@ public class Column {
         
     }
 
+    public Column(String title){
+        this.title = title;
+    }
+
     /**
      * adds a task to the TaskList
      * @param task
