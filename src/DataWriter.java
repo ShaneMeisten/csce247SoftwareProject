@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -58,9 +59,9 @@ public class DataWriter extends DataConstants{
     userDetails.put(USER_PHONE, user.getPhone());
     userDetails.put(USER_EMAIL, user.getEmail());
 
-    // Current Projects
+    // Current Projects TODO: Reconfigure for HashMap
     JSONArray currentProjectsJSON = new JSONArray();
-    ArrayList<UUID> currentProjects = user.getCurrentProjects();
+    HashMap<UUID, Double> currentProjects = user.getCurrentProjects();
     for (UUID projectId : currentProjects) {
       Project project = ProjectCatalog.getInstance().getProject(projectId);
       JSONObject projectJSON = getProjectJSON(project);
