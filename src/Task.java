@@ -45,6 +45,7 @@ public class Task {
     double weight, ArrayList<String> categories, ArrayList<Comment> commentThread,
     ArrayList<ToDo> toDoList, boolean status, double completionTime, User assignedUser, User author){
 
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;

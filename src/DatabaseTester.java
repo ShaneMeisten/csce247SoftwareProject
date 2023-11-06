@@ -243,8 +243,127 @@ public class DatabaseTester {
     ArrayList<Comment> comments6 = new ArrayList<Comment>();
     Task Task6 = new Task(tId6, tTitle6, tDescription6, tDueDate6, tWeight6, tCategories6, comments6, tToDoList6, tStatus6, tCompletionTime6, tAssigned6, tAuthor6);
 
-    // TODO Task 7 & 8 
+    UUID tId7 = task7;
+    String tTitle7 = "Bake First Batch";
+    String tDescription7 = "Make it great!";
+    double tWeight7 = 6.0;
+    Date tDueDate7 = new Date("Tue Oct 17 10:30:59 EDT 2023");
+    ArrayList<String> tCategories7 = new ArrayList<String>();
+    tCategories3.add("delicious");
+    tCategories3.add("fluffy");
+    boolean tStatus7 = true;
+    double tCompletionTime7 = 2.0;
+    User tAuthor7 = users.getUser(user1);
+    User tAssigned7 = users.getUser(user2);
+    ArrayList<ToDo> tToDoList7 = new ArrayList<ToDo>();
+    ArrayList<Comment> comments7 = new ArrayList<Comment>();
+    tToDoList7.add(ToDo4);
+    comments7.add(Comment3);
+    Task Task7 = new Task(tId7, tTitle7, tDescription7, tDueDate7, tWeight7, tCategories7, comments7, tToDoList7, tStatus7, tCompletionTime7, tAssigned7, tAuthor7);
 
+    UUID tId8 = task8;
+    String tTitle8 = "Bake Second Batch";
+    String tDescription8 = "Make it even better!";
+    double tWeight8 = 6.5;
+    Date tDueDate8 = new Date("Tue Oct 17 10:30:59 EDT 2023");
+    ArrayList<String> tCategories8 = new ArrayList<String>();
+    tCategories3.add("delicious");
+    tCategories3.add("fluffy");
+    boolean tStatus8 = false;
+    double tCompletionTime8 = 2.0;
+    User tAuthor8 = users.getUser(user1);
+    User tAssigned8 = users.getUser(user2);
+    ArrayList<ToDo> tToDoList8 = new ArrayList<ToDo>();
+    ArrayList<Comment> comments8 = new ArrayList<Comment>();
+    Task Task8 = new Task(tId8, tTitle8, tDescription8, tDueDate8, tWeight8, tCategories8, comments8, tToDoList8, tStatus8, tCompletionTime8, tAssigned8, tAuthor8);
+
+    UUID cmId1 = column1;
+    String cmTitle1 = "Upstairs Toilets";
+    double cmWeight1 = 5.0;
+    boolean cmStatus1 = false;
+    double cmCompletionTime1 = 3.0;
+    Date cmCreatedTime1 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor1 = users.getUser(user1);
+    ArrayList<Task> cmTasks1 = new ArrayList<Task>();
+    cmTasks1.add(Task1);
+    Column Column1 = new Column(cmId1, cmTitle1, cmWeight1, cmStatus1, cmCompletionTime1, cmCreatedTime1, cmAuthor1, cmTasks1);
+
+    UUID cmId2 = column2;
+    String cmTitle2 = "Downstairs Toilets";
+    double cmWeight2 = 5.0;
+    boolean cmStatus2 = true;
+    double cmCompletionTime2 = 3.0;
+    Date cmCreatedTime2 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor2 = users.getUser(user1);
+    ArrayList<Task> cmTasks2 = new ArrayList<Task>();
+    cmTasks2.add(Task2);
+    Column Column2 = new Column(cmId2, cmTitle2, cmWeight2, cmStatus2, cmCompletionTime2, cmCreatedTime2, cmAuthor2, cmTasks2);
+
+    UUID cmId3 = column3;
+    String cmTitle3 = "Cookies for Corporate";
+    double cmWeight3 = 3.0;
+    boolean cmStatus3 = false;
+    double cmCompletionTime3 = 2.0;
+    Date cmCreatedTime3 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor3 = users.getUser(user1);
+    ArrayList<Task> cmTasks3 = new ArrayList<Task>();
+    cmTasks3.add(Task3);
+    Column Column3 = new Column(cmId3, cmTitle3, cmWeight3, cmStatus3, cmCompletionTime3, cmCreatedTime3, cmAuthor3, cmTasks3);
+
+    UUID cmId4 = column4;
+    String cmTitle4 = "Cookies for Boss";
+    double cmWeight4 = 2.9;
+    boolean cmStatus4 = false;
+    double cmCompletionTime4 = 1.5;
+    Date cmCreatedTime4 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor4 = users.getUser(user1);
+    ArrayList<Task> cmTasks4 = new ArrayList<Task>();
+    cmTasks4.add(Task4);
+    Column Column4 = new Column(cmId4, cmTitle4, cmWeight4, cmStatus4, cmCompletionTime4, cmCreatedTime4, cmAuthor4, cmTasks4);
+
+    UUID cmId5 = column5;
+    String cmTitle5 = "Dining Room Tables";
+    double cmWeight5 = 3.0;
+    boolean cmStatus5 = false;
+    double cmCompletionTime5 = 0.5;
+    Date cmCreatedTime5 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor5 = users.getUser(user1);
+    ArrayList<Task> cmTasks5 = new ArrayList<Task>();
+    cmTasks5.add(Task5);
+    Column Column5 = new Column(cmId5, cmTitle5, cmWeight5, cmStatus5, cmCompletionTime5, cmCreatedTime5, cmAuthor5, cmTasks5);
+
+    UUID cmId6 = column6;
+    String cmTitle6 = "Bar Room Tables";
+    double cmWeight6 = 3.0;
+    boolean cmStatus6 = false;
+    double cmCompletionTime6 = 0.5;
+    Date cmCreatedTime6 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor6 = users.getUser(user1);
+    ArrayList<Task> cmTasks6 = new ArrayList<Task>();
+    cmTasks6.add(Task6);
+    Column Column6 = new Column(cmId6, cmTitle6, cmWeight6, cmStatus6, cmCompletionTime6, cmCreatedTime6, cmAuthor6, cmTasks6);
+
+    UUID cmId7 = column7;
+    String cmTitle7 = "Bread for Orders";
+    double cmWeight7 = 4.0;
+    boolean cmStatus7 = true;
+    double cmCompletionTime7 = 3.0;
+    Date cmCreatedTime7= new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor7 = users.getUser(user1);
+    ArrayList<Task> cmTasks7 = new ArrayList<Task>();
+    cmTasks7.add(Task7);
+    Column Column7 = new Column(cmId7, cmTitle7, cmWeight7, cmStatus7, cmCompletionTime7, cmCreatedTime7, cmAuthor7, cmTasks7);
+
+    UUID cmId8 = column8;
+    String cmTitle8 = "Bread for Customers";
+    double cmWeight8 = 2.5;
+    boolean cmStatus8 = false;
+    double cmCompletionTime8 = 3.0;
+    Date cmCreatedTime8 = new Date("Mon Oct 16 9:00:00 EDT 2023");
+    User cmAuthor8 = users.getUser(user1);
+    ArrayList<Task> cmTasks8 = new ArrayList<Task>();
+    cmTasks8.add(Task8);
+    Column Column8 = new Column(cmId8, cmTitle8, cmWeight8, cmStatus8, cmCompletionTime8, cmCreatedTime8, cmAuthor8, cmTasks8);
     
     // Create and Add Projects
     completed1.add(Task1);
@@ -253,10 +372,30 @@ public class DatabaseTester {
     ongoing2.add(Task4);
     ongoing3.add(Task5);
     ongoing3.add(Task6);
+    completed4.add(Task7);
+    ongoing4.add(Task8);
+    columnList1.add(Column1);
+    columnList1.add(Column2);
+    columnList2.add(Column3);
+    columnList2.add(Column4);
+    columnList3.add(Column5);
+    columnList3.add(Column6);
+    columnList4.add(Column7);
+    columnList4.add(Column8);
 
+    Project Project1 = new Project(pId1, pName1, type1, layout1, completed1, ongoing1, columnList1, history1);
+    Project Project2 = new Project(pId2, pName2, type2, layout2, completed2, ongoing2, columnList2, history2);
+    Project Project3 = new Project(pId3, pName3, type3, layout3, completed3, ongoing3, columnList3, history3);
+    Project Project4 = new Project(pId4, pName4, type4, layout4, completed4, ongoing4, columnList4, history4);
+
+    projects.addProject(Project1);
+    projects.addProject(Project2);
+    projects.addProject(Project3);
+    projects.addProject(Project4);
     
     // Write
     writer.saveUsers();
+    writer.saveProjects();
 
     // Print
     System.out.println("All Users:");

@@ -16,6 +16,10 @@ public class ProjectCatalog {
         return projectCatalog;
     }
 
+    public void addProject(Project project) {
+        projects.add(project);
+    }
+
     public void addProject(String ProjectName){
         UUID id = UUID.randomUUID();
         Layout layout = Layout.SCRUM; 

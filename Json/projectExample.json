@@ -65,7 +65,7 @@
                     "title": "Task Column",
                     "weight": 4.5,
                     "status": false, 
-                    "completionTime": "20231013",
+                    "completionTime": 3.0,
                     "createdTime": "20231012", 
                     "author": "a6bef6d7-3cf2-43d6-b6e0-ec250aee464c", 
                     "tasks": [{"id":"9b1ad9f9-9713-4e5a-b165-9f99be5a7f27", 
