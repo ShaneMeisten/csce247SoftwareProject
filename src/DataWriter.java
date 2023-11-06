@@ -86,7 +86,7 @@ public class DataWriter extends DataConstants{
     projectDetails.put(PROJECT_ID,project.getUUID().toString());
     projectDetails.put(PROJECT_NAME,project.getName());
     projectDetails.put(PROJECT_TYPE,project.getType());
-    projectDetails.put(PROJECT_LAYOUT,project.getLayout());
+    projectDetails.put(PROJECT_LAYOUT,project.getLayout().name().toString());
 
     // Completed Tasks
     JSONArray completedTasksJSON = new JSONArray();
