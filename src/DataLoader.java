@@ -70,7 +70,7 @@ public class DataLoader extends DataConstants{
     JSONArray currentProjectsJSON = (JSONArray)userJSON.get(USER_CURRENT_PROJECTS);
     for (Object o : currentProjectsJSON) {
       JSONObject currentProjectJSON = (JSONObject)o;
-      UUID projectId = UUID.fromString((String)currentProjectJSON.get(USER_PROJECT_ID));
+      UUID projectId = UUID.fromString((String)currentProjectJSON.get(PROJECT_ID));
       double projectPoints = Double.parseDouble((String)currentProjectJSON.get(USER_PROJECT_POINTS));
       currentProjects.put(projectId, projectPoints);
     }
@@ -80,7 +80,7 @@ public class DataLoader extends DataConstants{
     JSONArray invitedProjectsJSON = (JSONArray)userJSON.get(USER_INVITED_PROJECTS);
     for (Object o : invitedProjectsJSON) {
       JSONObject invitedProjectJSON = (JSONObject)o;
-      UUID projectId = UUID.fromString((String)invitedProjectJSON.get(USER_PROJECT_ID));
+      UUID projectId = UUID.fromString((String)invitedProjectJSON.get(PROJECT_ID));
       invitedProjects.add(projectId);
     }
     
@@ -93,7 +93,7 @@ public class DataLoader extends DataConstants{
     UUID projectId = UUID.fromString((String)projectJSON.get(PROJECT_ID));
     String name = (String)projectJSON.get(PROJECT_NAME);
     String type = (String)projectJSON.get(PROJECT_TYPE);
-    Layout layout = (Layout)projectJSON.get(PROJECT_LAYOUT);
+    Layout layout = Enum.valueOf(Layout.class, (String)projectJSON.get(PROJECT_LAYOUT));
     // Users
     ArrayList<User> users = new ArrayList<User>();
     JSONArray usersJSON = (JSONArray)projectJSON.get(PROJECT_USERS);

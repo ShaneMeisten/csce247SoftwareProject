@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -58,9 +59,9 @@ public class DataWriter extends DataConstants{
     userDetails.put(USER_PHONE, user.getPhone());
     userDetails.put(USER_EMAIL, user.getEmail());
 
-    // Current Projects
+    // Current Projects TODO: Reconfigure for HashMap
     JSONArray currentProjectsJSON = new JSONArray();
-    ArrayList<UUID> currentProjects = user.getCurrentProjects();
+    HashMap<UUID, Double> currentProjects = user.getCurrentProjects();
     for (UUID projectId : currentProjects) {
       Project project = ProjectCatalog.getInstance().getProject(projectId);
       JSONObject projectJSON = getProjectJSON(project);
@@ -83,10 +84,10 @@ public class DataWriter extends DataConstants{
 
   private static JSONObject getProjectJSON(Project project) {
     JSONObject projectDetails = new JSONObject();
-    projectDetails.put(PROJECT_ID,project.getUUID());
+    projectDetails.put(PROJECT_ID,project.getUUID().toString());
     projectDetails.put(PROJECT_NAME,project.getName());
     projectDetails.put(PROJECT_TYPE,project.getType());
-    projectDetails.put(PROJECT_LAYOUT,project.getLayout());
+    projectDetails.put(PROJECT_LAYOUT,project.getLayout().name().toString());
 
     // Completed Tasks
     JSONArray completedTasksJSON = new JSONArray();
@@ -170,12 +171,12 @@ public class DataWriter extends DataConstants{
 
   private static JSONObject getColumnJSON(Column column) {
     JSONObject columnDetails = new JSONObject();
-    columnDetails.put(COLUMN_ID, column.getUUID());
+    columnDetails.put(COLUMN_ID, column.getUUID().toString());
     columnDetails.put(COLUMN_TITLE, column.getTitle());
     columnDetails.put(COLUMN_WEIGHT, column.getWeight());
     columnDetails.put(COLUMN_STATUS, column.getStatus());
     columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
-    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime());
+    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
     columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
 
     // Task List

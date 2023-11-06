@@ -172,9 +172,13 @@ public class User{
      * @return currentProjects      The UUID's of Projects the user is in
      */
 
-    public ArrayList<UUID> getCurrentProjects(){
+    public ArrayList<UUID> getCurrentProjectsUUID(){
         ArrayList<UUID> currentProjects = new ArrayList<UUID>();
         for(UUID i: this.currentProjects.keySet()) currentProjects.add(i);
+        return currentProjects;
+    }
+
+    public HashMap<UUID, Double> getCurrentProjects() {
         return currentProjects;
     }
 
