@@ -3,6 +3,9 @@ import java.util.UUID;
 import java.util.HashMap;
 import java.util.Date;
 
+/**
+ * @author Aidan Godwin
+ */
 public class DatabaseTester {
   public static void main(String[] args) {
     DataLoader loader = new DataLoader();
