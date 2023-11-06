@@ -83,7 +83,7 @@ public class DataWriter extends DataConstants{
 
   private static JSONObject getProjectJSON(Project project) {
     JSONObject projectDetails = new JSONObject();
-    projectDetails.put(PROJECT_ID,project.getUUID());
+    projectDetails.put(PROJECT_ID,project.getUUID().toString());
     projectDetails.put(PROJECT_NAME,project.getName());
     projectDetails.put(PROJECT_TYPE,project.getType());
     projectDetails.put(PROJECT_LAYOUT,project.getLayout());
@@ -170,12 +170,12 @@ public class DataWriter extends DataConstants{
 
   private static JSONObject getColumnJSON(Column column) {
     JSONObject columnDetails = new JSONObject();
-    columnDetails.put(COLUMN_ID, column.getUUID());
+    columnDetails.put(COLUMN_ID, column.getUUID().toString());
     columnDetails.put(COLUMN_TITLE, column.getTitle());
     columnDetails.put(COLUMN_WEIGHT, column.getWeight());
     columnDetails.put(COLUMN_STATUS, column.getStatus());
     columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
-    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime());
+    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
     columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
 
     // Task List
