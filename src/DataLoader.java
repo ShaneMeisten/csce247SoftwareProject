@@ -93,14 +93,6 @@ public class DataLoader extends DataConstants{
     String name = (String)projectJSON.get(PROJECT_NAME);
     String type = (String)projectJSON.get(PROJECT_TYPE);
     Layout layout = Enum.valueOf(Layout.class, (String)projectJSON.get(PROJECT_LAYOUT));
-    // Users
-    ArrayList<User> users = new ArrayList<User>();
-    JSONArray usersJSON = (JSONArray)projectJSON.get(PROJECT_USERS);
-    for (Object u : usersJSON) {
-      JSONObject userJSON = (JSONObject) u;
-      User user = toUser(userJSON);
-      users.add(user);
-    }
 
     // Completed Tasks
     ArrayList<Task> completedTasks = new ArrayList<Task>();
@@ -127,11 +119,11 @@ public class DataLoader extends DataConstants{
       JSONObject columnJSON = (JSONObject)c;
       UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
       String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
-      double columnWeight = Double.parseDouble((String)columnJSON.get(COLUMN_WEIGHT));
+      double columnWeight = Double.parseDouble(columnJSON.get(COLUMN_WEIGHT).toString());
       boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
       
       // Date implementation
-      double columnCompletionTime = Double.parseDouble((String)columnJSON.get(COLUMN_COMPLETION_TIME));
+      double columnCompletionTime = Double.parseDouble(columnJSON.get(COLUMN_COMPLETION_TIME).toString());
       String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
       Date columnCreatedTime = new Date(columnCreatedTimeString);
 
@@ -182,11 +174,11 @@ public class DataLoader extends DataConstants{
     UUID taskId = UUID.fromString((String)taskJSON.get(TASK_ID));
     String taskTitle = (String)taskJSON.get(TASK_TITLE);
     String taskDescription = (String)taskJSON.get(TASK_DESCRIPTION);
-    double taskWeight = Double.parseDouble((String)taskJSON.get(TASK_WEIGHT));
+    double taskWeight = Double.parseDouble(taskJSON.get(TASK_WEIGHT).toString());
     String taskDueDateString = (String)taskJSON.get(TASK_DUE_DATE);
     Date taskDueDate = new Date(taskDueDateString);
     boolean taskStatus = (boolean)taskJSON.get(TASK_STATUS);
-    double completionTime = Double.parseDouble((String)taskJSON.get(TASK_COMPLETION_TIME));
+    double completionTime = Double.parseDouble(taskJSON.get(TASK_COMPLETION_TIME).toString());
     UUID authorId = UUID.fromString((String)taskJSON.get(TASK_AUTHOR));
     User author = userCatalog.getUser(authorId);
     UUID assignedUserId = UUID.fromString((String)taskJSON.get(TASK_ASSIGNED_USER));

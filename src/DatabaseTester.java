@@ -403,30 +403,49 @@ public class DatabaseTester {
     // Print
     System.out.println("All Users:");
     ArrayList<User> printable = users.getUsers();
+    ArrayList<Project> printableP = projects.getProjects();
     for (User u : printable)
       System.out.println(u.getName());
+    System.out.println("All Projects:");
+    for (Project p : printableP) 
+      System.out.println(p.getName());
 
     // Remove all
     users.removeUser(User1, User2.getUUID());
     users.removeUser(User1, User1.getUUID());
+    projects.removeProject(Project1.getUUID());
+    projects.removeProject(Project2.getUUID());
+    projects.removeProject(Project3.getUUID());
+    projects.removeProject(Project4.getUUID());
 
     // Print
     System.out.println("All Users:");
     printable = users.getUsers();
+    printableP = projects.getProjects();
     for (User u : printable)
       System.out.println(u.getName());
+    System.out.println("All Projects:");
+    for (Project p : printableP) 
+      System.out.println(p.getName());
 
 
     // Load
     ArrayList<User> loadedUsers = loader.getUsers();
+    ArrayList<Project> loadedProjects = loader.getProjects();
     for (User u : loadedUsers)
       users.addUser(u);
+    for (Project p : loadedProjects)
+      projects.addProject(p);
 
     // Print
     System.out.println("All Users:");
     printable = users.getUsers();
+    printableP = projects.getProjects();
     for (User u : printable)
       System.out.println(u.getName());
+    System.out.println("All Projects:");
+    for (Project p : printableP) 
+      System.out.println(p.getName());
   }
 
   public static final UUID user1 = UUID.fromString("9114f390-f300-4f8e-af9f-d66ae2b87adb");
