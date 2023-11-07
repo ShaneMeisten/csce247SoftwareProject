@@ -64,6 +64,10 @@ public class Task {
         this.asignee = asignee;
     }
 
+    public Task(){
+        this.toDoList = new ArrayList<ToDo>();
+    }
+
     /*
      * All accessors for the class
      */
