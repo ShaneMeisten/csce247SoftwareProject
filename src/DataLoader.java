@@ -71,7 +71,7 @@ public class DataLoader extends DataConstants{
     for (Object o : currentProjectsJSON) {
       JSONObject currentProjectJSON = (JSONObject)o;
       UUID projectId = UUID.fromString((String)currentProjectJSON.get(PROJECT_ID));
-      double projectPoints = Double.parseDouble((String)currentProjectJSON.get(USER_PROJECT_POINTS));
+      double projectPoints = Double.parseDouble(currentProjectJSON.get(USER_PROJECT_POINTS).toString());
       currentProjects.put(projectId, projectPoints);
     }
 
@@ -79,8 +79,7 @@ public class DataLoader extends DataConstants{
     ArrayList<UUID> invitedProjects = new ArrayList<UUID>();
     JSONArray invitedProjectsJSON = (JSONArray)userJSON.get(USER_INVITED_PROJECTS);
     for (Object o : invitedProjectsJSON) {
-      JSONObject invitedProjectJSON = (JSONObject)o;
-      UUID projectId = UUID.fromString((String)invitedProjectJSON.get(PROJECT_ID));
+      UUID projectId = UUID.fromString(o.toString());
       invitedProjects.add(projectId);
     }
     

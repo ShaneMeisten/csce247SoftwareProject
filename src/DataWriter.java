@@ -2,6 +2,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -61,11 +62,12 @@ public class DataWriter extends DataConstants{
 
     // Current Projects TODO: Reconfigure for HashMap
     JSONArray currentProjectsJSON = new JSONArray();
-    HashMap<UUID, Double> currentProjects = user.getCurrentProjects();
-    for (UUID projectId : currentProjects) {
-      Project project = ProjectCatalog.getInstance().getProject(projectId);
-      JSONObject projectJSON = getProjectJSON(project);
-      currentProjectsJSON.add(projectJSON);
+    Map<UUID, Double> currentProjects = user.getCurrentProjects();
+    for (Map.Entry<UUID,Double> entry : currentProjects.entrySet()) {
+      JSONObject currentProjectJSON = new JSONObject();
+      currentProjectJSON.put(PROJECT_ID, entry.getKey().toString());
+      currentProjectJSON.put(USER_PROJECT_POINTS, entry.getValue());
+      currentProjectsJSON.add(currentProjectJSON);
     }
     userDetails.put(USER_CURRENT_PROJECTS, currentProjectsJSON);
 
@@ -73,9 +75,7 @@ public class DataWriter extends DataConstants{
     JSONArray invitedProjectsJSON = new JSONArray();
     ArrayList<UUID> invitedProjects = user.getInvitedProjects();
     for (UUID projectId : invitedProjects) {
-      Project project = ProjectCatalog.getInstance().getProject(projectId);
-      JSONObject projectJSON = getProjectJSON(project);
-      invitedProjectsJSON.add(projectJSON);
+      invitedProjectsJSON.add(projectId.toString());
     }
     userDetails.put(USER_INVITED_PROJECTS, invitedProjectsJSON);
 
