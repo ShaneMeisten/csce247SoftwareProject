@@ -1,16 +1,18 @@
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * The Data Writer accesses the JSON Database files to write information from working memory into a saved file. 
  * @author Aidan Godwin
  */
 public class DataWriter extends DataConstants{
+  /**
+   * Takes the information found within the User Catalog and transfers it to a JSON file. 
+   */
   public static void saveUsers() {
     UserCatalog userCatalog = UserCatalog.getInstance();
     ArrayList<User> users = userCatalog.getUsers();
@@ -29,6 +31,9 @@ public class DataWriter extends DataConstants{
     }
   }
 
+  /**
+   * Takes the information found within the Project Catalog and transfers it to a JSON file. 
+   */
   public static void saveProjects() {
     ProjectCatalog projectCatalog = ProjectCatalog.getInstance();
     ArrayList<Project> projects = projectCatalog.getProjects();
@@ -48,6 +53,11 @@ public class DataWriter extends DataConstants{
     }
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given User object
+   * @param user The User object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given User
+   */
   private static JSONObject getUserJSON(User user) {
     JSONObject userDetails = new JSONObject();
     userDetails.put(USER_NAME, user.getName());
@@ -60,7 +70,7 @@ public class DataWriter extends DataConstants{
     userDetails.put(USER_PHONE, user.getPhone());
     userDetails.put(USER_EMAIL, user.getEmail());
 
-    // Current Projects TODO: Reconfigure for HashMap
+    // Current Projects
     JSONArray currentProjectsJSON = new JSONArray();
     Map<UUID, Double> currentProjects = user.getCurrentProjects();
     for (Map.Entry<UUID,Double> entry : currentProjects.entrySet()) {
@@ -82,6 +92,11 @@ public class DataWriter extends DataConstants{
     return userDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given Project object
+   * @param project The Project object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given Project
+   */
   private static JSONObject getProjectJSON(Project project) {
     JSONObject projectDetails = new JSONObject();
     projectDetails.put(PROJECT_ID,project.getUUID().toString());
@@ -128,6 +143,11 @@ public class DataWriter extends DataConstants{
     return projectDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given Task object
+   * @param task The Task object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given Task
+   */
   private static JSONObject getTaskJSON(Task task) {
     JSONObject taskDetails = new JSONObject();
     taskDetails.put(TASK_ID, task.getID().toString());
@@ -169,6 +189,11 @@ public class DataWriter extends DataConstants{
     return taskDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given Column object
+   * @param column The Column object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given Column
+   */
   private static JSONObject getColumnJSON(Column column) {
     JSONObject columnDetails = new JSONObject();
     columnDetails.put(COLUMN_ID, column.getUUID().toString());
@@ -191,6 +216,11 @@ public class DataWriter extends DataConstants{
     return columnDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given Update object
+   * @param update The Update object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given Update
+   */
   private static JSONObject getUpdateJSON(Update update) {
     JSONObject updateDetails = new JSONObject();
     updateDetails.put(UPDATE_ID, update.getChangedID().toString()); 
@@ -200,6 +230,11 @@ public class DataWriter extends DataConstants{
     return updateDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given Comment object
+   * @param comment The Comment object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given Comment
+   */
   private static JSONObject getCommentJSON(Comment comment) {
     JSONObject commentDetails = new JSONObject();
     commentDetails.put(COMMENT_ID, comment.getId().toString());
@@ -224,6 +259,11 @@ public class DataWriter extends DataConstants{
     return commentDetails;
   }
 
+  /**
+   * Creates a JSONObject based on the information of a given ToDo object
+   * @param todo The ToDo object whose information is to be used to make the JSONObject
+   * @return A JSONObject representation of the given ToDo
+   */
   private static JSONObject getToDoJSON(ToDo todo) {
     JSONObject todoDetails = new JSONObject();
     todoDetails.put(TODO_ID, todo.getID().toString());

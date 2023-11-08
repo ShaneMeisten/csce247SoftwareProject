@@ -171,6 +171,11 @@ public class DataLoader extends DataConstants{
     return update;
   }
 
+  /**
+   * Creates a Task object based on the information from the given JSONObject
+   * @param taskJSON the given JSONObject holding the information of the Task Object
+   * @return a new Task object based on the information from the given JSONObject
+   */
   private static Task toTask(JSONObject taskJSON) {
     UUID taskId = UUID.fromString((String)taskJSON.get(TASK_ID));
     String taskTitle = (String)taskJSON.get(TASK_TITLE);
@@ -215,6 +220,11 @@ public class DataLoader extends DataConstants{
     return task;
   }
 
+  /**
+   * Creates a Column object based on the information from the given JSONObject
+   * @param columnJSON the given JSONObject holding the information of the Column Object
+   * @return a new Column object based on the information from the given JSONObject
+   */
   private static Column toColumn(JSONObject columnJSON) {
     UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
     String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
@@ -242,6 +252,11 @@ public class DataLoader extends DataConstants{
     return column;
   }
 
+  /**
+   * Creates a ToDo object based on the information from the given JSONObject
+   * @param todoJSON the given JSONObject holding the information of the ToDo Object
+   * @return a new ToDo object based on the information from the given JSONObject
+   */
   private static ToDo toToDo(JSONObject todoJSON) {
     UUID todoId = UUID.fromString((String)todoJSON.get(TODO_ID));
     boolean done = (boolean)todoJSON.get(TODO_DONE);
@@ -250,6 +265,11 @@ public class DataLoader extends DataConstants{
     return todo;
   }
 
+  /**
+   * Creates a Comment object based on the information from the given JSONObject
+   * @param commentJSON the given JSONObject holding the information of the Comment Object
+   * @return a new Comment object based on the information from the given JSONObject
+   */
   private static Comment toComment(JSONObject commentJSON) {
     UUID commentId = UUID.fromString((String)commentJSON.get(COMMENT_ID));
     String name = (String)commentJSON.get(COMMENT_NAME);
