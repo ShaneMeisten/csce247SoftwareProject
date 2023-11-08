@@ -12,6 +12,14 @@ public class TaskTest {
         assertEquals(true,bool);
     }
 
+     @Test 
+    public void TestAddTask2(){
+        ToDo todo = new ToDo(false, "new todo", UUID.randomUUID());
+        Task tasklist = new Task();
+        Boolean bool = tasklist.addToDo(todo);
+        assertEquals(false,bool);
+    }
+
     @Test
     public void TestRemoveTask(){
         UUID id = UUID.randomUUID();
@@ -20,6 +28,16 @@ public class TaskTest {
         tasklist.addToDo(todo);
         Boolean bool = tasklist.removeToDo(id);
         assertEquals(true,bool); 
+    }
+
+    @Test
+    public void TestRemoveTask2(){
+        UUID id = UUID.randomUUID();
+        ToDo todo = new ToDo(false, "new todo", id);
+        Task tasklist = new Task();
+        tasklist.addToDo(todo);
+        Boolean bool = tasklist.removeToDo(id);
+        assertEquals(false,bool); 
     }
 
 }

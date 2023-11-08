@@ -14,7 +14,7 @@ public class Project {
     private String type;
     private Layout layout;
     private ArrayList<Task> completedTasks;
-    private ArrayList<Task> ongoingTasks;
+    private ArrayList<Task> ongoingTasks = new ArrayList<Task>();
     private ArrayList<Column> columnList = new ArrayList<Column>();
     private ArrayList<String> columnListTitle = new ArrayList<>();          // Not in UML - Just for Hard Coded Presentation
     private History history;
