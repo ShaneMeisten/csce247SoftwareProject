@@ -64,6 +64,7 @@ public class Task {
         this.asignee = asignee;
     }
 
+    //only used for testing, will not be used for the software as a whole
     public Task(){
         this.toDoList = new ArrayList<ToDo>();
     }

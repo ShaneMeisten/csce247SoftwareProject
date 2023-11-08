@@ -42,8 +42,8 @@ public class Column {
         
     }
 
-    public Column(String title){
-        this.title = title;
+    public Column(){
+        
     }
 
     /**

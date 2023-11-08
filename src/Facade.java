@@ -42,6 +42,7 @@ public class Facade {
     public Facade() {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
+        column = new Column();
     }
 
     public void createProject(String name) {
