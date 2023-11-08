@@ -10,11 +10,16 @@ import org.json.simple.parser.JSONParser;
 
 
 /**
+ * The Data Loader accesses the JSON Database files to read and load this saved information into working memory
  * @author Aidan Godwin
  */
 public class DataLoader extends DataConstants{
   public static UserCatalog userCatalog = UserCatalog.getInstance();
 
+  /**
+   * Parses through the user.json file to create User objects based on the information within the file. Adds these Users to a new catalog. 
+   * @return ArrayList of the Users located in the user.json databse file. 
+   */
   public static ArrayList<User> getUsers() {
     ArrayList<User> userCatalog = new ArrayList<User>();
 
@@ -34,6 +39,10 @@ public class DataLoader extends DataConstants{
     return null;
   }
 
+  /**
+   * Parses through the project.json file to create Project objects based on the information within the file. Adds these Projects to a new catalog. 
+   * @return ArrayList of the Projects located in the project.json databse file. 
+   */
   public static ArrayList<Project> getProjects() {
     ArrayList<Project> projects = new ArrayList<Project>();
 
@@ -54,6 +63,11 @@ public class DataLoader extends DataConstants{
     return null;
   }
 
+  /**
+   * Creates a User object based on the information collected from a given JSONObject of a user. 
+   * @param userJSON JSONObject holding the information of a given User
+   * @return A User Object based on the information collected from the userJSON JSONObject. 
+   */
   private static User toUser(JSONObject userJSON) {
     UUID id = UUID.fromString((String)userJSON.get(USER_ID));
     String name = (String)userJSON.get(USER_NAME);
@@ -87,7 +101,11 @@ public class DataLoader extends DataConstants{
     return user;
   }
 
-
+  /**
+   * Creates a Project object based on the information collected from a given JSONObject of a project. 
+   * @param projectJSON JSONObject holding the information of a given Project
+   * @return A Project Object based on the information collected from the projectJSON JSONObject. 
+   */
   private static Project toProject(JSONObject projectJSON) {
     UUID projectId = UUID.fromString((String)projectJSON.get(PROJECT_ID));
     String name = (String)projectJSON.get(PROJECT_NAME);
@@ -117,29 +135,7 @@ public class DataLoader extends DataConstants{
     JSONArray columnListJSON = (JSONArray)projectJSON.get(PROJECT_COLUMNS);
     for (Object c : columnListJSON) {
       JSONObject columnJSON = (JSONObject)c;
-      UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
-      String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
-      double columnWeight = Double.parseDouble(columnJSON.get(COLUMN_WEIGHT).toString());
-      boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
-      
-      // Date implementation
-      double columnCompletionTime = Double.parseDouble(columnJSON.get(COLUMN_COMPLETION_TIME).toString());
-      String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
-      Date columnCreatedTime = new Date(columnCreatedTimeString);
-
-      UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
-      User author = userCatalog.getUser(authorId);
-      
-      // Column Tasks
-      ArrayList<Task> columnTasks = new ArrayList<Task>();
-      JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
-      for (Object t : columnTasksJSON) {
-        JSONObject columnTaskJSON = (JSONObject)t;
-        Task columnTask = toTask(columnTaskJSON);
-        columnTasks.add(columnTask);
-      }
-
-      Column column = new Column(columnId, columnTitle, columnWeight, columnStatus, columnCompletionTime, columnCreatedTime, author, columnTasks);
+      Column column = toColumn(columnJSON);
       columnList.add(column);
     }
 
@@ -160,6 +156,11 @@ public class DataLoader extends DataConstants{
     return project;
   }
 
+  /**
+   * Takes one piece of the historyJSON and converts its information into an Update object. 
+   * @param historyJSON A JSONObject holding the information to be placed into the new Update object
+   * @return The created Update object based on the given information. 
+   */
   private static Update toUpdate(JSONObject historyJSON){
     UUID historyId = UUID.fromString((String)historyJSON.get(UPDATE_ID));
     String timeStampString = (String)historyJSON.get(UPDATE_TIMESTAMP);
@@ -212,6 +213,33 @@ public class DataLoader extends DataConstants{
 
     Task task = new Task(taskId, taskTitle, taskDescription, taskDueDate, taskWeight, categories, commentThread, todoList, taskStatus, completionTime, assignedUser, author);
     return task;
+  }
+
+  private static Column toColumn(JSONObject columnJSON) {
+    UUID columnId = UUID.fromString((String)columnJSON.get(COLUMN_ID));
+    String columnTitle = (String)columnJSON.get(COLUMN_TITLE);
+    double columnWeight = Double.parseDouble(columnJSON.get(COLUMN_WEIGHT).toString());
+    boolean columnStatus = (boolean)columnJSON.get(COLUMN_STATUS);
+      
+    // Date implementation
+    double columnCompletionTime = Double.parseDouble(columnJSON.get(COLUMN_COMPLETION_TIME).toString());
+    String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
+    Date columnCreatedTime = new Date(columnCreatedTimeString);
+
+    UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
+    User author = userCatalog.getUser(authorId);
+      
+    // Column Tasks
+    ArrayList<Task> columnTasks = new ArrayList<Task>();
+    JSONArray columnTasksJSON = (JSONArray)columnJSON.get(COLUMN_TASKS);
+    for (Object t : columnTasksJSON) {
+      JSONObject columnTaskJSON = (JSONObject)t;
+      Task columnTask = toTask(columnTaskJSON);
+      columnTasks.add(columnTask);
+    }
+
+    Column column = new Column(columnId, columnTitle, columnWeight, columnStatus, columnCompletionTime, columnCreatedTime, author, columnTasks);
+    return column;
   }
 
   private static ToDo toToDo(JSONObject todoJSON) {
