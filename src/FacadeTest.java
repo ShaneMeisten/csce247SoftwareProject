@@ -10,4 +10,10 @@ public class FacadeTest {
         Boolean bool = facade.addTaskToTaskList(task);
         assertEquals(true, bool);
     }
+    @Test
+    public void addColumnToCurrentProject(){
+        Facade facade = new Facade();
+        Boolean bool = facade.addColumnToCurrentProject("title");
+        assertEquals(true, bool); 
+    } 
 }

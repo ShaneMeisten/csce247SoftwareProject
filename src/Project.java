@@ -33,9 +33,9 @@ public class Project {
     }
 
 
-    //@author Cameron Reyes, please add generic Project method then get rid of this. 
-    public Project(String projectName) {
-        this.id = UUID.randomUUID();
+    // This is used purely for testing, will not be used in the final product
+    public Project() {
+    
     }
 
     public void addHistory(UUID userUUID, UUID changedID, String changeLog){
