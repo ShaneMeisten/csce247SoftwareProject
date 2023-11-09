@@ -114,13 +114,40 @@ public class TestcasesFacade {
         assertFalse(facade.RemoveProject(0));
     }
 
-    /*
-     * @author Cameron Reyes
-     * 
-     * Remaining not implemented:
-     *  seeUsersInCurrentProject
-     *  removeUserFromCurrentProject
-     *  addUserToCurrentProject
-     */
+    @Test 
+    void removeOutOfBoundsFromCurrentProject() {
+        facade.login(zoe.getUsername(), zoe.getPassword());
+        facade.InviteUserToProject(zoe.getUUID(), facade.getProject(0).getUUID());
+        facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
+        assertFalse(facade.removeUserFromCurrentProject(5));
+    }
+
+    @Test 
+    void removeUserFromCurrentProject() {
+        facade.login(zoe.getUsername(), zoe.getPassword());
+        facade.InviteUserToProject(zoe.getUUID(), facade.getProject(0).getUUID());
+        facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
+        assertTrue(facade.removeUserFromCurrentProject(0));
+    }
+
+    @Test 
+    void addUserToCurrentProject() {
+        facade.login(zoe.getUsername(), zoe.getPassword());
+        facade.InviteUserToProject(zoe.getUUID(), facade.getProject(0).getUUID());
+        facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
+        assertTrue(facade.addUserToCurrentProject(1));
+    }
+
+    @Test 
+    void addUserToCurrentProjectOutOfBounds() {
+        facade.login(zoe.getUsername(), zoe.getPassword());
+        facade.InviteUserToProject(zoe.getUUID(), facade.getProject(0).getUUID());
+        facade.AcceptInvite(0);
+        facade.setCurrentProject(0);
+        assertFalse(facade.addUserToCurrentProject(100));
+    }
 
 }
