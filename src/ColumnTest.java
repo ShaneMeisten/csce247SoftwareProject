@@ -40,9 +40,22 @@ public class ColumnTest {
     @Test
     public void TestViewTask(){
         Task task = new Task("title", "this is a title", "Joe Random");
+        Task task2 = new Task("title2", "this is a title a second time", "Joe Random a second timne");
         Column column = new Column("title");
         column.addTask(task);
+        column.addTask(task2);
         Task Task = column.viewTask(task);
         assertEquals(task,Task);
+    }
+
+    @Test
+    public void TestViewTask2(){
+        Task task = new Task("title", "this is a title", "Joe Random");
+        Task task2 = new Task("title2", "this is a title a second time", "Joe Random a second timne");
+        Column column = new Column("title");
+        column.addTask(task);
+        column.addTask(task2);
+        Task Task = column.viewTask(task2);
+        assertEquals(task2,Task);
     }
 }
