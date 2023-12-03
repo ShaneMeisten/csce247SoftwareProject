@@ -1,4 +1,7 @@
-import java.util.*;
+package Code;
+
+import java.util.Date;
+import java.util.UUID;
 
 /*
  * Stores the content of changes for History

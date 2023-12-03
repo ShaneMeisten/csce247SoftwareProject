@@ -1,6 +1,9 @@
+package Code;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.io.*;
 
 public class Facade {
     private ProjectCatalog projectCatalog;
@@ -76,13 +79,15 @@ public class Facade {
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
         if (currentUser.getCurrentProjects().size() == 0) return null;
-        return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
+        return null;
+        //return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
     }
 
     public ArrayList<Project> getUserInvitedProjects() {
         if (currentUser == null) return null;
         if (currentUser.getInvitedProjects().size() == 0) return null;
-        return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
+        return null;
+        //return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
     }
 
     public boolean AcceptInvite(int invite) {
@@ -108,7 +113,7 @@ public class Facade {
     public boolean setCurrentProject(int projectNumber) { 
         if(currentUser == null) return false;
         if(projectNumber >= 0 && projectNumber <= currentUser.getCurrentProjects().size()){
-            currentProject  = projectCatalog.getProject(currentUser.getCurrentProjects().get(projectNumber));
+            //currentProject  = projectCatalog.getProject(currentUser.getCurrentProjects().get(projectNumber));
             return true;
         }
         return false;

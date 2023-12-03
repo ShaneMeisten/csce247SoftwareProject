@@ -1,4 +1,8 @@
-import java.util.*;
+package Code;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 /*
  * Allows for users to communicate on Tasks

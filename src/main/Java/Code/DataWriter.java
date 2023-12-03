@@ -1,9 +1,12 @@
+package Code;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * The Data Writer accesses the JSON Database files to write information from working memory into a saved file. 
