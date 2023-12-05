@@ -1,8 +1,5 @@
 package Code;
-<<<<<<< HEAD:src/Code/ProjectCatalog.java
-=======
 
->>>>>>> c0f85a63d929d6468f00aa15753f2334bfad43ba:src/main/Java/Code/ProjectCatalog.java
 import java.util.ArrayList;
 import java.util.UUID;
 

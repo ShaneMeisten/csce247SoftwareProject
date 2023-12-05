@@ -1,12 +1,4 @@
 package Code;
-<<<<<<< HEAD:src/Code/DataLoader.java
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-import java.util.Date;
-=======
->>>>>>> c0f85a63d929d6468f00aa15753f2334bfad43ba:src/main/Java/Code/DataLoader.java
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
