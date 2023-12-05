@@ -5,6 +5,10 @@
         "workingDirectory": "${workspaceFolder}"
 
     },
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.sourcePaths": [
+        "src",
+        "project/src/main/java/project"
+    ]
 
 }

@@ -1,7 +1,11 @@
 package Code;
+<<<<<<< HEAD:src/Code/History.java
+import java.util.*;
+=======
 
 import java.util.ArrayList;
 import java.util.UUID;
+>>>>>>> c0f85a63d929d6468f00aa15753f2334bfad43ba:src/main/Java/Code/History.java
 /*
  * Allows projects to record the changes throughout time
  * 
