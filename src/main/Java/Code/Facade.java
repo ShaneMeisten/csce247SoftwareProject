@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Facade {
+
+    private static Facade facade;
+
     private ProjectCatalog projectCatalog;
     private UserCatalog userCatalog;
     private Project currentProject;
@@ -42,11 +45,13 @@ public class Facade {
      * 
      */
 
-    public Facade() {
+    private Facade() {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
-        column = new Column("title");
-        currentProject = new Project();
+    }
+    public static Facade getInstance(){
+        if (facade == null) facade = new Facade();
+        return facade;
     }
 
     public void createProject(String name) {

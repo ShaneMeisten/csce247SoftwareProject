@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Implement Project methods in loadData
  * When user exits a Project, it brings them to UserHomePage
  */
-
+/*
 public class TerminalUI {
     Facade facade = new Facade();
     Scanner scanner = new Scanner(System.in);
@@ -30,6 +30,7 @@ public class TerminalUI {
      *  Air Computers
      * 
      */
+/*
 
     public void loadData() {
         User AtticusM = new User("Atticus Madden", "Atticus Madden", "Madden123", "111-111-1111", "AtticusM@gmail.com");
@@ -68,7 +69,7 @@ public class TerminalUI {
      * Allows the user to login, create account, or exit the program
      * 
      */
-
+/*
     public void login() {
         while(true) {
             System.out.println("Welcome\n(1)Login\n(2)Create Account\n(3)Quit");
@@ -109,7 +110,7 @@ public class TerminalUI {
     /*
      * Home page for the user to see and access current/invited projects
      */
-
+/*
     public void UserHomePage() {
         User currentUser = facade.getCurrentUser();
         System.out.println("Welcome " + currentUser.getName());
@@ -158,7 +159,7 @@ public class TerminalUI {
     /*
      * Allows the ability to see the Project and it's columns and task
      */
-
+/*
     public void UserProjectPage() {
         Project currProject = facade.getCurrentProject();
         while (true) {
@@ -199,6 +200,7 @@ public class TerminalUI {
                  * Implement Method to save to file
                  * 
                  */
+/*
             }
             else if (command.toLowerCase().equals("c")) {
                 counter = 0;
@@ -284,5 +286,5 @@ public class TerminalUI {
     TerminalUI ui = new TerminalUI();
     }
 }
-
+*/
 

@@ -8,38 +8,41 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.PrimaryController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="1080.0" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00ff37" height="982.0" layoutX="540.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="856.0" />
-      <Button layoutX="858.0" layoutY="741.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="284.0" text="Confirm" />
-      <Label layoutX="828.0" layoutY="138.0" text="Login">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#997ba6" height="1080.0" stroke="BLACK" strokeType="INSIDE" width="1920.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfb8d9" height="980.0" layoutX="520.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="880.0" />
+      <Button layoutX="810.0" layoutY="700.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="Confirm" onAction="#switchToMain">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="760.0" layoutY="125.0" prefWidth="400.0" text="Login" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="120.0" />
          </font>
       </Label>
-      <Label layoutX="703.0" layoutY="486.0" text="Password">
+      <Label layoutX="656.0" layoutY="500.0" text="Password" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <TextField layoutX="701.0" layoutY="543.0" prefHeight="73.0" prefWidth="613.0" promptText="Password">
+      <TextField fx:id="txt_password" layoutX="655.0" layoutY="550.0" prefHeight="76.0" prefWidth="610.0" promptText="Password">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </TextField>
-      <Label layoutX="708.0" layoutY="321.0" text="Username">
+      <Label layoutX="655.0" layoutY="325.0" prefWidth="176.0" text="Username" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <TextField layoutX="706.0" layoutY="384.0" prefHeight="73.0" prefWidth="613.0" promptText="Username">
+      <TextField fx:id="txt_username" layoutX="655.0" layoutY="375.0" prefHeight="76.0" prefWidth="610.0" promptText="Username">
          <font>
             <Font name="Arial" size="36.0" />
          </font>
       </TextField>
-      <Hyperlink layoutX="697.0" layoutY="895.0" text="Do not have an account? Click here">
+      <Hyperlink layoutX="749.0" layoutY="875.0" prefWidth="422.0" text="Do not have an account? Click here" textFill="#f2a663" onAction="#switchToCreate">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font>
