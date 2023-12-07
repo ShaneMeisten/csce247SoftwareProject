@@ -58,7 +58,7 @@
                 <Font name="Arial Bold" size="25.0"/>
             </font>
         </Label>
-        <TextField fx:id="txt_Username" layoutX="656.0" layoutY="750.0" prefHeight="38.0" prefWidth="610.0" promptText="Username">
+        <TextField fx:id="txt_username" layoutX="656.0" layoutY="750.0" prefHeight="38.0" prefWidth="610.0" promptText="Username">
             <font>
                 <Font name ="Arial" size="25.0"/>
             </font>
