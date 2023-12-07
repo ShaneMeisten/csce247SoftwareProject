@@ -14,7 +14,6 @@ public class PrimaryController {
 
     @FXML
     private void switchToMain() throws IOException {
-
         //Login ability
         String username = txt_username.getText();
         String password = txt_password.getText();
@@ -29,7 +28,7 @@ public class PrimaryController {
             return;
         }
         if(facade.login(username,password)) {
-            //App.setRoot("secondary");
+            App.setRoot("projectPage");
         }
         else {
             //Add error message
