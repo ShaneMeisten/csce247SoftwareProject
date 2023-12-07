@@ -48,6 +48,7 @@ public class Facade {
     private Facade() {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
+        //DataLoader dataLoader= new DataLoader();
     }
     public static Facade getInstance(){
         if (facade == null) facade = new Facade();
@@ -115,13 +116,10 @@ public class Facade {
         return true;
     }
 
-    public boolean setCurrentProject(int projectNumber) { 
+    public boolean setCurrentProject(UUID projectID) {
         if(currentUser == null) return false;
-        if(projectNumber >= 0 && projectNumber <= currentUser.getCurrentProjects().size()){
-            //currentProject  = projectCatalog.getProject(currentUser.getCurrentProjects().get(projectNumber));
-            return true;
-        }
-        return false;
+        currentProject  = projectCatalog.getProject(projectID);
+        return true;
     }
 
     public boolean addCurrentUserPointsToCurrentProject(int points) {
@@ -138,17 +136,25 @@ public class Facade {
 
     public ArrayList<User> seeUsersInCurrentProject() {
         if(currentUser == null || currentProject == null) return null;
+        ArrayList<User> unorganized = userCatalog.getUsersInProjectUUID(currentProject.getUUID());
+
         return userCatalog.getUsersInProjectUUID(currentProject.getUUID());
     }
 
-    public boolean removeUserFromCurrentProject (int user) {
+    public boolean removeUserFromCurrentProject (String username) {
         if(currentUser == null || currentProject == null) return false;
-        if(user < 0 || user >= seeUsersInCurrentProject().size()) return false;
-        User toRemove = seeUsersInCurrentProject().get(user);
-        String changelog = currentUser.getUsername() + "has removed " + toRemove.getUsername()
-        + "[" + toRemove.getUUID() + "] from the project: " + currentProject.getName();
-        currentProject.addHistory(currentUser.getUUID(), currentProject.getUUID(), changelog);
-        return userCatalog.removeUser(currentUser, toRemove.getUUID());
+        for (User toRemove: seeUsersInCurrentProject()) {
+            if (toRemove.checkUsername(username)) {
+                if (userCatalog.removeUser(currentUser, toRemove.getUUID())) {
+                    String changelog = currentUser.getUsername() + "has removed " + toRemove.getUsername()
+                            + "[" + toRemove.getUUID() + "] from the project: " + currentProject.getName();
+                    currentProject.addHistory(currentUser.getUUID(), currentProject.getUUID(), changelog);
+                    return true;
+                }
+                return  false;
+            }
+        }
+        return  false;
     }
 
     public ArrayList<User> getLeaderBoard() {
@@ -157,14 +163,30 @@ public class Facade {
     }
 
     //Either user has pending invite or not invited
-    public boolean addUserToCurrentProject(int user) {
+    public boolean addUserToCurrentProject(String username) {
         if(currentProject == null || currentUser == null) return false;
-        if(user < 0 || user >= userCatalog.getUsers().size()) return false;
-        return userCatalog.inviteUserToProject(userCatalog.getUsers().get(user).getUUID(), currentProject.getUUID());
+        for (User user: seeUsersInCurrentProject()) {
+            if (user.checkUsername(username)) {
+                return userCatalog.inviteUserToProject(user.getUUID(), currentProject.getUUID());
+            }
+        }
+        return false;
     }
 
     public void InviteUserToProject(UUID user, UUID project) {
         userCatalog.inviteUserToProject(user, project);
+    }
+
+    public User getUser(String username) {
+        for(User user: userCatalog.getUsers()) {
+            if (user.checkUsername(username))
+                return user;
+        }
+        return  null;
+    }
+
+    public History getCurrentProjectHistory() {
+        return  currentProject.getHistory();
     }
 
     public boolean RemovePointsFromUserInCurrentProject(int user, int points) {

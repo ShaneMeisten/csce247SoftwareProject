@@ -45,7 +45,7 @@ public class ProjectCatalog {
 
     public Project getProject(UUID ProjectUUID){
         for (Project project : projects) {
-            if (project.getUUID().equals(ProjectUUID)) {
+            if (project.getUUID().compareTo(ProjectUUID) == 0) {
                 return project;
             }
         }
