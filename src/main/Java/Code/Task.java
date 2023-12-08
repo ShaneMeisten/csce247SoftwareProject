@@ -24,7 +24,7 @@ public class Task {
     private double completionTime;
     private User assignedUser;
     private User author;
-    private String asignee;
+    private String assignee;
     private ArrayList<Comment> comment = new ArrayList<Comment>();
 
     /**
@@ -60,10 +60,10 @@ public class Task {
         this.assignedUser = assignedUser;
         this.author = author;
         }
-    public Task(String title, String description, String asignee){
+    public Task(String title, double weight, double completionTime,String categories, String assignee,Date dueDate ,String description){
         this.title = title;
         this.description = description;
-        this.asignee = asignee;
+        this.assignee = assignee;
     }
 
     //only used for testing, will not be used for the software as a whole
@@ -122,8 +122,8 @@ public class Task {
         return this.author;
     }
     
-    public String getAsignee(){
-        return this.asignee;
+    public String getAssignee(){
+        return this.assignee;
     }
 
     public void setWeight(double weight){
@@ -146,8 +146,25 @@ public class Task {
         }
     }
 
+    public void setCategories(String categories){
+        String temp = "";
+        int count = 0;
+        while(true){
+           if(categories.contentEquals(" ")){
+                break;
+           }
+           temp = categories.substring(count, categories.indexOf(','));
+           if(temp.contentEquals(" "))
+               break;
+           else
+               this.categories.add(temp);
+           count = temp.length() + 2;
+
+        }
+    }
+
     public void setAssignee(String asignee){
-        this.asignee = asignee;
+        this.assignee = asignee;
     }
 
     /**

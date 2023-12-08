@@ -84,10 +84,12 @@
                 <Font name="Arial Bold" size="25.0"/>
             </font>
         </Label>
-        <TextField fx:id="txt_firstName" layoutX="1100.0" layoutY="625.0" prefHeight="125.0" prefWidth="460.0" promptText="Description">
+        <TextField fx:id="txt_description" layoutX="1100.0" layoutY="625.0" prefHeight="125.0" prefWidth="460.0" promptText="Description">
             <font>
                 <Font name ="Arial" size="25.0"/>
             </font>
         </TextField>
+        <Button layoutX="1400.0" layoutY="725.0" prefHeight="50.0" prefWidth="150" text="Deny" onAction="#switchBack">
+        </Button>
     </children>
 </AnchorPane>
