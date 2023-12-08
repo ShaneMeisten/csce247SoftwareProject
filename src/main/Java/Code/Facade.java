@@ -14,6 +14,11 @@ public class Facade {
     private Project currentProject;
     private User currentUser;
     private Column column;
+    private Column currentColumn;
+
+    private Task currentTask;
+
+
 
     /*
      * Current Methods:
@@ -59,11 +64,20 @@ public class Facade {
         return facade;
     }
 
+
     public void createProject(String name) {
         projectCatalog.addProject(name);
     }
 
 
+    public void setCurrentTask(Task task) {
+
+        currentTask = currentColumn.viewTask(task);
+    }
+
+    public Task getCurrentTask() {
+        return  currentTask;
+    }
     public void printCurrentProject(String filename) {
          try {
             FileWriter writer = new FileWriter(filename);
@@ -238,6 +252,20 @@ public class Facade {
             return true;
         }
         return false;
+    }
+
+    public boolean setCurrentColumn(String columnName) {
+        for(Column column: currentProject.viewColumns()) {
+            if (column.getTitle().equals(columnName)) {
+                currentColumn = column;
+                return  true;
+            }
+        }
+        return false;
+    }
+
+    public Column getCurrentColumn() {
+        return  currentColumn;
     }
 
     public boolean addTaskToTaskList(Task task){
