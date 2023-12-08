@@ -60,10 +60,11 @@ public class Task {
         this.assignedUser = assignedUser;
         this.author = author;
         }
-    public Task(String title, String description, String asignee){
+    public Task(String title, String description, String asignee, User Author){
         this.title = title;
         this.description = description;
         this.asignee = asignee;
+        this.author = Author;
     }
 
     //only used for testing, will not be used for the software as a whole
@@ -196,6 +197,14 @@ public class Task {
     
     public void addComment(String description, String name, UUID id) {
         this.comment.add(new Comment (id, name, description));
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public ArrayList<Comment> getComment() {

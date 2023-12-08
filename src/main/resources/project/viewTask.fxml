@@ -13,26 +13,25 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderplane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.viewTaskController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Back" />
+          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#exitThis" text="Back" />
         </items>
       </ToolBar>
    </top>
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <ListView fx:id="taskListView" prefHeight="277.0" prefWidth="199.0" BorderPane.alignment="CENTER" />
          </center>
          <bottom>
             <Pane prefHeight="83.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="19.0" layoutY="7.0" />
-                  <Button layoutX="22.0" layoutY="43.0" mnemonicParsing="false" text="Search" />
-                  <Button layoutX="87.0" layoutY="43.0" mnemonicParsing="false" text="Add Task" />
+                  <TextField fx:id="tf_search" layoutX="19.0" layoutY="7.0" />
+                  <Button layoutX="22.0" layoutY="43.0" mnemonicParsing="false" onAction="#searchItem" text="Search" />
+                  <Button fx:id="COOL" layoutX="87.0" layoutY="43.0" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
                </children>
             </Pane>
          </bottom>
@@ -40,60 +39,67 @@
    </left>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <VBox prefHeight="89.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="400.0" text="Task Name" textAlignment="CENTER">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="400.0" text="Viewing task for Column Name" />
-               </children>
-            </VBox>
-         </top>
          <left>
-            <BorderPane prefHeight="271.0" prefWidth="185.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="271.0" prefWidth="153.0" BorderPane.alignment="CENTER">
                <center>
-                  <TextFlow prefHeight="175.0" prefWidth="178.0" BorderPane.alignment="CENTER">
+                  <TextFlow prefHeight="167.0" prefWidth="130.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AAAAAAAAAA" />
+                        <Text fx:id="txt_description" strokeType="OUTSIDE" strokeWidth="0.0" text="AAAAAAAAAA" />
                      </children>
                   </TextFlow>
                </center>
                <top>
-                  <Label text="   Description:" BorderPane.alignment="TOP_LEFT" />
+                  <Label text="  Description:" BorderPane.alignment="TOP_LEFT" />
                </top>
                <left>
                   <Pane prefHeight="254.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
                </left>
-               <bottom>
-                  <VBox prefHeight="82.0" prefWidth="185.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label prefHeight="38.0" prefWidth="184.0" text="Asignee: username" />
-                     </children>
-                  </VBox>
-               </bottom>
             </BorderPane>
          </left>
          <right>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="271.0" prefWidth="249.0" BorderPane.alignment="CENTER">
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                  <ListView fx:id="commentsListView" prefHeight="169.0" prefWidth="238.0" BorderPane.alignment="CENTER" />
                </center>
                <bottom>
                   <Pane prefHeight="85.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="67.0" layoutY="58.0" mnemonicParsing="false" text="Send" />
-                        <TextArea layoutX="1.0" layoutY="3.0" prefHeight="52.0" prefWidth="199.0" />
+                        <Button layoutX="192.0" layoutY="59.0" mnemonicParsing="false" onAction="#AddComment" text="Send" />
+                        <TextArea fx:id="tf_comment" layoutX="1.0" layoutY="3.0" prefHeight="52.0" prefWidth="242.0" />
+                        <Button layoutX="144.0" layoutY="59.0" mnemonicParsing="false" onAction="#editPop" text="Edit" />
+                        <Button layoutX="73.0" layoutY="59.0" mnemonicParsing="false" onAction="#removeTask" text="Remove" />
                      </children>
                   </Pane>
                </bottom>
                <top>
-                  <Label text="   Comments:" BorderPane.alignment="CENTER_LEFT" />
+                  <Label text="Comments:" BorderPane.alignment="CENTER_LEFT" />
                </top>
+               <right>
+                  <Pane prefHeight="169.0" prefWidth="6.0" BorderPane.alignment="CENTER" />
+               </right>
             </BorderPane>
          </right>
+         <top>
+            <BorderPane prefHeight="74.0" prefWidth="402.0" BorderPane.alignment="CENTER">
+               <left>
+                  <Pane prefHeight="81.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="lbl_taskName" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="400.0" text="Task Name" textAlignment="CENTER">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbl_columnName" alignment="TOP_LEFT" prefHeight="30.0" prefWidth="400.0" text="Viewing task for Column Name" />
+                        <Label fx:id="lbl_asignee" prefHeight="33.0" prefWidth="184.0" text="Asignee: username" />
+                        <Label fx:id="lbl_author" prefHeight="33.0" prefWidth="184.0" text="Author : username" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </top>
       </BorderPane>
    </center>
 </BorderPane>
