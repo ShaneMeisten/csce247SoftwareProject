@@ -72,7 +72,7 @@ public class viewTaskController implements Initializable {
                 lbl_taskName.setText(currentTaskName);
                 lbl_columnName.setText("Viewing Task For " + facade.getCurrentColumn().getTitle());
                 txt_description.setText(currentTask.getDescription());
-                lbl_asignee.setText("Assignee: " + currentTask.getAsignee());
+                lbl_asignee.setText("Assignee: " + currentTask.getAssignee());
                 lbl_author.setText("Author: " + currentTask.getAuthor().getUsername());
                 loadTaskComments();
                 facade.setCurrentTask(currentTask);

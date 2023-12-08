@@ -45,6 +45,7 @@ public class CreateTaskController {
 
     }
 
+    @FXML
     private void switchBack() throws IOException{
         App.setRoot("projectPage");
     }

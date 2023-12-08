@@ -38,7 +38,7 @@ public class editTaskController implements Initializable {
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         tf_title.setText(currentTask.getTitle());
-        tf_ass.setText(currentTask.getAsignee());
+        tf_ass.setText(currentTask.getAssignee());
         ta_des.setText(currentTask.getDescription());
         lbl_title.setText("Currently Editing: " + currentTask.getTitle());
     }
