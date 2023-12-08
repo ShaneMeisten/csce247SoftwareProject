@@ -136,7 +136,7 @@ public class userPageController implements Initializable {
     }
 
     @FXML
-    private void removeUser()  throws IOException{
+    private void removeUser()  throws IOException {
         if(currentUser.isBlank()) return;
         if(facade.removeUserFromCurrentProject(currentUser)) {
             loadUsers();

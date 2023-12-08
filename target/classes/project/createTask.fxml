@@ -85,8 +85,14 @@
                 <Font name="Arial" size="25.0" />
             </font>
         </TextField>
+<<<<<<< HEAD
         <Button layoutX="1400.0" layoutY="725.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" text="Deny">
 
         </Button>
+=======
+        <Button layoutX="1405.0" layoutY="786.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" text="Deny">
+        </Button>
+      <Button layoutX="1121.0" layoutY="786.0" onAction="#switchToMain" prefHeight="50.0" prefWidth="150" text="Deny" />
+>>>>>>> 51833e6a4807e0f009f4a483dda5c0cebc4e2c2f
     </children>
 </AnchorPane>

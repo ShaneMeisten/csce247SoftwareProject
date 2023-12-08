@@ -60,17 +60,18 @@ public class Task {
         this.assignedUser = assignedUser;
         this.author = author;
         }
-
-    public Task(String title, double weight, double completionTime,String categories, String assignee,Date dueDate ,String description) {
+<<<<<<< HEAD
+    public Task(String title, double weight, double completionTime,String categories, String assignee,Date dueDate ,String description){
         this.title = title;
         this.description = description;
         this.assignee = assignee;
-    }
+=======
     public Task(String title, String description, String asignee, User Author){
         this.title = title;
         this.description = description;
-        this.assignee = asignee;
+        this.asignee = asignee;
         this.author = Author;
+>>>>>>> Cameron
     }
 
     //only used for testing, will not be used for the software as a whole
