@@ -2,7 +2,7 @@ package project;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Code.Facade;
 import Code.Task;
 import java.text.ParseException;
@@ -33,9 +33,9 @@ public class CreateTaskController {
         double compTime = Double.parseDouble(txt_compTime.getText());
         String categories = txt_categories.getText();
         String assignedUser = txt_assignedUser.getText();
-        String duedate = txt_dueDate.getText();
+        String Duedate = txt_dueDate.getText();
         String description = txt_description.getText();
-        Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(duedate);
+        Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(Duedate);
 
         Task task = new Task(title,weight,compTime,categories,assignedUser,dueDate,description);
         Facade facade = Facade.getInstance();
@@ -44,7 +44,7 @@ public class CreateTaskController {
 
 
     }
-
+    @FXML
     private void switchBack() throws IOException{
         App.setRoot("projectPage");
     }
