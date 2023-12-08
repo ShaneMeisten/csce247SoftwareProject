@@ -34,9 +34,9 @@
             <Font name="System Bold" size="50.0" />
          </font>
       </Text>
-      <TextField layoutX="728.0" layoutY="353.0" prefHeight="25.0" prefWidth="521.0" />
-      <Button layoutX="882.0" layoutY="398.0" mnemonicParsing="false" styleClass="unique" text="Deny" />
-      <Button layoutX="1039.0" layoutY="398.0" mnemonicParsing="false" styleClass="unique2" text="Confirm" />
+      <TextField fx:id="txt_columnname" layoutX="728.0" layoutY="353.0" prefHeight="25.0" prefWidth="521.0" />
+      <Button fx:id="btn_deny" onAction="buttonDeny" layoutX="882.0" layoutY="398.0" mnemonicParsing="false" styleClass="unique" text="Deny" />
+      <Button fx:id="btn_confirm" onAction="buttonClickedConfirm" layoutX="1039.0" layoutY="398.0" mnemonicParsing="false" styleClass="unique2" text="Confirm" />
       <Text fill="WHITE" layoutX="785.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Columns">
          <font>
             <Font name="System Bold" size="50.0" />

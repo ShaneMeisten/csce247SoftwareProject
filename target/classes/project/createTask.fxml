@@ -6,6 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<<<<<<< HEAD
+<?import java.net.*?>
+=======
+>>>>>>> 51833e6a4807e0f009f4a483dda5c0cebc4e2c2f
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.CreateTaskController">
     <children>
@@ -86,13 +90,22 @@
             </font>
         </TextField>
 <<<<<<< HEAD
-        <Button layoutX="1400.0" layoutY="725.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" text="Deny">
-
+        <Button layoutX="850.0" layoutY="900.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" styleClass="unique" text="Deny">
+            <font>
+                <Font name="Arial" size="25.0"/>
+            </font>
         </Button>
+        <Button layoutX="1050.0" layoutY="900.0" onAction="#switchToMain" prefHeight="50.0" prefWidth="150" styleClass="unique2" text="Confirm">
+            <font>
+                <Font name="Arial" size="25.0"/>
+            </font>
 =======
         <Button layoutX="1405.0" layoutY="786.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" text="Deny">
+>>>>>>> 51833e6a4807e0f009f4a483dda5c0cebc4e2c2f
         </Button>
       <Button layoutX="1121.0" layoutY="786.0" onAction="#switchToMain" prefHeight="50.0" prefWidth="150" text="Deny" />
->>>>>>> 51833e6a4807e0f009f4a483dda5c0cebc4e2c2f
     </children>
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
 </AnchorPane>

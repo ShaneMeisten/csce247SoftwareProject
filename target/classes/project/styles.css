@@ -1,0 +1,15 @@
+.unique{
+    -fx-background-color: #FF0000;
+    -fx-text-fill: FFFFFF;
+}
+.unique2{
+    -fx-background-color: #008000;
+    -fx-text-fill: FFFFFF;
+}
+.unique3{
+    -fx-border-color: transparent, #FFFFFF;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1,2);
+    -fx-border-radius: 0, 0;
+    -fx-border-inserts: 1 1 1 1, 0;
+}
