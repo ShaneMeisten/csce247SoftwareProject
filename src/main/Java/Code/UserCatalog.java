@@ -69,6 +69,14 @@ public class UserCatalog {
         return true;
     }
 
+    public static boolean addUsers(ArrayList<User> users) {
+        for (User user : users) {
+            if(getUserBool(user.getUUID()) && checkUsername(user.getUsername())) return false;
+            userList.add(user);
+        }
+        return true;
+    }
+
     /*
      * Invites a user to a project
      * 

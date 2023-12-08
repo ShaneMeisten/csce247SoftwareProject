@@ -22,6 +22,13 @@ public class ProjectCatalog {
         projects.add(project);
     }
 
+    public void addProjects(ArrayList<Project> projects) {
+        for(Project project : projects)
+            projects.add(project);
+    }
+
+    
+
     public void addProject(String ProjectName){
         UUID id = UUID.randomUUID();
         Layout layout = Layout.SCRUM; 
