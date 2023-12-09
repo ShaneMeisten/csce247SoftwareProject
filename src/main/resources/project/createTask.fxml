@@ -99,7 +99,6 @@
                 <Font name="Arial" size="25.0"/>
             </font>
 
-        <Button layoutX="1405.0" layoutY="786.0" onAction="#switchBack" prefHeight="50.0" prefWidth="150" text="Deny">
         </Button>
       <Button layoutX="1121.0" layoutY="786.0" onAction="#switchToMain" prefHeight="50.0" prefWidth="150" text="Deny" />
     </children>
