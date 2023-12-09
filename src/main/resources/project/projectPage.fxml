@@ -1,26 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.projectPageController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Button" />
+          <Button mnemonicParsing="false" onAction="#logout" text="Logout" />
         </items>
       </ToolBar>
    </top>
    <center>
-      <AnchorPane prefHeight="1040.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="344.0" layoutY="320.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="1040.0" layoutY="376.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" layoutX="1660.0" layoutY="504.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-         </children>
-      </AnchorPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <left>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <ListView fx:id="invitedList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="unique_txt" text="Invited Projects" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Text>
+               </top>
+            </BorderPane>
+         </left>
+         <right>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <ListView fx:id="currentList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+               <top>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="unique_txt" text="Current Projects" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Text>
+               </top>
+            </BorderPane>
+         </right>
+      </BorderPane>
    </center>
+   <left>
+      <Pane prefHeight="680.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <Pane prefHeight="10.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <Pane prefHeight="670.0" prefWidth="646.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadP" text="Load Project" />
+            <Button layoutX="27.0" layoutY="54.0" mnemonicParsing="false" onAction="#AcceptInvite" styleClass="unique_ac" text="Accept Project" />
+            <Button layoutX="136.0" layoutY="14.0" mnemonicParsing="false" onAction="#removeProject" styleClass="unique_rb" text="Remove Project" />
+            <Button layoutX="185.0" layoutY="136.0" mnemonicParsing="false" onAction="#CreateCol" text="&gt;" />
+            <TextField fx:id="tf_newC" layoutX="27.0" layoutY="136.0" styleClass="unique_tf" />
+            <Label layoutX="27.0" layoutY="109.0" text="Add New Column to Project" />
+            <Button layoutX="265.0" layoutY="14.0" mnemonicParsing="false" onAction="#openUsers" text="Users" />
+            <Button layoutX="186.0" layoutY="212.0" mnemonicParsing="false" onAction="#newPro" text="&gt;" />
+            <TextField fx:id="tf_newC2" layoutX="28.0" layoutY="212.0" styleClass="unique_tf" />
+            <Label layoutX="28.0" layoutY="185.0" text="Create New Project" />
+         </children>
+      </Pane>
+   </right>
+   <stylesheets>
+      <URL value="@projectpStyles.css" />
+   </stylesheets>
 </BorderPane>

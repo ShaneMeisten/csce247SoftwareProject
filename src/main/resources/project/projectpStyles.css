@@ -1,0 +1,68 @@
+.root {
+    -fx-background:  #997BA6;
+    -fx-base: #FFFFFF;
+    -fx-font-family: "Helvetica";
+    -fx-font-size 30pt;
+}
+
+.button {
+    -fx-background-color:  #F2A663;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Helvetica";
+    -fx-font-size 30pt;
+}
+
+.label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Helvetica";
+    -fx-font-size 30pt;
+}
+
+.unique_txt  {
+    -fx-background-color:  #F2A663;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Helvetica";
+    -fx-font-size 30pt;
+}
+
+.unique_tf {
+    -fx-background-color: #CFB8D9;
+    -fx-background: #CFB8D9;
+    -fx-text-fill: #FFFFFF;
+}
+
+.unique_rb {
+    -fx-background-color:  #733439;
+}
+
+.unique_ac {
+    -fx-background-color:  #9BBFA0;
+}
+
+.text-area {
+    -fx-background-color:  #CFB8D9;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area .content {
+ -fx-background-color:  #CFB8D9;
+}
+
+.text-field {
+-fx-background-color:  #CFB8D9;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-field .content {
+-fx-background-color:  #CFB8D9;
+    -fx-text-fill: #FFFFFF;
+}
+
+.list-view .list-cell:even {
+-fx-background-color:  #CFB8D9;
+    -fx-text-fill: #FFFFFF;
+}
+.list-view .list-cell:odd {
+-fx-background-color:  #997BA6;
+    -fx-text-fill: #FFFFFF;
+}

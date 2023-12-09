@@ -18,6 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class userPageController implements Initializable {
 
@@ -39,6 +41,9 @@ public class userPageController implements Initializable {
     @FXML
     private TextField txt_locate;
 
+    @FXML
+    private BorderPane bp;
+
 
 
 
@@ -53,7 +58,6 @@ public class userPageController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 
-        loadData();
         loadUsers();
 
 
@@ -96,44 +100,6 @@ public class userPageController implements Initializable {
         }
     }
 
-    public void loadData() {
-        User AtticusM = new User("Atticus Madden", "Atticus Madden", "Madden123", "111-111-1111", "AtticusM@gmail.com");
-        User Jeff = new User("Jeff Goldblum", "Jeff", "Goldblum123", "111-111-1112", "Jeff@gmail.com");
-        User AtticusF = new User("Atticus Finch", "Atticus Finch", "Finch123", "111-111-1113", "AtticusF@gmail.com");
-        facade.createUser(AtticusM);
-        facade.createUser(Jeff);
-        facade.createUser(AtticusF);
-
-        facade.createProject("Electric Missiles");
-        //In Electric Missles
-        //Create Doing Column
-        //Create task "Curve the metal to make a cylindrical shape" to the 'Doing' column.
-        //Create task "Make impossible burger possible"
-        facade.createProject("Soap Free Washers");
-        facade.createProject("Air Computers");
-
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(0).getUUID());
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(1).getUUID());
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(2).getUUID());
-        facade.InviteUserToProject(Jeff.getUUID(), facade.getProject(0).getUUID());
-        facade.InviteUserToProject(AtticusF.getUUID(), facade.getProject(0).getUUID());
-        facade.login("Atticus Madden", "Madden123");
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
-        facade.login("Jeff", "Goldblum123");
-        facade.AcceptInvite(0);
-        // Create exisiting Comment "Not cylindrical enough" - by Jeff for task  "Curve the metal to make a cylindrical shape"
-        facade.login("Atticus Finch", "Finch123");
-        //// Create exisiting Comment  "What's a cylinder" by Atticus Finch for task  "Curve the metal to make a cylindrical shape"
-        facade.AcceptInvite(0);
-
-        if (facade.login("Atticus Madden", "Madden123")) System.out.println("LOGGED ON");
-        else System.out.println("ERROR");
-
-        if (facade.setCurrentProject(facade.getProject(0).getUUID())) System.out.println("project fine");
-        else System.out.println("ERROR PROJECT");
-    }
 
     @FXML
     private void removeUser()  throws IOException {
@@ -160,6 +126,7 @@ public class userPageController implements Initializable {
 
     @FXML
     private void goBack()  throws IOException{
-        App.setRoot("projectPage");
+        Stage stage = (Stage) bp.getScene().getWindow();
+        stage.close();
     }
 }

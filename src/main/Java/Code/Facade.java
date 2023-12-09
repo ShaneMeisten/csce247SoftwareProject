@@ -55,12 +55,20 @@ public class Facade {
     private Facade() {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
+<<<<<<< HEAD
         loader = new DataLoader();
         writer = new DataWriter();
         ArrayList<User> loadedUsers = loader.getUsers();
         ArrayList<Project> loadedProjects = loader.getProjects();
         userCatalog.addUsers(loadedUsers);
         projectsCatalog.addProjects(loadedProjects);
+=======
+        DataLoader loader = new DataLoader();
+        //ArrayList<User> loadedUsers = loader.getUsers();
+        //ArrayList<Project> loadedProjects = loader.getProjects();
+        //userCatalog.addUsers(loadedUsers);
+        //projectCatalog.addProjects(loadedProjects);
+>>>>>>> 64d37d11756fb5f40be6f75b639019df0d803dbe
     }
     public static Facade getInstance(){
         if (facade == null) facade = new Facade();
@@ -71,6 +79,15 @@ public class Facade {
     public void createProject(String name) {
         projectCatalog.addProject(name);
     }
+
+    public void createProject(String name, boolean to) {
+        if(currentUser == null) return;
+        UUID id = UUID.randomUUID();
+        projectCatalog.addProject(name, id);
+        addUserToCurrentProject(currentUser.getUsername());
+        currentUser.AcceptInvite(id);
+    }
+
 
 
     public void setCurrentTask(Task task) {
@@ -106,20 +123,17 @@ public class Facade {
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
         if (currentUser.getCurrentProjects().size() == 0) return null;
-        return null;
-        //return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
+        return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjectsUUID());
     }
 
     public ArrayList<Project> getUserInvitedProjects() {
         if (currentUser == null) return null;
-        if (currentUser.getInvitedProjects().size() == 0) return null;
-        return null;
-        //return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
+        return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
     }
 
-    public boolean AcceptInvite(int invite) {
+    public boolean AcceptInvite(UUID projectUUID) {
         if (currentUser == null) return false;
-        currentUser.AcceptInvite(invite);
+        currentUser.AcceptInvite(projectUUID);
         return true;
     }
 
@@ -131,7 +145,7 @@ public class Facade {
     }
     */
 
-    public boolean RemoveProject(int invite) {
+    public boolean RemoveProject(UUID invite) {
         if (currentUser == null) return false;
         currentUser.RemoveProject(invite);
         return true;

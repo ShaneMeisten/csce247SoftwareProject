@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -29,9 +30,9 @@
          <bottom>
             <Pane prefHeight="83.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="tf_search" layoutX="19.0" layoutY="7.0" />
-                  <Button layoutX="22.0" layoutY="43.0" mnemonicParsing="false" onAction="#searchItem" text="Search" />
-                  <Button fx:id="COOL" layoutX="87.0" layoutY="43.0" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+                  <TextField fx:id="tf_search" layoutX="4.0" layoutY="7.0" prefHeight="25.0" prefWidth="196.0" />
+                  <Button layoutX="4.0" layoutY="43.0" mnemonicParsing="false" onAction="#searchItem" text="Search" />
+                  <Button fx:id="COOL" layoutX="68.0" layoutY="43.0" mnemonicParsing="false" onAction="#addTask" styleClass="unique_ac" text="Add Task" />
                </children>
             </Pane>
          </bottom>
@@ -44,7 +45,7 @@
                <center>
                   <TextFlow prefHeight="167.0" prefWidth="130.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text fx:id="txt_description" strokeType="OUTSIDE" strokeWidth="0.0" text="AAAAAAAAAA" />
+                        <Text fx:id="txt_description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="AAAAAAAAAA" />
                      </children>
                   </TextFlow>
                </center>
@@ -64,10 +65,10 @@
                <bottom>
                   <Pane prefHeight="85.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="192.0" layoutY="59.0" mnemonicParsing="false" onAction="#AddComment" text="Send" />
+                        <Button layoutX="192.0" layoutY="59.0" mnemonicParsing="false" onAction="#AddComment" styleClass="unique_ac" text="Send" />
                         <TextArea fx:id="tf_comment" layoutX="1.0" layoutY="3.0" prefHeight="52.0" prefWidth="242.0" />
                         <Button layoutX="144.0" layoutY="59.0" mnemonicParsing="false" onAction="#editPop" text="Edit" />
-                        <Button layoutX="73.0" layoutY="59.0" mnemonicParsing="false" onAction="#removeTask" text="Remove" />
+                        <Button layoutX="73.0" layoutY="59.0" mnemonicParsing="false" onAction="#removeTask" styleClass="unique_rb" text="Remove" />
                      </children>
                   </Pane>
                </bottom>
@@ -102,4 +103,7 @@
          </top>
       </BorderPane>
    </center>
+   <stylesheets>
+      <URL value="@projectpStyles.css" />
+   </stylesheets>
 </BorderPane>

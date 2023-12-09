@@ -66,11 +66,17 @@ public class Task {
         this.description = description;
         this.assignee = assignee;
     }
-    public Task(String title, String description, String asignee, User Author){
+    public Task(String title, String description, String asignee){
         this.title = title;
         this.description = description;
         this.assignee = asignee;
-        this.author = Author;
+    }
+
+    public Task(String title, String description, String asignee, User assignedUser){
+        this.title = title;
+        this.description = description;
+        this.assignee = asignee;
+        this.author = assignedUser;
     }
 
     //only used for testing, will not be used for the software as a whole

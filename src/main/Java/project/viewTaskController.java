@@ -52,7 +52,7 @@ public class viewTaskController implements Initializable {
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        loadData();
+        //loadData();
         loadTask();
     }
 
@@ -170,57 +170,5 @@ public class viewTaskController implements Initializable {
     }
 
 
-    public void loadData() {
-        User AtticusM = new User("Atticus Madden", "Atticus Madden", "Madden123", "111-111-1111", "AtticusM@gmail.com");
-        User Jeff = new User("Jeff Goldblum", "Jeff", "Goldblum123", "111-111-1112", "Jeff@gmail.com");
-        User AtticusF = new User("Atticus Finch", "Atticus Finch", "Finch123", "111-111-1113", "AtticusF@gmail.com");
-        facade.createUser(AtticusM);
-        facade.createUser(Jeff);
-        facade.createUser(AtticusF);
 
-        facade.createProject("Electric Missiles");
-        //In Electric Missles
-        //Create Doing Column
-        //Create task "Curve the metal to make a cylindrical shape" to the 'Doing' column.
-        //Create task "Make impossible burger possible"
-        facade.createProject("Soap Free Washers");
-        facade.createProject("Air Computers");
-
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(0).getUUID());
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(1).getUUID());
-        facade.InviteUserToProject(AtticusM.getUUID(), facade.getProject(2).getUUID());
-        facade.InviteUserToProject(Jeff.getUUID(), facade.getProject(0).getUUID());
-        facade.InviteUserToProject(AtticusF.getUUID(), facade.getProject(0).getUUID());
-        facade.login("Atticus Madden", "Madden123");
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
-        facade.login("Jeff", "Goldblum123");
-        facade.AcceptInvite(0);
-        facade.setCurrentProject(facade.getProject(0).getUUID());
-        facade.addColumnToCurrentProject("Doing");
-        Task newtask = new Task("Curve the metal to make a cylindrical shape", "none", "none", Jeff);
-        Task newtask2 = new Task("Make impossible burger possible", "none", "none", Jeff);
-        facade.getCurrentProject().getColumnList().get(0).addTask(newtask);
-        facade.getCurrentProject().getColumnList().get(0).addTask(newtask2);
-        facade.getCurrentProject().getColumnList().get(0).getTasks().get(0).addComment("Not cylindrical enough", "Jeff", Jeff.getUUID());
-        // Create exisiting Comment "Not cylindrical enough" - by Jeff for task  "Curve the metal to make a cylindrical shape"
-        facade.login("Atticus Finch", "Finch123");
-        facade.getCurrentProject().getColumnList().get(0).getTasks().get(0).addComment("What's a cylinder", "Atticus Finch", AtticusF.getUUID());
-        //// Create exisiting Comment  "What's a cylinder" by Atticus Finch for task  "Curve the metal to make a cylindrical shape"
-        facade.AcceptInvite(0);
-
-
-
-        if (facade.login("Atticus Madden", "Madden123")) System.out.println("LOGGED ON");
-        else System.out.println("ERROR");
-
-        if (facade.setCurrentProject(facade.getProject(0).getUUID())) System.out.println("project fine");
-        else System.out.println("ERROR PROJECT");
-        facade.setCurrentProject(facade.getProject(0).getUUID());
-        facade.setCurrentColumn("Doing");
-
-
-
-    }
 }
