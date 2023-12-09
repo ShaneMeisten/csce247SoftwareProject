@@ -54,10 +54,10 @@ public class Facade {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
         DataLoader loader = new DataLoader();
-        ArrayList<User> loadedUsers = loader.getUsers();
-        ArrayList<Project> loadedProjects = loader.getProjects();
-        userCatalog.addUsers(loadedUsers);
-        projectsCatalog.addProjects(loadedProjects);
+        //ArrayList<User> loadedUsers = loader.getUsers();
+        //ArrayList<Project> loadedProjects = loader.getProjects();
+        //userCatalog.addUsers(loadedUsers);
+        //projectCatalog.addProjects(loadedProjects);
     }
     public static Facade getInstance(){
         if (facade == null) facade = new Facade();
