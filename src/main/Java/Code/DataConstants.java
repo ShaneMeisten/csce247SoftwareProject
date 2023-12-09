@@ -4,7 +4,7 @@ package Code;
  * @author Aidan Godwin
  */
 public abstract class DataConstants {
-  protected static final String USER_FILE_NAME = "Json/user.json";
+  protected static final String USER_FILE_NAME = "src/main/Java/Json/user.json";
   protected static final String USER_NAME = "name";
   protected static final String USER_ID = "id";
   protected static final String USER_ROLE = "role";
@@ -19,7 +19,7 @@ public abstract class DataConstants {
   protected static final String USER_INVITED_PROJECTS = "invitedProjects";
   protected static final String USER_PROJECT_POINTS = "points";
 
-  protected static final String PROJECT_FILE_NAME = "Json/project.json";
+  protected static final String PROJECT_FILE_NAME = "src/main/Java/Json/project.json";
   protected static final String PROJECT_ID = "projectId";
   protected static final String PROJECT_NAME = "name";
   protected static final String PROJECT_TYPE = "type";

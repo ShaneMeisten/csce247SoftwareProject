@@ -137,6 +137,7 @@ public class projectPageController implements Initializable {
 
     @FXML
     private void logout() throws IOException{
+        facade.logout();
         System.exit(0);
     }
 

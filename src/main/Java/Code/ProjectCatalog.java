@@ -24,7 +24,7 @@ public class ProjectCatalog {
 
     public void addProjects(ArrayList<Project> projects) {
         for(Project project : projects)
-            projects.add(project);
+            this.projects.add(project);
     }
 
     

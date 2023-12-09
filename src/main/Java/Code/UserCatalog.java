@@ -70,6 +70,7 @@ public class UserCatalog {
     }
 
     public static boolean addUsers(ArrayList<User> users) {
+        if(users == null) return false;
         for (User user : users) {
             if(getUserBool(user.getUUID()) && checkUsername(user.getUsername())) return false;
             userList.add(user);

@@ -11,8 +11,7 @@ public class Facade {
 
     private DataLoader loader;
     private DataWriter writer;
-    private ProjectCatalog projectCatalog;
-    private UserCatalog userCatalog;
+
     private Project currentProject;
     private User currentUser;
     private Column column;
@@ -51,30 +50,36 @@ public class Facade {
      * 
      * 
      */
+    ProjectCatalog projectCatalog = ProjectCatalog.getInstance();
+    UserCatalog userCatalog = UserCatalog.getInstance();
 
     private Facade() {
-        projectCatalog = ProjectCatalog.getInstance();
-        userCatalog = UserCatalog.getInstance();
-<<<<<<< HEAD
+
         loader = new DataLoader();
         writer = new DataWriter();
+
         ArrayList<User> loadedUsers = loader.getUsers();
         ArrayList<Project> loadedProjects = loader.getProjects();
+        for(User user: loadedUsers) {
+            System.out.println(user.getUsername());
+            System.out.println(user.getPassword());
+            System.out.println();
+        }
         userCatalog.addUsers(loadedUsers);
-        projectsCatalog.addProjects(loadedProjects);
-=======
-        DataLoader loader = new DataLoader();
-        //ArrayList<User> loadedUsers = loader.getUsers();
-        //ArrayList<Project> loadedProjects = loader.getProjects();
-        //userCatalog.addUsers(loadedUsers);
-        //projectCatalog.addProjects(loadedProjects);
->>>>>>> 64d37d11756fb5f40be6f75b639019df0d803dbe
+        projectCatalog.addProjects(loadedProjects);
     }
     public static Facade getInstance(){
-        if (facade == null) facade = new Facade();
+        if (facade == null) {
+            facade = new Facade();
+        }
         return facade;
     }
 
+
+    public void logout() {
+        writer.saveProjects();
+        writer.saveUsers();
+    }
 
     public void createProject(String name) {
         projectCatalog.addProject(name);

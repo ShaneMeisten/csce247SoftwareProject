@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -153,39 +154,53 @@ public class DataWriter extends DataConstants{
    */
   private static JSONObject getTaskJSON(Task task) {
     JSONObject taskDetails = new JSONObject();
-    taskDetails.put(TASK_ID, task.getID().toString());
+    if (task.getID() == null)  taskDetails.put(TASK_ID, "");
+    else taskDetails.put(TASK_ID, task.getID().toString());
     taskDetails.put(TASK_TITLE, task.getTitle());
     taskDetails.put(TASK_DESCRIPTION, task.getDescription());
     taskDetails.put(TASK_WEIGHT, task.getWeight());
-    taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
+    if(task.getDueDate() == null) taskDetails.put(TASK_DUE_DATE, new Date());
+    else taskDetails.put(TASK_DUE_DATE, task.getDueDate().toString());
     taskDetails.put(TASK_STATUS, task.getStatus());
-    taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime());
-    taskDetails.put(TASK_AUTHOR, task.getAuthor().getUUID().toString());
-    taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getUUID().toString());
+    if(task.getDueDate() == null)taskDetails.put(TASK_COMPLETION_TIME, 0);
+    else taskDetails.put(TASK_COMPLETION_TIME, task.getCompletionTime());
+    if (task.getAuthor() == null)
+      taskDetails.put(TASK_AUTHOR, "none");
+    else
+      taskDetails.put(TASK_AUTHOR, task.getAuthor().getUUID().toString());
+    if(task.getAssignedUser() == null) taskDetails.put(TASK_ASSIGNED_USER, "");
+    else taskDetails.put(TASK_ASSIGNED_USER, task.getAssignedUser().getUUID().toString());
 
     // Categories
     JSONArray categoriesJSON = new JSONArray();
     ArrayList<String> categories = task.getCategories();
-    for (String category : categories) {
-      categoriesJSON.add(category);
+    if (!(categories == null)) {
+      for (String category : categories) {
+        categoriesJSON.add(category);
+      }
     }
-    taskDetails.put(TASK_CATEGORIES, categoriesJSON);
+    else
+      taskDetails.put(TASK_CATEGORIES, categoriesJSON);
 
     // ToDoList
     JSONArray todoListJSON = new JSONArray();
     ArrayList<ToDo> todoList = task.getToDoList();
-    for (ToDo todo : todoList) {
-      JSONObject todoJSON = getToDoJSON(todo);
-      todoListJSON.add(todoJSON);
+    if(todoList != null) {
+      for (ToDo todo : todoList) {
+        JSONObject todoJSON = getToDoJSON(todo);
+        todoListJSON.add(todoJSON);
+      }
     }
     taskDetails.put(TASK_TODO_LIST, todoListJSON);
 
     // Comments
     JSONArray commentsJSON = new JSONArray();
     ArrayList<Comment> comments = task.getCommentThread();
-    for (Comment comment : comments) {
-      JSONObject commentJSON = getCommentJSON(comment);
-      commentsJSON.add(commentJSON);
+    if (comments != null) {
+      for (Comment comment : comments) {
+        JSONObject commentJSON = getCommentJSON(comment);
+        commentsJSON.add(commentJSON);
+      }
     }
     taskDetails.put(TASK_COMMENT_THREAD, commentsJSON);
 
@@ -199,20 +214,26 @@ public class DataWriter extends DataConstants{
    */
   private static JSONObject getColumnJSON(Column column) {
     JSONObject columnDetails = new JSONObject();
-    columnDetails.put(COLUMN_ID, column.getUUID().toString());
+    if (column.getUUID() == null) columnDetails.put(COLUMN_ID, "");
+    else columnDetails.put(COLUMN_ID, column.getUUID().toString());
     columnDetails.put(COLUMN_TITLE, column.getTitle());
     columnDetails.put(COLUMN_WEIGHT, column.getWeight());
     columnDetails.put(COLUMN_STATUS, column.getStatus());
     columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
-    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
-    columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
+    if (column.getCreatedTime() == null) columnDetails.put(COLUMN_CREATED_TIME, "");
+    else columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
+    if (column.getAuthor() == null) columnDetails.put(COLUMN_AUTHOR, "");
+    else columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
 
     // Task List
     JSONArray tasksJSON = new JSONArray();
     ArrayList<Task> tasks = column.getTasks();
-    for (Task task : tasks) {
-      JSONObject taskJSON = getTaskJSON(task);
-      tasksJSON.add(taskJSON);
+    if (tasks != null) {
+
+      for (Task task : tasks) {
+        JSONObject taskJSON = getTaskJSON(task);
+        tasksJSON.add(taskJSON);
+      }
     }
     columnDetails.put(COLUMN_TASKS, tasksJSON);
 
