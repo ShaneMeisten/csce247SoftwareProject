@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Code.Facade;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class PrimaryController {
@@ -13,6 +14,9 @@ public class PrimaryController {
     private TextField txt_password;
 
     @FXML
+    private Label lb_e;
+
+    @FXML
     private void switchToMain() throws IOException {
         //Login ability
         String username = txt_username.getText();
@@ -20,18 +24,18 @@ public class PrimaryController {
         Facade facade = Facade.getInstance();
 
         if(username.length() < 8) {
-            //Add error message
+            lb_e.setText("Username must be 8 or more characters");
             return;
         }
         if(password.length() < 8) {
-            //Add error message
+            lb_e.setText("Password must be 8 or more characters");
             return;
         }
         if(facade.login(username,password)) {
             App.setRoot("projectPage");
         }
         else {
-            //Add error message
+            lb_e.setText("Incorrect Username or Password");
             return;
         }
 

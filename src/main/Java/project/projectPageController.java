@@ -63,6 +63,29 @@ public class projectPageController implements Initializable {
 
 
     }
+
+    @FXML
+    private void openUsers() throws IOException{
+        if(currentp == null) return;
+        System.out.println("LOADING");
+        facade.setCurrentProject(currentp);
+        for (Column column: facade.viewColumns()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("userPage.fxml"));
+                Parent root1 = (Parent) loader.load();
+                userPageController controller = loader.<userPageController>getController();
+                Stage stage = new Stage();
+                stage.setTitle("Users in : " + facade.getCurrentProject().getName());
+                stage.setScene(new Scene(root1));
+                stage.show();
+
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
     @FXML
     private void AcceptInvite() throws IOException{
         if(invite == null) return;
