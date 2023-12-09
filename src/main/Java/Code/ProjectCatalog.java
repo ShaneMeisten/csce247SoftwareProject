@@ -29,8 +29,7 @@ public class ProjectCatalog {
 
     
 
-    public void addProject(String ProjectName){
-        UUID id = UUID.randomUUID();
+    public void addProject(String ProjectName, UUID id){
         Layout layout = Layout.SCRUM; 
         ArrayList<Task> completedTasks = new ArrayList<>();
         ArrayList<Task> ongoingTasks = new ArrayList<>();
@@ -39,6 +38,18 @@ public class ProjectCatalog {
         String ProjectType = "";
         projects.add(new Project(id, ProjectName, ProjectType, layout, completedTasks, ongoingTasks, columnList, history));
     }
+    public void addProject(String ProjectName){
+        Layout layout = Layout.SCRUM;
+        UUID id = UUID.randomUUID();
+        ArrayList<Task> completedTasks = new ArrayList<>();
+        ArrayList<Task> ongoingTasks = new ArrayList<>();
+        ArrayList<Column> columnList = new ArrayList<>();
+        History history = new History();
+        String ProjectType = "";
+        projects.add(new Project(id, ProjectName, ProjectType, layout, completedTasks, ongoingTasks, columnList, history));
+    }
+
+
 
     public static Project removeProject(UUID ProjectUUID){
         Project remove = projectCatalog.getProject(ProjectUUID);

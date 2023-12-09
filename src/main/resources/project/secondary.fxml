@@ -74,18 +74,20 @@
                 <Font name ="Arial" size="25.0"/>
             </font>
         </TextField>
-        <Button layoutX="800.0" layoutY="950.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Deny" onAction="#switchToPrimary">
+        <Button layoutX="800.0" layoutY="950.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Deny" onAction="#switchToPrimary" styleClass="unique">
             <font>
                 <Font name ="Arial Bold" size="18.0"/>
             </font>
         </Button>
-        <Button layoutX="975.0" layoutY="950.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Confirm" onAction="#switchToMain">
+        <Button layoutX="975.0" layoutY="950.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Confirm" onAction="#switchToMain" styleClass="unique2">
             <font>
                 <Font name ="Arial Bold" size="18.0"/>
             </font>
         </Button>
     </children>
 
-
+    <stylesheets>
+        <URL value="@styles.css" />
+    </stylesheets>
 
  </AnchorPane>

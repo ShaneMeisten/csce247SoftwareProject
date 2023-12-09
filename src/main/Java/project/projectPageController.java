@@ -27,7 +27,7 @@ public class projectPageController implements Initializable {
     private UUID currentp, invite;
 
     @FXML
-    private TextField tf_newC;
+    private TextField tf_newC, tf_newC2;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         loadData();
@@ -62,6 +62,12 @@ public class projectPageController implements Initializable {
         });
 
 
+    }
+
+    @FXML
+    private void newPro() throws IOException{
+        facade.createProject(tf_newC2.getText(), true);
+        loadProjects();
     }
 
     @FXML

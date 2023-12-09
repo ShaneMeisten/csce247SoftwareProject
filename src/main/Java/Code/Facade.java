@@ -69,6 +69,15 @@ public class Facade {
         projectCatalog.addProject(name);
     }
 
+    public void createProject(String name, boolean to) {
+        if(currentUser == null) return;
+        UUID id = UUID.randomUUID();
+        projectCatalog.addProject(name, id);
+        addUserToCurrentProject(currentUser.getUsername());
+        currentUser.AcceptInvite(id);
+    }
+
+
 
     public void setCurrentTask(Task task) {
 

@@ -65,6 +65,9 @@
             <TextField fx:id="tf_newC" layoutX="27.0" layoutY="136.0" styleClass="unique_tf" />
             <Label layoutX="27.0" layoutY="109.0" text="Add New Column to Project" />
             <Button layoutX="265.0" layoutY="14.0" mnemonicParsing="false" onAction="#openUsers" text="Users" />
+            <Button layoutX="186.0" layoutY="212.0" mnemonicParsing="false" onAction="#newPro" text="&gt;" />
+            <TextField fx:id="tf_newC2" layoutX="28.0" layoutY="212.0" styleClass="unique_tf" />
+            <Label layoutX="28.0" layoutY="185.0" text="Create New Project" />
          </children>
       </Pane>
    </right>
