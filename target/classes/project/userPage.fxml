@@ -21,12 +21,12 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="txt_points" layoutX="14.0" layoutY="60.0" prefHeight="27.0" prefWidth="225.0" text="Points : 0">
+            <Label fx:id="txt_points" layoutX="14.0" layoutY="60.0" prefHeight="27.0" prefWidth="225.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="txt_username" layoutX="14.0" layoutY="26.0" prefHeight="27.0" prefWidth="225.0" text="Username">
+            <Label fx:id="txt_username" layoutX="14.0" layoutY="26.0" prefHeight="27.0" prefWidth="225.0" text="No User Selected">
                <font>
                   <Font size="18.0" />
                </font>

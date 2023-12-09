@@ -45,7 +45,7 @@
                <center>
                   <TextFlow prefHeight="167.0" prefWidth="130.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text fx:id="txt_description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="AAAAAAAAAA" />
+                        <Text fx:id="txt_description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </TextFlow>
                </center>
@@ -88,14 +88,14 @@
                <center>
                   <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="lbl_taskName" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="400.0" text="Task Name" textAlignment="CENTER">
+                        <Label fx:id="lbl_taskName" alignment="TOP_LEFT" prefHeight="45.0" prefWidth="400.0" text="Select a Task" textAlignment="CENTER">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbl_columnName" alignment="TOP_LEFT" prefHeight="30.0" prefWidth="400.0" text="Viewing task for Column Name" />
-                        <Label fx:id="lbl_asignee" prefHeight="33.0" prefWidth="184.0" text="Asignee: username" />
-                        <Label fx:id="lbl_author" prefHeight="33.0" prefWidth="184.0" text="Author : username" />
+                        <Label fx:id="lbl_columnName" alignment="TOP_LEFT" prefHeight="30.0" prefWidth="400.0" />
+                        <Label fx:id="lbl_asignee" prefHeight="33.0" prefWidth="184.0" />
+                        <Label fx:id="lbl_author" prefHeight="33.0" prefWidth="184.0" />
                      </children>
                   </VBox>
                </center>
