@@ -9,6 +9,8 @@ public class Facade {
 
     private static Facade facade;
 
+    private DataLoader loader;
+    private DataWriter writer;
     private ProjectCatalog projectCatalog;
     private UserCatalog userCatalog;
     private Project currentProject;
@@ -53,7 +55,8 @@ public class Facade {
     private Facade() {
         projectCatalog = ProjectCatalog.getInstance();
         userCatalog = UserCatalog.getInstance();
-        DataLoader loader = new DataLoader();
+        loader = new DataLoader();
+        writer = new DataWriter();
         ArrayList<User> loadedUsers = loader.getUsers();
         ArrayList<Project> loadedProjects = loader.getProjects();
         userCatalog.addUsers(loadedUsers);
