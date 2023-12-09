@@ -2,27 +2,27 @@
     -fx-background:  #997BA6;
     -fx-base: #FFFFFF;
     -fx-font-family: "Helvetica";
-    -fx-font-size 30pt;
+
 }
 
 .button {
     -fx-background-color:  #F2A663;
     -fx-text-fill: #FFFFFF;
     -fx-font-family: "Helvetica";
-    -fx-font-size 30pt;
+
 }
 
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-family: "Helvetica";
-    -fx-font-size 30pt;
+
 }
 
 .unique_txt  {
     -fx-background-color:  #F2A663;
     -fx-text-fill: #FFFFFF;
     -fx-font-family: "Helvetica";
-    -fx-font-size 30pt;
+
 }
 
 .unique_tf {

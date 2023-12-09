@@ -166,7 +166,13 @@ public class DataLoader extends DataConstants{
   private static Update toUpdate(JSONObject historyJSON){
     UUID historyId = UUID.fromString((String)historyJSON.get(UPDATE_ID));
     String timeStampString = (String)historyJSON.get(UPDATE_TIMESTAMP);
-    Date timeStamp = new Date(timeStampString);
+    Date timeStamp;
+    if (timeStampString.equals("")) {
+      timeStamp = new Date();
+    }
+    else {
+      timeStamp = new Date(timeStampString);
+    }
     UUID historyUserId = UUID.fromString((String)historyJSON.get(UPDATE_USER));
     String changelog = (String)historyJSON.get(UPDATE_CHANGE_LOG);
     Update update = new Update(historyId, timeStamp, historyUserId, changelog);
@@ -184,7 +190,9 @@ public class DataLoader extends DataConstants{
     String taskDescription = (String)taskJSON.get(TASK_DESCRIPTION);
     double taskWeight = Double.parseDouble(taskJSON.get(TASK_WEIGHT).toString());
     String taskDueDateString = (String)taskJSON.get(TASK_DUE_DATE);
-    Date taskDueDate = new Date(taskDueDateString);
+    Date taskDueDate;
+    if(taskDueDateString.equals("")) taskDueDate = new Date();
+    else taskDueDate = new Date(taskDueDateString);
     boolean taskStatus = (boolean)taskJSON.get(TASK_STATUS);
     double completionTime = Double.parseDouble(taskJSON.get(TASK_COMPLETION_TIME).toString());
     UUID authorId = UUID.fromString((String)taskJSON.get(TASK_AUTHOR));
@@ -236,7 +244,9 @@ public class DataLoader extends DataConstants{
     // Date implementation
     double columnCompletionTime = Double.parseDouble(columnJSON.get(COLUMN_COMPLETION_TIME).toString());
     String columnCreatedTimeString = (String)columnJSON.get(COLUMN_CREATED_TIME);
-    Date columnCreatedTime = new Date(columnCreatedTimeString);
+    Date columnCreatedTime;
+    if(columnCreatedTimeString.equals("")) columnCreatedTime = new Date();
+    else columnCreatedTime = new Date(columnCreatedTimeString);
 
     UUID authorId = UUID.fromString((String)columnJSON.get(COLUMN_AUTHOR));
     User author = userCatalog.getUser(authorId);
@@ -278,7 +288,9 @@ public class DataLoader extends DataConstants{
     String description = (String)commentJSON.get(COMMENT_DESCRIPTION);
     UUID author = UUID.fromString((String)commentJSON.get(COMMENT_AUTHOR));
     String dateString = (String)commentJSON.get(COMMENT_DATE);
-    Date date = new Date(dateString);
+    Date date;
+    if (dateString.equals("")) date = new Date();
+    else date = new Date(dateString);
 
     ArrayList<Comment> replies = new ArrayList<Comment>();
     JSONArray repliesJSON = (JSONArray)commentJSON.get(COMMENT_REPLY);

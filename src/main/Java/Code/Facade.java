@@ -60,11 +60,7 @@ public class Facade {
 
         ArrayList<User> loadedUsers = loader.getUsers();
         ArrayList<Project> loadedProjects = loader.getProjects();
-        for(User user: loadedUsers) {
-            System.out.println(user.getUsername());
-            System.out.println(user.getPassword());
-            System.out.println();
-        }
+
         userCatalog.addUsers(loadedUsers);
         projectCatalog.addProjects(loadedProjects);
     }

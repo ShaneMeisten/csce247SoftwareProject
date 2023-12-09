@@ -154,8 +154,7 @@ public class DataWriter extends DataConstants{
    */
   private static JSONObject getTaskJSON(Task task) {
     JSONObject taskDetails = new JSONObject();
-    if (task.getID() == null)  taskDetails.put(TASK_ID, "");
-    else taskDetails.put(TASK_ID, task.getID().toString());
+    taskDetails.put(TASK_ID, task.getID().toString());
     taskDetails.put(TASK_TITLE, task.getTitle());
     taskDetails.put(TASK_DESCRIPTION, task.getDescription());
     taskDetails.put(TASK_WEIGHT, task.getWeight());
@@ -174,33 +173,26 @@ public class DataWriter extends DataConstants{
     // Categories
     JSONArray categoriesJSON = new JSONArray();
     ArrayList<String> categories = task.getCategories();
-    if (!(categories == null)) {
-      for (String category : categories) {
-        categoriesJSON.add(category);
-      }
+    for (String category : categories) {
+      categoriesJSON.add(category);
     }
-    else
-      taskDetails.put(TASK_CATEGORIES, categoriesJSON);
+    taskDetails.put(TASK_CATEGORIES, categoriesJSON);
 
     // ToDoList
     JSONArray todoListJSON = new JSONArray();
     ArrayList<ToDo> todoList = task.getToDoList();
-    if(todoList != null) {
-      for (ToDo todo : todoList) {
-        JSONObject todoJSON = getToDoJSON(todo);
-        todoListJSON.add(todoJSON);
-      }
+    for (ToDo todo : todoList) {
+      JSONObject todoJSON = getToDoJSON(todo);
+      todoListJSON.add(todoJSON);
     }
     taskDetails.put(TASK_TODO_LIST, todoListJSON);
 
     // Comments
     JSONArray commentsJSON = new JSONArray();
     ArrayList<Comment> comments = task.getCommentThread();
-    if (comments != null) {
-      for (Comment comment : comments) {
-        JSONObject commentJSON = getCommentJSON(comment);
-        commentsJSON.add(commentJSON);
-      }
+    for (Comment comment : comments) {
+      JSONObject commentJSON = getCommentJSON(comment);
+      commentsJSON.add(commentJSON);
     }
     taskDetails.put(TASK_COMMENT_THREAD, commentsJSON);
 
@@ -214,26 +206,21 @@ public class DataWriter extends DataConstants{
    */
   private static JSONObject getColumnJSON(Column column) {
     JSONObject columnDetails = new JSONObject();
-    if (column.getUUID() == null) columnDetails.put(COLUMN_ID, "");
-    else columnDetails.put(COLUMN_ID, column.getUUID().toString());
+    columnDetails.put(COLUMN_ID, column.getUUID().toString());
     columnDetails.put(COLUMN_TITLE, column.getTitle());
     columnDetails.put(COLUMN_WEIGHT, column.getWeight());
     columnDetails.put(COLUMN_STATUS, column.getStatus());
     columnDetails.put(COLUMN_COMPLETION_TIME, column.getCompletionTime());
-    if (column.getCreatedTime() == null) columnDetails.put(COLUMN_CREATED_TIME, "");
-    else columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
+    columnDetails.put(COLUMN_CREATED_TIME, column.getCreatedTime().toString());
     if (column.getAuthor() == null) columnDetails.put(COLUMN_AUTHOR, "");
     else columnDetails.put(COLUMN_AUTHOR, column.getAuthor().getUUID().toString());
 
     // Task List
     JSONArray tasksJSON = new JSONArray();
     ArrayList<Task> tasks = column.getTasks();
-    if (tasks != null) {
-
-      for (Task task : tasks) {
-        JSONObject taskJSON = getTaskJSON(task);
-        tasksJSON.add(taskJSON);
-      }
+    for (Task task : tasks) {
+      JSONObject taskJSON = getTaskJSON(task);
+      tasksJSON.add(taskJSON);
     }
     columnDetails.put(COLUMN_TASKS, tasksJSON);
 
