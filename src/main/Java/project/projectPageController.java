@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -24,6 +25,9 @@ public class projectPageController implements Initializable {
     @FXML
     private ListView invitedList, currentList;
     private UUID currentp, invite;
+
+    @FXML
+    private TextField tf_newC;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         loadData();
@@ -64,6 +68,35 @@ public class projectPageController implements Initializable {
         if(invite == null) return;
         facade.AcceptInvite(invite);
         loadProjects();
+    }
+
+    @FXML
+    private void CreateCol() throws IOException{
+        if(facade.getCurrentProject() == null) return;
+        String text = tf_newC.getText();
+        System.out.println("FOUND");
+        facade.addColumnToCurrentProject(text);
+        //.getCurrentProject().addColumn(text);
+        //facade.getCurrentProject().getColumnList()
+        for (Column column: facade.getCurrentProject().getColumnList()) {
+            if(column.getTitle().equals(text)){
+                System.out.println("MATCH");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("viewColumn.fxml"));
+                    Parent root1 = (Parent) loader.load();
+                    viewColumnController controller = loader.<viewColumnController>getController();
+                    controller.setName(column);
+                    Stage stage = new Stage();
+                    stage.setTitle("Column: " + column.getTitle());
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
     }
 
     @FXML
