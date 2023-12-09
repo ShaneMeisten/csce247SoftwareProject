@@ -99,20 +99,17 @@ public class Facade {
     public ArrayList<Project> getUserCurrentProjects() {
         if (currentUser == null) return null;
         if (currentUser.getCurrentProjects().size() == 0) return null;
-        return null;
-        //return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjects());
+        return projectCatalog.readUserProjectUUID(currentUser.getCurrentProjectsUUID());
     }
 
     public ArrayList<Project> getUserInvitedProjects() {
         if (currentUser == null) return null;
-        if (currentUser.getInvitedProjects().size() == 0) return null;
-        return null;
-        //return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
+        return projectCatalog.readUserProjectUUID(currentUser.getInvitedProjects());
     }
 
-    public boolean AcceptInvite(int invite) {
+    public boolean AcceptInvite(UUID projectUUID) {
         if (currentUser == null) return false;
-        currentUser.AcceptInvite(invite);
+        currentUser.AcceptInvite(projectUUID);
         return true;
     }
 
@@ -124,7 +121,7 @@ public class Facade {
     }
     */
 
-    public boolean RemoveProject(int invite) {
+    public boolean RemoveProject(UUID invite) {
         if (currentUser == null) return false;
         currentUser.RemoveProject(invite);
         return true;

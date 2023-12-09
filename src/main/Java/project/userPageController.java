@@ -118,15 +118,15 @@ public class userPageController implements Initializable {
         facade.InviteUserToProject(Jeff.getUUID(), facade.getProject(0).getUUID());
         facade.InviteUserToProject(AtticusF.getUUID(), facade.getProject(0).getUUID());
         facade.login("Atticus Madden", "Madden123");
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
-        facade.AcceptInvite(0);
+        facade.AcceptInvite(facade.getProject(0).getUUID());
+        facade.AcceptInvite(facade.getProject(0).getUUID());
+        facade.AcceptInvite(facade.getProject(0).getUUID());
         facade.login("Jeff", "Goldblum123");
-        facade.AcceptInvite(0);
+        facade.AcceptInvite(facade.getProject(0).getUUID());
         // Create exisiting Comment "Not cylindrical enough" - by Jeff for task  "Curve the metal to make a cylindrical shape"
         facade.login("Atticus Finch", "Finch123");
         //// Create exisiting Comment  "What's a cylinder" by Atticus Finch for task  "Curve the metal to make a cylindrical shape"
-        facade.AcceptInvite(0);
+        facade.AcceptInvite(facade.getProject(0).getUUID());
 
         if (facade.login("Atticus Madden", "Madden123")) System.out.println("LOGGED ON");
         else System.out.println("ERROR");

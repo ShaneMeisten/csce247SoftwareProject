@@ -258,13 +258,10 @@ public class User{
      * @return boolean  If the invite number is within the invited projects, then True
      */
 
-    public boolean AcceptInvite(int invite){
-        if(invite >= 0 && invite <= invitedProjects.size()){
-            currentProjects.put(invitedProjects.get(invite), 0.0);
-            invitedProjects.remove(getInvitedProjects().get(invite));
+    public boolean AcceptInvite(UUID project){
+            currentProjects.put(project, 0.0);
+            invitedProjects.remove(project);
             return true;
-        }
-        return false;
     }
     
     /*
@@ -274,12 +271,9 @@ public class User{
      * @return boolean  If the invite number is within the current projects, then True
      */
 
-    public boolean RemoveProject(int invite){
-        if(invite >= 0 && invite <= currentProjects.size()){
-            currentProjects.remove(getCurrentProjects().get(invite));
-            return true;
-        }
-        return false;
+    public boolean RemoveProject(UUID project){
+        currentProjects.remove(project);
+        ;return true;
     }
 
     /*
