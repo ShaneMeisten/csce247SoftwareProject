@@ -168,10 +168,11 @@ public class projectPageController implements Initializable {
     private void loadProjects() {
         invitedList.getItems().clear();
         currentList.getItems().clear();
+        if (facade.getUserInvitedProjects() == null) return;
         for(Project project : facade.getUserInvitedProjects()) {
             invitedList.getItems().add(project.getName());
         }
-
+        if (facade.getUserCurrentProjects() == null) return;
         for(Project project: facade.getUserCurrentProjects()) {
             currentList.getItems().add(project.getName());
         }

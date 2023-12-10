@@ -35,6 +35,7 @@ public class SecondaryController {
         Facade facade = Facade.getInstance();
 
         if(facade.createUser(user))
+            facade.login(username, password);
             App.setRoot("projectPage");
 
     }
